@@ -967,6 +967,10 @@ namespace QA_Tests.Examples.Rendering
             // Load the document to render.
             Aspose.Words.Document doc = new Aspose.Words.Document(ExDir + "Document.doc");
 
+            // Create a new class implementing IWarningCallback and assign it to the PdfSaveOptions class.
+            HandleDocumentWarnings callback = new HandleDocumentWarnings();
+            doc.WarningCallback = callback;
+
             // We can choose the default font to use in the case of any missing fonts.
             FontSettings.DefaultFontName = "Arial";
 
@@ -982,13 +986,8 @@ namespace QA_Tests.Examples.Rendering
             // are stored until the document save and then sent to the appropriate WarningCallback.
             doc.UpdatePageLayout();
 
-            // Create a new class implementing IWarningCallback and assign it to the PdfSaveOptions class.
-            HandleDocumentWarnings callback = new HandleDocumentWarnings();
-            PdfSaveOptions saveOptions = new PdfSaveOptions();
-            saveOptions.WarningCallback = callback;
-
             // Even though the document was rendered previously, any save warnings are notified to the user during document save.
-            doc.Save(ExDir + "Rendering.FontsNotificationUpdatePageLayout Out.pdf", saveOptions);
+            doc.Save(ExDir + "Rendering.FontsNotificationUpdatePageLayout Out.pdf");
             //ExEnd
 
             Assert.Greater(callback.mFontWarnings.Count, 0);
