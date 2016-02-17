@@ -5,9 +5,12 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
+using System;
+using System.Drawing.Printing;
 using Aspose.Words;
 using NUnit.Framework;
 using QA_Tests.Tests;
+using PaperSize = Aspose.Words.PaperSize;
 
 namespace QA_Tests.Examples.PageSetup
 {
@@ -116,7 +119,7 @@ namespace QA_Tests.Examples.PageSetup
             //ExEnd
         }
 
-        [Test]
+        [Test, Explicit]
         public void PaperTrayForDifferentPaperType()
         {
             //ExStart
@@ -136,12 +139,12 @@ namespace QA_Tests.Examples.PageSetup
             // Set the page tray used for each section based off the paper size used in the section.
             foreach (Aspose.Words.Section section in doc.Sections)
             {
-                if(section.PageSetup.PaperSize == PaperSize.Letter)
+                if (section.PageSetup.PaperSize == PaperSize.Letter)
                 {
                     section.PageSetup.FirstPageTray = printerTrayForLetter;
                     section.PageSetup.OtherPagesTray = printerTrayForLetter;
                 }
-                else if(section.PageSetup.PaperSize == PaperSize.A4)
+                else if (section.PageSetup.PaperSize == PaperSize.A4)
                 {
                     section.PageSetup.FirstPageTray = printerTrayForA4;
                     section.PageSetup.OtherPagesTray = printerTrayForA4;
