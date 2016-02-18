@@ -760,7 +760,7 @@ namespace QA_Tests.Examples.Rendering
         public void SetTrueTypeFontsFolder()
         {
             // Store the font sources currently used so we can restore them later. 
-            FontSourceBase[] fontSources = FontSettings.GetFontsSources();
+            FontSourceBase[] fontSources = FontSettings.DefaultInstance.GetFontsSources();
 
             //ExStart
             //ExFor:FontSettings
@@ -772,20 +772,20 @@ namespace QA_Tests.Examples.Rendering
             // Note that this setting will override any default font sources that are being searched by default. Now only these folders will be searched for 
             // fonts when rendering or embedding fonts. To add an extra font source while keeping system font sources then use both FontSettings.GetFontSources and 
             // FontSettings.SetFontSources instead.
-            FontSettings.SetFontsFolder(@"C:\MyFonts\", false);
+            FontSettings.DefaultInstance.SetFontsFolder(@"C:\MyFonts\", false);
 
             doc.Save(ExDir + "Rendering.SetFontsFolder Out.pdf");
             //ExEnd
 
             // Restore the original sources used to search for fonts.
-            FontSettings.SetFontsSources(fontSources);
+            FontSettings.DefaultInstance.SetFontsSources(fontSources);
         }
 
         [Test]
         public void SetFontsFoldersMultipleFolders()
         {
             // Store the font sources currently used so we can restore them later. 
-            FontSourceBase[] fontSources = FontSettings.GetFontsSources();
+            FontSourceBase[] fontSources = FontSettings.DefaultInstance.GetFontsSources();
 
             //ExStart
             //ExFor:FontSettings
@@ -797,20 +797,20 @@ namespace QA_Tests.Examples.Rendering
             // Note that this setting will override any default font sources that are being searched by default. Now only these folders will be searched for 
             // fonts when rendering or embedding fonts. To add an extra font source while keeping system font sources then use both FontSettings.GetFontSources and 
             // FontSettings.SetFontSources instead.
-            FontSettings.SetFontsFolders(new string[] {@"C:\MyFonts\", @"D:\Misc\Fonts\"}, true);
+            FontSettings.DefaultInstance.SetFontsFolders(new string[] {@"C:\MyFonts\", @"D:\Misc\Fonts\"}, true);
 
             doc.Save(ExDir + "Rendering.SetFontsFolders Out.pdf");
             //ExEnd
 
             // Restore the original sources used to search for fonts.
-            FontSettings.SetFontsSources(fontSources);
+            FontSettings.DefaultInstance.SetFontsSources(fontSources);
         }
 
         [Test]
         public void SetFontsFoldersSystemAndCustomFolder()
         {
             // Store the font sources currently used so we can restore them later. 
-            FontSourceBase[] origFontSources = FontSettings.GetFontsSources();
+            FontSourceBase[] origFontSources = FontSettings.DefaultInstance.GetFontsSources();
 
             //ExStart
             //ExFor:FontSettings            
@@ -822,7 +822,7 @@ namespace QA_Tests.Examples.Rendering
 
             // Retrieve the array of environment-dependent font sources that are searched by default. For example this will contain a "Windows\Fonts\" source on a Windows machines.
             // We add this array to a new ArrayList to make adding or removing font entries much easier.
-            ArrayList fontSources = new ArrayList(FontSettings.GetFontsSources());
+            ArrayList fontSources = new ArrayList(FontSettings.DefaultInstance.GetFontsSources());
 
             // Add a new folder source which will instruct Aspose.Words to search the following folder for fonts. 
             FolderFontSource folderFontSource = new FolderFontSource("C:\\MyFonts\\", true);
@@ -834,21 +834,21 @@ namespace QA_Tests.Examples.Rendering
             FontSourceBase[] updatedFontSources = (FontSourceBase[])fontSources.ToArray(typeof(FontSourceBase));
 
             // Apply the new set of font sources to use.
-            FontSettings.SetFontsSources(updatedFontSources);
+            FontSettings.DefaultInstance.SetFontsSources(updatedFontSources);
 
             doc.Save(ExDir + "Rendering.SetFontsFolders Out.pdf");
             //ExEnd
 
             // Verify that font sources are set correctly.
-            Assert.IsInstanceOf(typeof(SystemFontSource), FontSettings.GetFontsSources()[0]); // The first source should be a system font source.
-            Assert.IsInstanceOf(typeof(FolderFontSource), FontSettings.GetFontsSources()[1]); // The second source should be our folder font source.
+            Assert.IsInstanceOf(typeof(SystemFontSource), FontSettings.DefaultInstance.GetFontsSources()[0]); // The first source should be a system font source.
+            Assert.IsInstanceOf(typeof(FolderFontSource), FontSettings.DefaultInstance.GetFontsSources()[1]); // The second source should be our folder font source.
 
-            FolderFontSource folderSource = ((FolderFontSource)FontSettings.GetFontsSources()[1]);
+            FolderFontSource folderSource = ((FolderFontSource)FontSettings.DefaultInstance.GetFontsSources()[1]);
             Assert.AreEqual(@"C:\MyFonts\", folderSource.FolderPath);
             Assert.True(folderSource.ScanSubfolders);
 
             // Restore the original sources used to search for fonts.
-            FontSettings.SetFontsSources(origFontSources);
+            FontSettings.DefaultInstance.SetFontsSources(origFontSources);
         }
 
         [Test]
@@ -882,7 +882,7 @@ namespace QA_Tests.Examples.Rendering
             Aspose.Words.Document doc = new Aspose.Words.Document(ExDir + "Rendering.doc");
 
             // If the default font defined here cannot be found during rendering then the closest font on the machine is used instead.
-            FontSettings.DefaultFontName = "Arial Unicode MS";
+            FontSettings.DefaultInstance.DefaultFontName = "Arial Unicode MS";
 
             // Now the set default font is used in place of any missing fonts during any rendering calls.
             doc.Save(ExDir + "Rendering.SetDefaultFont Out.pdf");
@@ -894,7 +894,7 @@ namespace QA_Tests.Examples.Rendering
         public void RecieveFontSubstitutionNotification()
         {
             // Store the font sources currently used so we can restore them later. 
-            FontSourceBase[] origFontSources = FontSettings.GetFontsSources();
+            FontSourceBase[] origFontSources = FontSettings.DefaultInstance.GetFontsSources();
 
             //ExStart
             //ExFor:IWarningCallback
@@ -905,12 +905,12 @@ namespace QA_Tests.Examples.Rendering
             Aspose.Words.Document doc = new Aspose.Words.Document(ExDir + "Document.doc");
 
             // We can choose the default font to use in the case of any missing fonts.
-            FontSettings.DefaultFontName = "Arial";
+            FontSettings.DefaultInstance.DefaultFontName = "Arial";
 
             // For testing we will set Aspose.Words to look for fonts only in a folder which doesn't exist. Since Aspose.Words won't
             // find any fonts in the specified directory, then during rendering the fonts in the document will be subsuited with the default 
             // font specified under FontSettings.DefaultFontName. We can pick up on this subsuition using our callback.
-            FontSettings.SetFontsFolder(string.Empty, false);
+            FontSettings.DefaultInstance.SetFontsFolder(string.Empty, false);
 
             // Create a new class implementing IWarningCallback which collect any warnings produced during document save.
             HandleDocumentWarnings callback = new HandleDocumentWarnings();
@@ -929,7 +929,7 @@ namespace QA_Tests.Examples.Rendering
             Assert.True(callback.mFontWarnings[0].Description.Contains("has not been found"));
 
             // Restore default fonts. 
-            FontSettings.SetFontsSources(origFontSources);
+            FontSettings.DefaultInstance.SetFontsSources(origFontSources);
         }
 
         //ExStart
@@ -962,7 +962,7 @@ namespace QA_Tests.Examples.Rendering
         public void RecieveFontSubstitutionUpdatePageLayout()
         {
             // Store the font sources currently used so we can restore them later. 
-            FontSourceBase[] origFontSources = FontSettings.GetFontsSources();
+            FontSourceBase[] origFontSources = FontSettings.DefaultInstance.GetFontsSources();
 
             // Load the document to render.
             Aspose.Words.Document doc = new Aspose.Words.Document(ExDir + "Document.doc");
@@ -972,12 +972,12 @@ namespace QA_Tests.Examples.Rendering
             doc.WarningCallback = callback;
 
             // We can choose the default font to use in the case of any missing fonts.
-            FontSettings.DefaultFontName = "Arial";
+            FontSettings.DefaultInstance.DefaultFontName = "Arial";
 
             // For testing we will set Aspose.Words to look for fonts only in a folder which doesn't exist. Since Aspose.Words won't
             // find any fonts in the specified directory, then during rendering the fonts in the document will be subsuited with the default 
             // font specified under FontSettings.DefaultFontName. We can pick up on this subsuition using our callback.
-            FontSettings.SetFontsFolder(string.Empty, false);
+            FontSettings.DefaultInstance.SetFontsFolder(string.Empty, false);
 
             //ExStart
             //ExId:FontSubstitutionUpdatePageLayout
@@ -995,7 +995,7 @@ namespace QA_Tests.Examples.Rendering
             Assert.True(callback.mFontWarnings[0].Description.Contains("has not been found"));
 
             // Restore default fonts. 
-            FontSettings.SetFontsSources(origFontSources);
+            FontSettings.DefaultInstance.SetFontsSources(origFontSources);
         }
 
         [Test]

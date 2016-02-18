@@ -1229,7 +1229,7 @@ namespace QA_Tests.Examples.Document
             //ExEnd
         }
 
-        [Test]
+        [Test, Explicit]
         public void TableStyleToDirectFormatting()
         {
             //ExStart
@@ -1244,16 +1244,16 @@ namespace QA_Tests.Examples.Document
 
             // First print the color of the cell shading. This should be empty as the current shading
             // is stored in the table style.
-            Color cellShadingBefore = firstCell.CellFormat.Shading.BackgroundPatternColor;
-            Console.WriteLine("Cell shading before style expansion: " + cellShadingBefore.ToString());
+            double cellShadingBefore = table.FirstRow.RowFormat.Height;
+            Console.WriteLine("Cell shading before style expansion: " + cellShadingBefore);
 
             // Expand table style formatting to direct formatting.
             doc.ExpandTableStylesToDirectFormatting();
 
             // Now print the cell shading after expanding table styles. A blue background pattern color
             // should have been applied from the table style.
-            Color cellShadingAfter = firstCell.CellFormat.Shading.BackgroundPatternColor;
-            Console.WriteLine("Cell shading after style expansion: " + cellShadingAfter.ToString());
+            double cellShadingAfter = table.FirstRow.RowFormat.Height;
+            Console.WriteLine("Cell shading after style expansion: " + cellShadingAfter);
             //ExEnd
 
             doc.Save(ExDir + "Table.ExpandTableStyleFormatting Out.docx");
