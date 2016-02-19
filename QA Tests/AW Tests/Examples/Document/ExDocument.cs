@@ -825,8 +825,8 @@ namespace QA_Tests.Examples.Document
                 Console.WriteLine("Reason for signing: " + signature.Comments); // This property is available in MS Word documents only.
                 Console.WriteLine("Signature type: " + signature.SignatureType.ToString());
                 Console.WriteLine("Time of signing: " + signature.SignTime);
-                Console.WriteLine("Subject name: " + signature.Certificate.SubjectName.ToString());
-                Console.WriteLine("Issuer name: " + signature.Certificate.IssuerName.Name);
+                Console.WriteLine("Subject name: " + signature.CertificateHolder.Certificate.SubjectName.ToString());
+                Console.WriteLine("Issuer name: " + signature.CertificateHolder.Certificate.IssuerName.Name);
                 Console.WriteLine();
             }
             //ExEnd
@@ -835,15 +835,15 @@ namespace QA_Tests.Examples.Document
             Assert.True(digitalSig.IsValid);
             Assert.AreEqual("Test Sign", digitalSig.Comments);
             Assert.AreEqual("XmlDsig", digitalSig.SignatureType.ToString());
-            Assert.True(digitalSig.Certificate.Subject.Contains("Aspose Pty Ltd"));
-            Assert.True(digitalSig.Certificate.IssuerName.Name.Contains("VeriSign"));
+            Assert.True(digitalSig.CertificateHolder.Certificate.Subject.Contains("Aspose Pty Ltd"));
+            Assert.True(digitalSig.CertificateHolder.Certificate.IssuerName.Name != null && digitalSig.CertificateHolder.Certificate.IssuerName.Name.Contains("VeriSign"));
         }
 
         [Test]
         // We don't include a sample certificate with the examples
         // so this exception is expected instead since the file is not there.
         [ExpectedException(typeof(System.Security.Cryptography.CryptographicException))]
-        public void SignPDFDocument()
+        public void SignPdfDocument()
         {
             //ExStart
             //ExFor:PdfSaveOptions
@@ -873,6 +873,20 @@ namespace QA_Tests.Examples.Document
             // Save the document as PDF with the digital signature set.
             doc.Save(ExDir + "Document.Signed Out.pdf", options);
             //ExEnd
+        }
+
+        //This is for obfuscation bug WORDSNET-13036
+        [Test]
+        [ExpectedException(typeof(TypeInitializationException))]
+        public void SignDocument()
+        {
+            CertificateHolder ch = CertificateHolder.Create(TestDir + "certificate.pfx", "123456");
+
+            //By String
+            Aspose.Words.Document doc = new Aspose.Words.Document(TestDir + "TestRepeatingSection.doc");
+            string outputDocFileName = TestDir + "TestRepeatingSection.Signed_OUT.doc";
+
+            DigitalSignatureUtil.Sign(doc.OriginalFileName, outputDocFileName, ch, "My comment", DateTime.Now);
         }
 
         [Test]

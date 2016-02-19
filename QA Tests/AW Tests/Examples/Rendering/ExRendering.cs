@@ -48,8 +48,8 @@ namespace QA_Tests.Examples.Rendering
             Aspose.Words.Document doc = new Aspose.Words.Document(ExDir + "Rendering.doc");
 
             PdfSaveOptions options = new PdfSaveOptions();
-            options.HeadingsOutlineLevels = 3;
-            options.ExpandedOutlineLevels = 1;
+            options.OutlineOptions.HeadingsOutlineLevels = 3;
+            options.OutlineOptions.ExpandedOutlineLevels = 1;
             
             doc.Save(ExDir + "Rendering.SaveToPdfWithOutline Out.pdf", options);
             //ExEnd
@@ -904,6 +904,10 @@ namespace QA_Tests.Examples.Rendering
             // Load the document to render.
             Aspose.Words.Document doc = new Aspose.Words.Document(ExDir + "Document.doc");
 
+            // Create a new class implementing IWarningCallback and assign it to the PdfSaveOptions class.
+            HandleDocumentWarnings callback = new HandleDocumentWarnings();
+            doc.WarningCallback = callback;
+
             // We can choose the default font to use in the case of any missing fonts.
             FontSettings.DefaultInstance.DefaultFontName = "Arial";
 
@@ -912,16 +916,8 @@ namespace QA_Tests.Examples.Rendering
             // font specified under FontSettings.DefaultFontName. We can pick up on this subsuition using our callback.
             FontSettings.DefaultInstance.SetFontsFolder(string.Empty, false);
 
-            // Create a new class implementing IWarningCallback which collect any warnings produced during document save.
-            HandleDocumentWarnings callback = new HandleDocumentWarnings();
-
-            // We assign the callback to the appropriate save options class. In this case, we are going to save to PDF
-            // so we create a PdfSaveOptions class and assign the callback there.
-            PdfSaveOptions saveOptions = new PdfSaveOptions();
-            saveOptions.WarningCallback = callback;
-
             // Pass the save options along with the save path to the save method.
-            doc.Save(ExDir + "Rendering.MissingFontNotification Out.pdf", saveOptions);
+            doc.Save(ExDir + "Rendering.MissingFontNotification Out.pdf");
             //ExEnd
             
             Assert.Greater(callback.mFontWarnings.Count, 0);
@@ -1051,7 +1047,7 @@ namespace QA_Tests.Examples.Rendering
 
             // To disable embedding standard windows font use the PdfSaveOptions and set the EmbedStandardWindowsFonts property to false.
             PdfSaveOptions options = new PdfSaveOptions();
-            options.EmbedStandardWindowsFonts = false;
+            options.FontEmbeddingMode = PdfFontEmbeddingMode.EmbedNone;
 
             // The output PDF will be saved without embedding standard windows fonts.
             doc.Save(ExDir + "Rendering.DisableEmbedWindowsFonts Out.pdf");
