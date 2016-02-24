@@ -917,7 +917,7 @@ namespace ApiExamples.Rendering
             FontSettings.DefaultInstance.SetFontsFolder(string.Empty, false);
 
             // Pass the save options along with the save path to the save method.
-            doc.Save(ExDir + "Rendering.MissingFontNotification Out.pdf");
+            doc.Save(MyDir + "Rendering.MissingFontNotification Out.pdf");
             //ExEnd
             
             Assert.Greater(callback.mFontWarnings.Count, 0);
@@ -983,7 +983,7 @@ namespace ApiExamples.Rendering
             doc.UpdatePageLayout();
 
             // Even though the document was rendered previously, any save warnings are notified to the user during document save.
-            doc.Save(ExDir + "Rendering.FontsNotificationUpdatePageLayout Out.pdf");
+            doc.Save(MyDir + "Rendering.FontsNotificationUpdatePageLayout Out.pdf");
             //ExEnd
 
             Assert.Greater(callback.mFontWarnings.Count, 0);

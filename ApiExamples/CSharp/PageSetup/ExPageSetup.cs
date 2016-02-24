@@ -9,7 +9,6 @@ using System;
 using System.Drawing.Printing;
 using Aspose.Words;
 using NUnit.Framework;
-using QA_Tests.Tests;
 using PaperSize = Aspose.Words.PaperSize;
 
 namespace ApiExamples.PageSetup

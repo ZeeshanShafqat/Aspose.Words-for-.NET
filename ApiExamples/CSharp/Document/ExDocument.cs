@@ -881,11 +881,11 @@ namespace ApiExamples.Document
         [ExpectedException(typeof(TypeInitializationException))]
         public void SignDocument()
         {
-            CertificateHolder ch = CertificateHolder.Create(TestDir + "certificate.pfx", "123456");
+            CertificateHolder ch = CertificateHolder.Create(MyDir + "certificate.pfx", "123456");
 
             //By String
-            Aspose.Words.Document doc = new Aspose.Words.Document(TestDir + "TestRepeatingSection.doc");
-            string outputDocFileName = TestDir + "TestRepeatingSection.Signed_OUT.doc";
+            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "TestRepeatingSection.doc");
+            string outputDocFileName = MyDir + "TestRepeatingSection.Signed_OUT.doc";
 
             DigitalSignatureUtil.Sign(doc.OriginalFileName, outputDocFileName, ch, "My comment", DateTime.Now);
         }
