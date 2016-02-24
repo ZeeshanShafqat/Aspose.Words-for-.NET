@@ -10,6 +10,7 @@ Imports Aspose.Words
 
 Public Class CheckFormat
     Public Shared Sub Run()
+        ' ExStart:CheckFormatCompatibility
         ' The path to the documents directory.
         Dim dataDir As String = RunExamples.GetDataDir_LoadingAndSaving()
         Dim supportedDir As String = dataDir & "OutSupported"
@@ -33,12 +34,12 @@ Public Class CheckFormat
         End If
 
         Dim fileList() As String = Directory.GetFiles(dataDir)
-        
+
         For Each fileName As String In fileList
             ' Extract and display the file name without the path.
             Dim nameOnly As String = Path.GetFileName(fileName)
             Console.Write(nameOnly)
-
+            ' ExStart:DetectFileFormat
             ' Check the file format and move the file to the appropriate folder.
             Dim info As FileFormatInfo = FileFormatUtil.DetectFileFormat(fileName)
 
@@ -75,7 +76,7 @@ Public Class CheckFormat
                 Case Else
                     Console.WriteLine(Constants.vbTab & "Unknown format.")
             End Select
-
+            ' ExEnd:DetectFileFormat
             ' Now copy the document into the appropriate folder.
             If info.IsEncrypted Then
                 Console.WriteLine(Constants.vbTab & "An encrypted document.")
@@ -91,7 +92,7 @@ Public Class CheckFormat
                 End Select
             End If
         Next fileName
-
+        ' ExEnd:CheckFormatCompatibility
         Console.WriteLine(vbNewLine + "Checked the format of all documents successfully.")
     End Sub
 End Class

@@ -6,9 +6,11 @@ using CSharp.Programming_Documents.Bookmarks;
 using CSharp.Programming_Documents.Comments;
 using CSharp.Programming_Documents.Working_With_Document;
 using CSharp.Programming_Documents.Working_with_Fields;
+using CSharp.Programming_Documents.Working_with_Ranges;
 using CSharp.Programming_Documents.Working_with_Images;
 using CSharp.Programming_Documents.Working_with_Styles;
 using CSharp.Programming_Documents.Working_with_Tables;
+using CSharp.Programming_Documents.Working_with_Sections;
 using CSharp.Quick_Start;
 using CSharp.Rendering_and_Printing;
 using CSharp.LINQ;
@@ -37,12 +39,9 @@ namespace CSharp
             // =====================================================
 
             //AppendDocuments.Run();
-            //ApplyLicense.Run();
-            //Doc2Pdf.Run();
+            //ApplyLicense.Run();           
             //FindAndReplace.Run();
-            //CSharp.Quick_Start.HelloWorld.Run();
-            //LoadAndSaveToDisk.Run();
-            //LoadAndSaveToStream.Run();
+            //CSharp.Quick_Start.HelloWorld.Run();            
             //SimpleMailMerge.Run();
             //UpdateFields.Run();
             //WorkingWithNodes.Run();
@@ -53,11 +52,22 @@ namespace CSharp
             //// =====================================================
             //// =====================================================
 
+            //OpenEncryptedDocument.Run();
+            //LoadAndSaveToDisk.Run();
+            //LoadAndSaveToStream.Run();
+            //CreateDocument.Run();
             //CheckFormat.Run();
             //SplitIntoHtmlPages.Run();
             //LoadTxt.Run();
             //PageSplitter.Run();
             //ImageToPdf.Run();
+            //SpecifySaveOption.Run();
+            //AccessAndVerifySignature.Run();
+            //Doc2Pdf.Run();
+            //DigitallySignedPdf.Run();
+            //ConvertDocumentToByte.Run();
+            //ConvertDocumentToEPUB.Run();
+            //ConvertDocumentToHtmlWithRoundtrip.Run();
 
             //// =====================================================
             //// =====================================================
@@ -95,6 +105,10 @@ namespace CSharp
             //// =====================================================
             //CopyBookmarkedText.Run();
             //UntangleRowBookmarks.Run();
+            //BookmarkTable.Run();
+            //BookmarkNameAndText.Run();
+            //AccessBookmarks.Run();
+            //CreateBookmark.Run();
 
             //// Comments
             //// =====================================================
@@ -111,6 +125,11 @@ namespace CSharp
             //ExtractContentBetweenCommentRange.Run();
             //PageNumbersOfNodes.Run();
             //RemoveBreaks.Run();
+            //CloningDocument.Run();
+            //ProtectDocument.Run();
+            //AccessStyles.Run();
+            //GetVariables.Run();
+            //SetViewOption.Run();
 
             //// Fields
             //// =====================================================
@@ -119,12 +138,30 @@ namespace CSharp
             //ConvertFieldsInDocument.Run();
             //ConvertFieldsInBody.Run();
             //ConvertFieldsInParagraph.Run();
-
+            //ChangeLocale.Run();
+            //UpdateDocFields.Run();
+            //InsertField.Run();
+            //InsertMergeFieldUsingDOM.Run();
+            //InsertMailMergeAddressBlockFieldUsingDOM.Run();
+            //InsertAdvanceFieldWithOutDocumentBuilder.Run();
+            //InsertASKFieldWithOutDocumentBuilder.Run();
+            //InsertAuthorField.Run();
+            //InsertFormFields.Run();
+            //FormFieldsGetFormFieldsCollection.Run();
+            //FormFieldsGetByName.Run();
+            //FormFieldsWorkWithProperties.Run();
+            
             //// Images
             //// =====================================================
             //AddImageToEachPage.Run();
             //AddWatermark.Run();
             //CompressImages.Run();
+
+            //// Ranges
+            //// =====================================================
+            //RangesGetText.Run();
+            //RangesDeleteText.Run();
+            
 
             //// Styles
             //// =====================================================
@@ -135,6 +172,29 @@ namespace CSharp
             //AutoFitTableToWindow.Run();
             //AutoFitTableToContents.Run();
             //AutoFitTableToFixedColumnWidths.Run();
+            //InsertTableUsingDocumentBuilder.Run();
+            //InsertTableDirectly.Run();
+            //CloneTable.Run();
+            //InsertTableFromHtml.Run();
+            //ApplyFormatting.Run();
+            //SpecifyHeightAndWidth.Run();
+            //ApplyStyle.Run();
+            //ExtractText.Run();
+            //FindingIndex.Run();
+            //AddRemoveColumn.Run();
+            //RepeatRowsOnSubsequentPages.Run();
+            //JoiningAndSplittingTable.Run();            
+
+            //// Sections
+            //// =====================================================
+            //SectionsAccessByIndex.Run();
+            //AddDeleteSection.Run();
+            //AppendSectionContent.Run();
+            //DeleteSectionContent.Run();
+            //DeleteHeaderFooterContent.Run();
+            //CloneSection.Run();
+            //CopySection.Run();
+            
 
             //// =====================================================
             //// =====================================================
@@ -193,7 +253,7 @@ namespace CSharp
             //PieChart.Run();
             //ScatterChart.Run();
             //BubbleChart.Run();
-            ChartWithFilteringGroupingOrdering.Run();
+            //ChartWithFilteringGroupingOrdering.Run();
          
             // Stop before exiting
             Console.WriteLine("\n\nProgram Finished. Press any key to exit....");
@@ -238,6 +298,10 @@ namespace CSharp
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Fields/");
         }
+        public static String GetDataDir_WorkingWithRanges()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Ranges/");
+        }
 
         public static String GetDataDir_WorkingWithImages()
         {
@@ -253,7 +317,10 @@ namespace CSharp
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Tables/");
         }
-
+        public static String GetDataDir_WorkingWithSections()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Sections/");
+        }
         public static String GetDataDir_MailMergeAndReporting()
         {
             return Path.GetFullPath(GetDataDir_Data() + "Mail-Merge/");

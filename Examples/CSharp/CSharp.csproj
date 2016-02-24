@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,6 +72,14 @@
     <Compile Include="LINQ\HelloWorld.cs" />
     <Compile Include="LINQ\Sender.cs" />
     <Compile Include="Loading-and-Saving\CheckFormat.cs" />
+    <Compile Include="Loading-and-Saving\AccessAndVerifySignature.cs" />
+    <Compile Include="Loading-and-Saving\ConvertDocumentToByte.cs" />
+    <Compile Include="Loading-and-Saving\ConvertDocumentToEPUB.cs" />
+    <Compile Include="Loading-and-Saving\ConvertDocumentToHtmlWithRoundtrip.cs" />
+    <Compile Include="Loading-and-Saving\DigitallySignedPdf.cs" />
+    <Compile Include="Loading-and-Saving\SpecifySaveOption.cs" />
+    <Compile Include="Loading-and-Saving\OpenEncryptedDocument.cs" />
+    <Compile Include="Loading-and-Saving\CreateDocument.cs" />
     <Compile Include="Loading-and-Saving\ImageToPdf.cs" />
     <Compile Include="Loading-and-Saving\LoadTxt.cs" />
     <Compile Include="Loading-and-Saving\PageSplitter.cs" />
@@ -82,6 +91,30 @@
     <Compile Include="Mail-Merge\NestedMailMerge.cs" />
     <Compile Include="Mail-Merge\RemoveEmptyRegions.cs" />
     <Compile Include="Mail-Merge\XMLMailMerge.cs" />
+    <Compile Include="Programming-Documents\Bookmarks\BookmarkTable.cs" />
+    <Compile Include="Programming-Documents\Bookmarks\BookmarkNameAndText.cs" />
+    <Compile Include="Programming-Documents\Bookmarks\AccessBookmarks.cs" />
+    <Compile Include="Programming-Documents\Bookmarks\CreateBookmark.cs" />
+    <Compile Include="Programming-Documents\Document\CloningDocument.cs" />
+    <Compile Include="Programming-Documents\Document\AccessStyles.cs" />
+    <Compile Include="Programming-Documents\Fields\ChangeLocale.cs" />
+    <Compile Include="Programming-Documents\Fields\FormFieldsWorkWithProperties.cs" />
+    <Compile Include="Programming-Documents\Fields\FormFieldsGetByName.cs" />
+    <Compile Include="Programming-Documents\Fields\FormFieldsGetFormFieldsCollection.cs" />
+    <Compile Include="Programming-Documents\Fields\InsertFormFields.cs" />
+    <Compile Include="Programming-Documents\Fields\InsertAuthorField.cs" />
+    <Compile Include="Programming-Documents\Fields\InsertASKFieldWithOutDocumentBuilder.cs" />
+    <Compile Include="Programming-Documents\Fields\InsertAdvanceFieldWithOutDocumentBuilder.cs" />
+    <Compile Include="Programming-Documents\Fields\InsertMailMergeAddressBlockFieldUsingDOM.cs" />
+    <Compile Include="Programming-Documents\Fields\InsertMergeFieldUsingDOM.cs" />
+    <Compile Include="Programming-Documents\Fields\InsertField.cs" />
+    <Compile Include="Programming-Documents\Fields\UpdateDocFields.cs" />
+    <Compile Include="Programming-Documents\Ranges\RangesDeleteText.cs" />
+    <Compile Include="Programming-Documents\Ranges\RangesGetText.cs" />
+    <Compile Include="Programming-Documents\Tables\JoiningAndSplittingTable.cs" />
+    <Compile Include="Programming-Documents\Document\SetViewOption.cs" />
+    <Compile Include="Programming-Documents\Document\GetVariables.cs" />
+    <Compile Include="Programming-Documents\Document\ProtectDocument.cs" />
     <Compile Include="Programming-Documents\Find-Replace\FindAndHighlight.cs" />
     <Compile Include="Programming-Documents\Find-Replace\ReplaceTextWithField.cs" />
     <Compile Include="Programming-Documents\Joining-Appending\AppendDocumentManually.cs" />
@@ -124,10 +157,28 @@
     <Compile Include="Programming-Documents\Images\AddImageToEachPage.cs" />
     <Compile Include="Programming-Documents\Images\AddWatermark.cs" />
     <Compile Include="Programming-Documents\Images\CompressImages.cs" />
+    <Compile Include="Programming-Documents\Sections\AddDeleteSection.cs" />
+    <Compile Include="Programming-Documents\Sections\AppendSectionContent.cs" />
+    <Compile Include="Programming-Documents\Sections\CloneSection.cs" />
+    <Compile Include="Programming-Documents\Sections\CopySection.cs" />
+    <Compile Include="Programming-Documents\Sections\DeleteHeaderFooterContent.cs" />
+    <Compile Include="Programming-Documents\Sections\DeleteSectionContent.cs" />
+    <Compile Include="Programming-Documents\Sections\SectionsAccessByIndex.cs" />
     <Compile Include="Programming-Documents\Styles\ExtractContentBasedOnStyles.cs" />
     <Compile Include="Programming-Documents\Tables\AutoFitTableToContents.cs" />
     <Compile Include="Programming-Documents\Tables\AutoFitTableToFixedColumnWidths.cs" />
     <Compile Include="Programming-Documents\Tables\AutoFitTableToWindow.cs" />
+    <Compile Include="Programming-Documents\Tables\CloneTable.cs" />
+    <Compile Include="Programming-Documents\Tables\ApplyFormatting.cs" />
+    <Compile Include="Programming-Documents\Tables\ApplyStyle.cs" />
+    <Compile Include="Programming-Documents\Tables\AddRemoveColumn.cs" />
+    <Compile Include="Programming-Documents\Tables\RepeatRowsOnSubsequentPages.cs" />
+    <Compile Include="Programming-Documents\Tables\FindingIndex.cs" />
+    <Compile Include="Programming-Documents\Tables\ExtractOrReplaceText.cs" />
+    <Compile Include="Programming-Documents\Tables\SpecifyHeightAndWidth.cs" />
+    <Compile Include="Programming-Documents\Tables\InsertTableFromHtml.cs" />
+    <Compile Include="Programming-Documents\Tables\InsertTableDirectly.cs" />
+    <Compile Include="Programming-Documents\Tables\InsertTableUsingDocumentBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -136,11 +187,11 @@
     </Compile>
     <Compile Include="Quick-Start\AppendDocuments.cs" />
     <Compile Include="Quick-Start\ApplyLicense.cs" />
-    <Compile Include="Quick-Start\Doc2Pdf.cs" />
+    <Compile Include="Loading-and-Saving\Doc2Pdf.cs" />
     <Compile Include="Quick-Start\FindAndReplace.cs" />
     <Compile Include="Quick-Start\HelloWorld.cs" />
-    <Compile Include="Quick-Start\LoadAndSaveToDisk.cs" />
-    <Compile Include="Quick-Start\LoadAndSaveToStream.cs" />
+    <Compile Include="Loading-and-Saving\LoadAndSaveToDisk.cs" />
+    <Compile Include="Loading-and-Saving\LoadAndSaveToStream.cs" />
     <Compile Include="Quick-Start\SimpleMailMerge.cs" />
     <Compile Include="Quick-Start\UpdateFields.cs" />
     <Compile Include="Quick-Start\WorkingWithNodes.cs" />
@@ -228,6 +279,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Viewers-Visualizers\Document-Explorer\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Viewers-Visualizers\Document-Explorer\ExceptionDialog.resx">
       <DependentUpon>ExceptionDialog.cs</DependentUpon>
