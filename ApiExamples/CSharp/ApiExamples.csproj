@@ -65,6 +65,7 @@
     <Compile Include="DigitalSignature\ExDigitalSignatureUtil.cs" />
     <Compile Include="DocumentConverts\ExMossDoc2Pdf.cs" />
     <Compile Include="DocumentConverts\ExMossRtf2Docx.cs" />
+    <Compile Include="DocumentHelper.cs" />
     <Compile Include="Document\ExDocument.cs" />
     <Compile Include="Document\ExDocumentBuilder.cs" />
     <Compile Include="Document\ExDocumentBuilderImages.cs" />
