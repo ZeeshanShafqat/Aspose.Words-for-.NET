@@ -8,7 +8,7 @@
     /// Tests that verify work with structured document tags in the document 
     /// </summary>
     [TestFixture]
-    internal class QaStructuredDocumentTag : ApiExampleBase
+    internal class ExStructuredDocumentTag : ApiExampleBase
     {
         [Test]
         public void RepeatingSection()

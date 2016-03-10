@@ -5,15 +5,16 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System;
-using System.Text;
-using Aspose.Words;
-using Aspose.Words.Fields;
-using NUnit.Framework;
-
-
-namespace ApiExamples.Document
+namespace ApiExamples
 {
+    using System;
+    using System.Text;
+
+    using Aspose.Words;
+    using Aspose.Words.Fields;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class ExVisitor : ApiExampleBase
     {
@@ -23,7 +24,7 @@ namespace ApiExamples.Document
         [Test]
         public void ToTextCaller()
         {
-            ToText();
+            this.ToText();
         }
 
         //ExStart
@@ -72,8 +73,8 @@ namespace ApiExamples.Document
         {
             public MyDocToTxtWriter()
             {
-                mIsSkipText = false;
-                mBuilder = new StringBuilder();
+                this.mIsSkipText = false;
+                this.mBuilder = new StringBuilder();
             }
 
             /// <summary>
@@ -81,7 +82,7 @@ namespace ApiExamples.Document
             /// </summary>
             public string GetText()
             {
-                return mBuilder.ToString();
+                return this.mBuilder.ToString();
             }
 
             /// <summary>
@@ -89,7 +90,7 @@ namespace ApiExamples.Document
             /// </summary>
             public override VisitorAction VisitRun(Run run)
             {
-                AppendText(run.Text);
+                this.AppendText(run.Text);
 
                 // Let the visitor continue visiting other nodes.
                 return VisitorAction.Continue;
@@ -106,7 +107,7 @@ namespace ApiExamples.Document
                 //
                 // Note this is a very simplistic implementation and will not work very well
                 // if you have nested fields in a document. 
-                mIsSkipText = true;
+                this.mIsSkipText = true;
 
                 return VisitorAction.Continue;
             }
@@ -118,7 +119,7 @@ namespace ApiExamples.Document
             {
                 // Once reached a field separator node, we enable the output because we are
                 // now entering the field result nodes.
-                mIsSkipText = false;
+                this.mIsSkipText = false;
 
                 return VisitorAction.Continue;
             }
@@ -130,7 +131,7 @@ namespace ApiExamples.Document
             {
                 // Make sure we enable the output when reached a field end because some fields
                 // do not have field separator and do not have field result.
-                mIsSkipText = false;
+                this.mIsSkipText = false;
 
                 return VisitorAction.Continue;
             }
@@ -141,7 +142,7 @@ namespace ApiExamples.Document
             public override VisitorAction VisitParagraphEnd(Paragraph paragraph)
             {
                 // When outputting to plain text we output Cr+Lf characters.
-                AppendText(ControlChar.CrLf);
+                this.AppendText(ControlChar.CrLf);
 
                 return VisitorAction.Continue;
             }
@@ -150,14 +151,14 @@ namespace ApiExamples.Document
             {
                 // We can detect beginning and end of all composite nodes such as Section, Body, 
                 // Table, Paragraph etc and provide custom handling for them.
-                mBuilder.Append("*** Body Started ***\r\n");
+                this.mBuilder.Append("*** Body Started ***\r\n");
 
                 return VisitorAction.Continue;
             }
 
             public override VisitorAction VisitBodyEnd(Body body)
             {
-                mBuilder.Append("*** Body Ended ***\r\n");
+                this.mBuilder.Append("*** Body Ended ***\r\n");
                 return VisitorAction.Continue;
             }
 
@@ -178,7 +179,7 @@ namespace ApiExamples.Document
             /// </summary>
             public override VisitorAction VisitAbsolutePositionTab(AbsolutePositionTab tab)
             {
-                mBuilder.Append("\t");
+                this.mBuilder.Append("\t");
                 return VisitorAction.Continue;
             }
 
@@ -187,7 +188,7 @@ namespace ApiExamples.Document
             /// </summary>
             public override VisitorAction VisitBookmarkStart(BookmarkStart bookmarkStart)
             {
-                mBuilder.Append("[");
+                this.mBuilder.Append("[");
                 return VisitorAction.Continue;
             }
 
@@ -196,7 +197,7 @@ namespace ApiExamples.Document
             /// </summary>
             public override VisitorAction VisitBookmarkEnd(BookmarkEnd bookmarkEnd)
             {
-                mBuilder.Append("]");
+                this.mBuilder.Append("]");
                 return VisitorAction.Continue;
             }
 
@@ -205,8 +206,8 @@ namespace ApiExamples.Document
             /// </summary>
             private void AppendText(string text)
             {
-                if (!mIsSkipText)
-                    mBuilder.Append(text);
+                if (!this.mIsSkipText)
+                    this.mBuilder.Append(text);
             }
 
             private readonly StringBuilder mBuilder;

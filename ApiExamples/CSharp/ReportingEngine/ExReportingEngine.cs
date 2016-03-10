@@ -13,12 +13,10 @@ using Aspose.Words.Drawing;
 using Aspose.Words.Reporting;
 using NUnit.Framework;
 
-namespace ApiExamples.ReportEngine
+namespace ApiExamples
 {
-    using Document = Aspose.Words.Document;
-
     [TestFixture]
-    public class QaReportingEngine : ApiExampleBase
+    public class ExReportingEngine : ApiExampleBase
     {
         private readonly string image = MyDir + @"Images\Test_636_852.gif";
 
@@ -122,6 +120,7 @@ namespace ApiExamples.ReportEngine
 
             BuildReport(doc, dataSet, "Bad");
         }
+
         /// <summary>
         /// Assert that the exception from previous test is not repeated with AllowMissingMembers parameter
         /// </summary>

@@ -5,13 +5,14 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System;
-using Aspose.Words.Properties;
-using NUnit.Framework;
-
-
-namespace ApiExamples.Properties
+namespace ApiExamples
 {
+    using System;
+
+    using Aspose.Words.Properties;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class ExProperties : ApiExampleBase
     {

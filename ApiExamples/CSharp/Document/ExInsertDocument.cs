@@ -5,16 +5,17 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System;
-using System.IO;
-using System.Text.RegularExpressions;
-using Aspose.Words;
-using Aspose.Words.MailMerging;
-using NUnit.Framework;
-
-
-namespace ApiExamples.Document
+namespace ApiExamples
 {
+    using System;
+    using System.IO;
+    using System.Text.RegularExpressions;
+
+    using Aspose.Words;
+    using Aspose.Words.MailMerging;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class ExInsertDocument : ApiExampleBase
     {
@@ -89,7 +90,7 @@ namespace ApiExamples.Document
         [Test]
         public void InsertDocumentAtMailMergeCaller()
         {
-            InsertDocumentAtMailMerge();
+            this.InsertDocumentAtMailMerge();
         }
 
         //ExStart
@@ -198,7 +199,7 @@ namespace ApiExamples.Document
         [Test]
         public void InsertDocumentAtReplaceCaller()
         {
-            InsertDocumentAtReplace();
+            this.InsertDocumentAtReplace();
         }
         
         //ExStart

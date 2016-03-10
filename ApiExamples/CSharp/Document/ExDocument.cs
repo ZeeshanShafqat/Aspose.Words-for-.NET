@@ -5,36 +5,37 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System;
-using System.Collections;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
-using System.Web;
-using Aspose.Words;
-using Aspose.Words.Drawing;
-using Aspose.Words.Fields;
-using Aspose.Words.Rendering;
-using Aspose.Words.Saving;
-using Aspose.Words.Settings;
-using Aspose.Words.Tables;
-using NUnit.Framework;
-
 #if !JAVA
 //ExStart
 //ExId:ImportForDigitalSignatures
 //ExSummary:The import required to use the X509Certificate2 class.
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography;
+
 //ExEnd
 #endif
 
-namespace ApiExamples.Document
+namespace ApiExamples
 {
+    using System;
+    using System.Collections;
+    using System.Drawing;
+    using System.Globalization;
+    using System.IO;
+    using System.Net;
+    using System.Security.Cryptography.X509Certificates;
+    using System.Text;
+    using System.Threading;
+    using System.Web;
+
+    using Aspose.Words;
+    using Aspose.Words.Drawing;
+    using Aspose.Words.Fields;
+    using Aspose.Words.Rendering;
+    using Aspose.Words.Saving;
+    using Aspose.Words.Settings;
+    using Aspose.Words.Tables;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class ExDocument : ApiExampleBase
     {
@@ -486,7 +487,7 @@ namespace ApiExamples.Document
         [Test]
         public void SaveHtmlExportFontsCaller()
         {
-            SaveHtmlExportFonts();
+            this.SaveHtmlExportFonts();
         }
 
         //ExStart
@@ -528,7 +529,7 @@ namespace ApiExamples.Document
         [Test]
         public void SaveHtmlExportImagesCaller()
         {
-            SaveHtmlExportImages();
+            this.SaveHtmlExportImages();
         }
 
         //ExStart
@@ -568,7 +569,7 @@ namespace ApiExamples.Document
         [Test]
         public void TestNodeChangingInDocumentCaller()
         {
-            TestNodeChangingInDocument();
+            this.TestNodeChangingInDocument();
         }
 
         //ExStart

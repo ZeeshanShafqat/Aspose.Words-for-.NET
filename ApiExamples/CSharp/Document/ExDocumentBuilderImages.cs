@@ -5,13 +5,13 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using Aspose.Words;
-using Aspose.Words.Drawing;
-using NUnit.Framework;
-
-
-namespace ApiExamples.Document
+namespace ApiExamples
 {
+    using Aspose.Words;
+    using Aspose.Words.Drawing;
+
+    using NUnit.Framework;
+
     [TestFixture]
     public class ExDocumentBuilderImages : ApiExampleBase
     {
