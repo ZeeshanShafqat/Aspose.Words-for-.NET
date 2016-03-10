@@ -99,9 +99,7 @@
     <Compile Include="Range\ExRange.cs" />
     <Compile Include="Rendering\ExRendering.cs" />
     <Compile Include="ReportingEngine\ExReportingEngine.cs" />
-    <Compile Include="Saving\QaHtmlFixedSaveOptions.cs" />
     <Compile Include="Saving\ExHtmlFixedSaveOptions.cs" />
-    <Compile Include="Saving\QaPdfSaveOptions.cs" />
     <Compile Include="Saving\ExPdfSaveOptions.cs" />
     <Compile Include="Saving\ExSwfSaveOptions.cs" />
     <Compile Include="Section\ExSection.cs" />
