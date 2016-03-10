@@ -1,24 +1,24 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
+using System;
+using System.Drawing;
+using System.IO;
+
+using Aspose.Words;
+using Aspose.Words.Drawing;
+using Aspose.Words.Drawing.Charts;
+using Aspose.Words.Fields;
+using Aspose.Words.Tables;
+
+using NUnit.Framework;
+
 namespace ApiExamples
 {
-    using System;
-    using System.Drawing;
-    using System.IO;
-
-    using Aspose.Words;
-    using Aspose.Words.Drawing;
-    using Aspose.Words.Drawing.Charts;
-    using Aspose.Words.Fields;
-    using Aspose.Words.Tables;
-
-    using NUnit.Framework;
-
     [TestFixture]
     public class ExDocumentBuilder : ApiExampleBase
     {
@@ -63,7 +63,7 @@ namespace ApiExamples
             //ExId:DocumentBuilderMoveToHeaderFooter
             //ExSummary:Creates headers and footers in a document using DocumentBuilder.
             // Create a blank document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Specify that we want headers and footers different for first, even and odd pages.
@@ -97,7 +97,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertField(string)
             //ExId:DocumentBuilderInsertField
             //ExSummary:Inserts a merge field into a document using DocumentBuilder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
             builder.InsertField(@"MERGEFIELD MyFieldName \* MERGEFORMAT");
             //ExEnd			
@@ -116,7 +116,7 @@ namespace ApiExamples
             //ExFor:Field.Remove
             //ExFor:FieldType
             //ExSummary:Inserts a field into a document using DocumentBuilder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Insert a simple Date field into the document.
@@ -149,7 +149,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderAndSave
             //ExSummary:Shows how to create build a document using a document builder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.Writeln("Hello World!");
@@ -169,7 +169,7 @@ namespace ApiExamples
             //ExFor:Underline
             //ExId:DocumentBuilderInsertHyperlink
             //ExSummary:Inserts a hyperlink into a document using DocumentBuilder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.Write("Please make sure to visit ");
@@ -197,7 +197,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.PopFont
             //ExFor:DocumentBuilder.InsertHyperlink
             //ExSummary:Shows how to use temporarily save and restore character formatting when building a document with DocumentBuilder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set up font formatting and write text that goes before the hyperlink.
@@ -237,7 +237,7 @@ namespace ApiExamples
             //ExFor:RelativeHorizontalPosition
             //ExFor:RelativeVerticalPosition
             //ExSummary:Inserts a watermark image into a document using DocumentBuilder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // The best place for the watermark image is in the header or footer so it is shown on every page.
@@ -269,7 +269,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertHtml(string)
             //ExId:DocumentBuilderInsertHtml
             //ExSummary:Inserts HTML into a document. The formatting specified in the HTML is applied.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.InsertHtml(
@@ -288,7 +288,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertHtml(String, Boolean)
             //ExSummary:Inserts HTML into a document using. The current document formatting at the insertion position is applied to the inserted text. 
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             bool useBuilderFormatting = true;
@@ -375,7 +375,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.MoveToDocumentStart
             //ExFor:DocumentBuilder.MoveToDocumentEnd
             //ExSummary:Shows how to move between nodes and manipulate current ones.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.WorkingWithNodes.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.WorkingWithNodes.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Move to a bookmark and delete the parent paragraph.
@@ -406,7 +406,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.Bold
             //ExFor:DocumentBuilder.Italic
             //ExSummary:Fills document merge fields with some data.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.FillingDocument.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.FillingDocument.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.MoveToMergeField("TeamLeaderName");
@@ -438,7 +438,7 @@ namespace ApiExamples
             //ExId:InsertTableOfContents
             //ExSummary:Demonstrates how to insert a Table of contents (TOC) into a document using heading styles as entries.
             // Use a blank document
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             // Create a document builder to insert content with into document.
             DocumentBuilder builder = new DocumentBuilder(doc);
@@ -577,7 +577,7 @@ namespace ApiExamples
             //ExFor:AutoFitBehavior
             //ExId:InsertTableWithTableStyle
             //ExSummary:Shows how to build a new table with a table style applied.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
@@ -635,7 +635,7 @@ namespace ApiExamples
             //ExFor:RowFormat.HeadingFormat
             //ExId:InsertTableWithHeadingFormat
             //ExSummary:Shows how to build a table which include heading rows that repeat on subsequent pages. 
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
@@ -680,7 +680,7 @@ namespace ApiExamples
             //ExFor:PreferredWidth
             //ExId:TablePreferredWidth
             //ExSummary:Shows how to set a table to auto fit to 50% of the page width.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Insert a table with a width that takes up half the page width.
@@ -716,7 +716,7 @@ namespace ApiExamples
             //ExFor:PreferredWidth.Auto
             //ExId:CellPreferredWidths
             //ExSummary:Shows how to set the different preferred width settings.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Insert a table row made up of three cells which have different preferred widths.
@@ -756,7 +756,7 @@ namespace ApiExamples
             //ExStart
             //ExId:InsertTableFromHtml
             //ExSummary:Shows how to insert a table in a document from a string containing HTML tags.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Insert the table from HTML. Note that AutoFitSettings does not apply to tables
@@ -788,7 +788,7 @@ namespace ApiExamples
             //ExFor:Cell.FirstParagraph
             //ExId:BuildNestedTableUsingDocumentBuilder
             //ExSummary:Shows how to insert a nested table using DocumentBuilder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Build the outer table.
@@ -831,7 +831,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertCell
             //ExId:BuildSimpleTable
             //ExSummary:Shows how to create a simple table using DocumentBuilder with default formatting.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // We call this method to start building the table.
@@ -882,7 +882,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.Font
             //ExId:BuildFormattedTable
             //ExSummary:Shows how to create a formatted table using DocumentBuilder
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
@@ -976,7 +976,7 @@ namespace ApiExamples
             //ExFor:BorderCollection.Bottom
             //ExId:TableBordersAndShading
             //ExSummary:Shows how to format table and cell with different borders and shadings
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
@@ -1036,7 +1036,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:PreferredWidth.FromPoints
             //ExSummary:Shows how to specify a cell preferred width by converting inches to points.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
@@ -1055,7 +1055,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.EndBookmark
             //ExFor:DocumentBuilder.InsertHyperlink
             //ExSummary:Inserts a hyperlink referencing local bookmark.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.StartBookmark("Bookmark1");
@@ -1085,7 +1085,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderCtor
             //ExSummary:Shows how to create a simple document using a document builder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
             builder.Write("Hello World!");
             //ExEnd
@@ -1097,7 +1097,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderCursorPosition
             //ExSummary:Shows how to access the current node in a document builder.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Aspose.Words.Node curNode = builder.CurrentNode;
@@ -1113,7 +1113,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.MoveTo(Node)
             //ExId:DocumentBuilderMoveToNode
             //ExSummary:Shows how to move a cursor position to a specified node.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.MoveTo(doc.FirstSection.Body.LastParagraph);
@@ -1126,7 +1126,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderMoveToDocumentStartEnd
             //ExSummary:Shows how to move a cursor position to the beginning or end of a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.MoveToDocumentEnd();
@@ -1143,7 +1143,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderMoveToSection
             //ExSummary:Shows how to move a cursor position to the specified section.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Parameters are 0-index. Moves to third section.
@@ -1159,7 +1159,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.MoveToParagraph
             //ExId:DocumentBuilderMoveToParagraph
             //ExSummary:Shows how to move a cursor position to the specified paragraph.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Parameters are 0-index. Moves to third paragraph.
@@ -1175,7 +1175,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.MoveToCell
             //ExId:DocumentBuilderMoveToTableCell
             //ExSummary:Shows how to move a cursor position to the specified table cell.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // All parameters are 0-index. Moves to the 2nd table, 3rd row, 5th cell.
@@ -1190,7 +1190,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderMoveToBookmark
             //ExSummary:Shows how to move a cursor position to a bookmark.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.MoveToBookmark("CoolBookmark");
@@ -1205,7 +1205,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.MoveToBookmark(String, Boolean, Boolean)
             //ExId:DocumentBuilderMoveToBookmarkEnd
             //ExSummary:Shows how to move a cursor position to just after the bookmark end.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.MoveToBookmark("CoolBookmark", false, true);
@@ -1219,7 +1219,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderMoveToMergeField
             //ExSummary:Shows how to move the cursor to a position just beyond the specified merge field.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.MoveToMergeField("NiceMergeField");
@@ -1237,14 +1237,14 @@ namespace ApiExamples
             //ExFor:ParagraphFormat.KeepTogether
             //ExId:DocumentBuilderInsertParagraph
             //ExSummary:Shows how to insert a paragraph into the document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Specify font formatting
             Aspose.Words.Font font = builder.Font;
             font.Size = 16;
             font.Bold = true;
-            font.Color = System.Drawing.Color.Blue;
+            font.Color = Color.Blue;
             font.Name = "Arial";
             font.Underline = Underline.Dash;
 
@@ -1280,7 +1280,7 @@ namespace ApiExamples
             //ExFor:AutoFitBehavior
             //ExId:DocumentBuilderBuildTable
             //ExSummary:Shows how to build a formatted table that contains 2 rows and 2 columns.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
@@ -1326,7 +1326,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderInsertBreak
             //ExSummary:Shows how to insert page breaks into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.Writeln("This is page 1.");
@@ -1345,7 +1345,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderInsertInlineImage
             //ExSummary:Shows how to insert an inline image at the cursor position into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.InsertImage(MyDir + "Watermark.png");
@@ -1359,7 +1359,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertImage(String, RelativeHorizontalPosition, Double, RelativeVerticalPosition, Double, Double, Double, WrapType)
             //ExId:DocumentBuilderInsertFloatingImage
             //ExSummary:Shows how to insert a floating image from a file or URL.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.InsertImage(MyDir + "Watermark.png",
@@ -1379,7 +1379,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(String)
             //ExSummary:Shows how to insert an image into a document from a web address.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
             builder.InsertImage("http://www.aspose.com/images/aspose-logo.gif");
 
@@ -1399,7 +1399,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertImage(String, RelativeHorizontalPosition, Double, RelativeVerticalPosition, Double, Double, Double, WrapType)
             //ExId:DocumentBuilderInsertFloatingImageSourceSize
             //ExSummary:Shows how to insert a floating image from a file or URL and retain the original image size in the document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Pass a negative value to the width and height values to specify using the size of the source image.
@@ -1422,7 +1422,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderInsertBookmark
             //ExSummary:Shows how to insert a bookmark into a document using a document builder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.StartBookmark("FineBookmark");
@@ -1438,7 +1438,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertTextInput
             //ExId:DocumentBuilderInsertTextInputFormField
             //ExSummary:Shows how to insert a text input form field into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.InsertTextInput("TextInput", TextFormFieldType.Regular, "", "Hello", 0);
@@ -1452,7 +1452,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertCheckBox
             //ExId:DocumentBuilderInsertCheckBoxFormField
             //ExSummary:Shows how to insert a checkbox form field into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.InsertCheckBox("CheckBox", true, 0);
@@ -1466,7 +1466,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertComboBox
             //ExId:DocumentBuilderInsertComboBoxFormField
             //ExSummary:Shows how to insert a combobox form field into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             string[] items = { "One", "Two", "Three" };
@@ -1480,7 +1480,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderInsertTOC
             //ExSummary:Shows how to insert a Table of Contents field into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Insert a table of contents at the beginning of the document.
@@ -1498,13 +1498,13 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderSetFontFormatting
             //ExSummary:Shows how to set font formatting.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set font formatting properties
             Aspose.Words.Font font = builder.Font;
             font.Bold = true;
-            font.Color = System.Drawing.Color.DarkBlue;
+            font.Color = Color.DarkBlue;
             font.Italic = true;
             font.Name = "Arial";
             font.Size = 24;
@@ -1525,7 +1525,7 @@ namespace ApiExamples
             //ExFor:ParagraphFormat.SpaceAfter
             //ExId:DocumentBuilderSetParagraphFormatting
             //ExSummary:Shows how to set paragraph formatting.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set paragraph formatting properties
@@ -1555,7 +1555,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.EndTable
             //ExId:DocumentBuilderSetCellFormatting
             //ExSummary:Shows how to create a table that contains a single formatted cell.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.StartTable();
@@ -1589,7 +1589,7 @@ namespace ApiExamples
             //ExFor:Table.BottomPadding
             //ExId:DocumentBuilderSetRowFormatting
             //ExSummary:Shows how to create a table that contains a single cell and apply row formatting.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
@@ -1618,7 +1618,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderSetListFormatting
             //ExSummary:Shows how to build a multilevel list.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.ListFormat.ApplyNumberDefault();
@@ -1654,7 +1654,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderSetSectionFormatting
             //ExSummary:Shows how to set such properties as page size and orientation for the current section.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set page properties
@@ -1672,7 +1672,7 @@ namespace ApiExamples
             //ExFor:FootnoteType
             //ExFor:DocumentBuilder.InsertFootnote(FootnoteType,string)
             //ExSummary:Shows how to add a footnote to a paragraph in the document using DocumentBuilder.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
             builder.Write("Some text");
 
@@ -1688,7 +1688,7 @@ namespace ApiExamples
             //ExStart
             //ExId:DocumentBuilderApplyParagraphStyle
             //ExSummary:Shows how to apply a paragraph style.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set paragraph style
@@ -1711,7 +1711,7 @@ namespace ApiExamples
             //ExFor:Shading.ForegroundPatternColor
             //ExId:DocumentBuilderApplyBordersAndShading
             //ExSummary:Shows how to apply borders and shading to a paragraph.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set paragraph borders
@@ -1725,8 +1725,8 @@ namespace ApiExamples
             // Set paragraph shading
             Shading shading = builder.ParagraphFormat.Shading;
             shading.Texture = TextureIndex.TextureDiagonalCross;
-            shading.BackgroundPatternColor = System.Drawing.Color.LightCoral;
-            shading.ForegroundPatternColor = System.Drawing.Color.LightSalmon;
+            shading.BackgroundPatternColor = Color.LightCoral;
+            shading.ForegroundPatternColor = Color.LightSalmon;
 
             builder.Write("I'm a formatted paragraph with double border and nice shading.");
             //ExEnd
@@ -1738,7 +1738,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.DeleteRow
             //ExSummary:Shows how to delete a row from a table.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "DocumentBuilder.DocWithTable.doc");
+            Document doc = new Document(MyDir + "DocumentBuilder.DocWithTable.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Delete the first row of the first table in the document.
@@ -1752,9 +1752,9 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertDocument
             //ExSummary:Shows how to insert a document into another document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
-            Aspose.Words.Document docToInsert = new Aspose.Words.Document(MyDir + "DocumentBuilder.InsertedDoc.doc");
+            Document docToInsert = new Document(MyDir + "DocumentBuilder.InsertedDoc.doc");
 
             builder.InsertDocument(docToInsert, ImportFormatMode.KeepSourceFormatting);
             //ExEnd
@@ -1769,7 +1769,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.EndEditableRange()
             //ExFor:DocumentBuilder.EndEditableRange(EditableRangeStart)
             //ExSummary:Shows how to start and end an editable range.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Start an editable range.
@@ -1805,7 +1805,7 @@ namespace ApiExamples
         [Test]
         public void AddEditableRanges()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             DocumentBuilder builder = new DocumentBuilder(doc);
 
@@ -1883,7 +1883,7 @@ namespace ApiExamples
         [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "EndEditableRange can not be called before StartEditableRange.")]
         public void IncorrectStructureException()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             DocumentBuilder builder = new DocumentBuilder(doc);
 
@@ -1896,7 +1896,7 @@ namespace ApiExamples
         [Test]
         public void IncorrectStructure()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             DocumentBuilder builder = new DocumentBuilder(doc);
 
@@ -1929,7 +1929,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.MoveToField
             //ExSummary:Shows how to move document builder's cursor to a specific field.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Field field = builder.InsertField("MERGEFIELD field");
@@ -1944,7 +1944,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertOleObject(String, Boolean, Boolean, Image)
             //ExSummary:Shows how to insert an OLE object into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
             Image representingImage = Image.FromFile(MyDir + "Aspose.Words.gif");
             Shape oleObject = builder.InsertOleObject(MyDir + "Document.Spreadsheet.xlsx", false, false, representingImage);
@@ -1960,7 +1960,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertChart(ChartType, Double, Double)
             //ExSummary:Shows how to insert a chart into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.InsertChart(ChartType.Pie, Aspose.Words.ConvertUtil.PixelToPoint(300),
@@ -1976,7 +1976,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertChart(ChartType, RelativeHorizontalPosition, Double, RelativeVerticalPosition, Double, Double, Double, WrapType)
             //ExSummary:Shows how to insert a chart into a document and specify all positioning options in the arguments.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.InsertChart(ChartType.Pie, RelativeHorizontalPosition.Margin, 100, RelativeVerticalPosition.Margin, 100,
@@ -1993,7 +1993,7 @@ namespace ApiExamples
             //ExFor:DocumentBuilder.InsertCheckBox(String, Boolean, Int32)
             //ExFor:DocumentBuilder.InsertCheckBox(String, Boolean, Boolean, Int32)
             //ExSummary:Shows how to insert a check box into a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Insert a checkbox with no default value and let MS Word apply the default size.
@@ -2015,7 +2015,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertField(FieldType, Boolean)
             //ExSummary:Shows how to insert a field.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             builder.Write("This field was inserted/updated at ");

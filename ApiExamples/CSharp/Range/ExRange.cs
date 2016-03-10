@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
@@ -6,12 +6,14 @@
 //////////////////////////////////////////////////////////////////////////
 
 using System;
+using System.Drawing;
 using System.Text.RegularExpressions;
+
 using Aspose.Words;
+
 using NUnit.Framework;
 
-
-namespace ApiExamples.Range
+namespace ApiExamples
 {
     [TestFixture]
     public class ExRange : ApiExampleBase
@@ -24,7 +26,7 @@ namespace ApiExamples.Range
             //ExFor:Range.Delete
             //ExSummary:Shows how to delete a section from a Word document.
             // Open Word document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Range.DeleteSection.doc");
+            Document doc = new Document(MyDir + "Range.DeleteSection.doc");
 
             // The document contains two sections. Each section has a paragraph of text.
             Console.WriteLine(doc.GetText());
@@ -46,7 +48,7 @@ namespace ApiExamples.Range
             //ExFor:Range.Replace(String,String,Boolean,Boolean)
             //ExSummary:Simple find and replace operation.
             // Open the document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Range.ReplaceSimple.doc");
+            Document doc = new Document(MyDir + "Range.ReplaceSimple.doc");
 
             // Check the document contains what we are about to test.
             Console.WriteLine(doc.FirstSection.Body.Paragraphs[0].GetText());
@@ -67,7 +69,7 @@ namespace ApiExamples.Range
         [Test]
         public void ReplaceWithInsertHtmlCaller()
         {
-            ReplaceWithInsertHtml();
+            this.ReplaceWithInsertHtml();
         }
 
         //ExStart
@@ -81,7 +83,7 @@ namespace ApiExamples.Range
         public void ReplaceWithInsertHtml()
         {
             // Open the document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Range.ReplaceWithInsertHtml.doc");
+            Document doc = new Document(MyDir + "Range.ReplaceWithInsertHtml.doc");
 
             doc.Range.Replace(new Regex(@"<CustomerName>"), new ReplaceWithHtmlEvaluator(), false);
 
@@ -99,7 +101,7 @@ namespace ApiExamples.Range
             /// </summary>
             ReplaceAction IReplacingCallback.Replacing(ReplacingArgs e)
             {
-                DocumentBuilder builder = new DocumentBuilder((Aspose.Words.Document)e.MatchNode.Document);
+                DocumentBuilder builder = new DocumentBuilder((Document)e.MatchNode.Document);
                 builder.MoveTo(e.MatchNode);
                 // Replace '<CustomerName>' text with a red bold name.
                 builder.InsertHtml("<b><font color='red'>James Bond</font></b>");
@@ -118,7 +120,7 @@ namespace ApiExamples.Range
             //ExFor:Range.Text
             //ExId:RangesGetText
             //ExSummary:Shows how to get plain, unformatted text of a range.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             string text = doc.Range.Text;
             //ExEnd
         }
@@ -130,7 +132,7 @@ namespace ApiExamples.Range
             //ExFor:Range
             //ExId:RangesReplaceString
             //ExSummary:Shows how to replace all occurrences of word "sad" to "bad".
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             doc.Range.Replace("sad", "bad", false, true);
             //ExEnd
             doc.Save(MyDir + "ReplaceWithString Out.doc");
@@ -143,7 +145,7 @@ namespace ApiExamples.Range
             //ExFor:Range.Replace(Regex, String)
             //ExId:RangesReplaceRegex
             //ExSummary:Shows how to replace all occurrences of words "sad" or "mad" to "bad".
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             doc.Range.Replace(new Regex("[s|m]ad"), "bad");
             //ExEnd
             doc.Save(MyDir + "ReplaceWithRegex Out.doc");
@@ -155,7 +157,7 @@ namespace ApiExamples.Range
         [Test]
         public void ReplaceWithEvaluatorCaller()
         {
-            ReplaceWithEvaluator();
+            this.ReplaceWithEvaluator();
         }
 
         //ExStart
@@ -165,7 +167,7 @@ namespace ApiExamples.Range
         //ExSummary:Shows how to replace with a custom evaluator.
         public void ReplaceWithEvaluator()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Range.ReplaceWithEvaluator.doc");
+            Document doc = new Document(MyDir + "Range.ReplaceWithEvaluator.doc");
             doc.Range.Replace(new Regex("[s|m]ad"), new MyReplaceEvaluator(), true);
             doc.Save(MyDir + "Range.ReplaceWithEvaluator Out.doc");
         }
@@ -178,8 +180,8 @@ namespace ApiExamples.Range
             /// </summary>
             ReplaceAction IReplacingCallback.Replacing(ReplacingArgs e)
             {
-                e.Replacement = e.Match.ToString() + mMatchNumber.ToString();
-                mMatchNumber++;
+                e.Replacement = e.Match.ToString() + this.mMatchNumber.ToString();
+                this.mMatchNumber++;
                 return ReplaceAction.Replace;
             }
 
@@ -193,7 +195,7 @@ namespace ApiExamples.Range
             //ExStart
             //ExId:RangesDeleteText
             //ExSummary:Shows how to delete all characters of a range.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             doc.Sections[0].Range.Delete();
             //ExEnd
         }
@@ -204,7 +206,7 @@ namespace ApiExamples.Range
         [Test]
         public void ChangeTextToHyperlinks()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + @"Range.ChangeTextToHyperlinks.doc");
+            Document doc = new Document(MyDir + @"Range.ChangeTextToHyperlinks.doc");
 
             // Create regular expression for URL search
             Regex regexUrl = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w.]+\/?)\S*(?x)");
@@ -218,9 +220,9 @@ namespace ApiExamples.Range
 
         private class ChangeTextToHyperlinksEvaluator : IReplacingCallback
         {
-            internal ChangeTextToHyperlinksEvaluator(Aspose.Words.Document doc)
+            internal ChangeTextToHyperlinksEvaluator(Document doc)
             {
-                mBuilder = new DocumentBuilder(doc);
+                this.mBuilder = new DocumentBuilder(doc);
             }
 
             ReplaceAction IReplacingCallback.Replacing(ReplacingArgs e)
@@ -246,17 +248,17 @@ namespace ApiExamples.Range
 
                 para.ChildNodes.Insert(para.ChildNodes.IndexOf(run), subRun);
 
-                mBuilder.MoveTo(run);
+                this.mBuilder.MoveTo(run);
 
                 // Specify font formatting for the hyperlink.
-                mBuilder.Font.Color = System.Drawing.Color.Blue;
-                mBuilder.Font.Underline = Underline.Single;
+                this.mBuilder.Font.Color = Color.Blue;
+                this.mBuilder.Font.Underline = Underline.Single;
 
                 // Insert the hyperlink.
-                mBuilder.InsertHyperlink(url, url, false);
+                this.mBuilder.InsertHyperlink(url, url, false);
 
                 // Clear hyperlink formatting.
-                mBuilder.Font.ClearFormatting();
+                this.mBuilder.Font.ClearFormatting();
 
                 // Let's remove run if it is empty.
                 if (run.Text.Equals(""))

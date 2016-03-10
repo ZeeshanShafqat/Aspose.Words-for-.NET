@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
@@ -9,10 +9,10 @@ using Aspose.Words;
 using Aspose.Words.Drawing;
 using Aspose.Words.Saving;
 using Aspose.Words.Tables;
+
 using NUnit.Framework;
 
-
-namespace ApiExamples.HeaderFooter
+namespace ApiExamples
 {
     [TestFixture]
     public class ExHeaderFooter : ApiExampleBase
@@ -26,9 +26,9 @@ namespace ApiExamples.HeaderFooter
             //ExFor:HeaderFooterCollection
             //ExFor:Story.AppendParagraph
             //ExSummary:Creates a footer using the document object model and inserts it into a section.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
-            Aspose.Words.HeaderFooter footer = new Aspose.Words.HeaderFooter(doc, HeaderFooterType.FooterPrimary);
+            HeaderFooter footer = new HeaderFooter(doc, HeaderFooterType.FooterPrimary);
             doc.FirstSection.HeadersFooters.Add(footer);
 
             // Add a paragraph with text to the footer.
@@ -37,7 +37,7 @@ namespace ApiExamples.HeaderFooter
             doc.Save(MyDir + "HeaderFooter.CreateFooter Out.doc");
             //ExEnd
 
-            doc = new Aspose.Words.Document(MyDir + "HeaderFooter.CreateFooter Out.doc");
+            doc = new Document(MyDir + "HeaderFooter.CreateFooter Out.doc");
             Assert.True(doc.FirstSection.HeadersFooters[HeaderFooterType.FooterPrimary].Range.Text.Contains("TEST FOOTER"));
         }
 
@@ -52,13 +52,13 @@ namespace ApiExamples.HeaderFooter
             //ExFor:HeaderFooterType
             //ExId:RemoveFooters
             //ExSummary:Deletes all footers from all sections, but leaves headers intact.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "HeaderFooter.RemoveFooters.doc");
+            Document doc = new Document(MyDir + "HeaderFooter.RemoveFooters.doc");
 
             foreach (Aspose.Words.Section section in doc)
             {
                 // Up to three different footers are possible in a section (for first, even and odd pages).
                 // We check and delete all of them.
-                Aspose.Words.HeaderFooter footer;
+                HeaderFooter footer;
 
                 footer = section.HeadersFooters[HeaderFooterType.FooterFirst];
                 if (footer != null)
@@ -85,7 +85,7 @@ namespace ApiExamples.HeaderFooter
             //ExFor:HtmlSaveOptions.ExportHeadersFootersMode
             //ExFor:ExportHeadersFootersMode
             //ExSummary:Demonstrates how to disable the export of headers and footers when saving to HTML based formats.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "HeaderFooter.RemoveFooters.doc");
+            Document doc = new Document(MyDir + "HeaderFooter.RemoveFooters.doc");
 
             HtmlSaveOptions saveOptions = new HtmlSaveOptions(SaveFormat.Html);
             saveOptions.ExportHeadersFootersMode = ExportHeadersFootersMode.None; // Disables exporting headers and footers.
@@ -94,7 +94,7 @@ namespace ApiExamples.HeaderFooter
             //ExEnd
 
             // Verify that the output document is correct.
-            doc = new Aspose.Words.Document(MyDir + "HeaderFooter.DisableHeadersFooters Out.html");
+            doc = new Document(MyDir + "HeaderFooter.DisableHeadersFooters Out.html");
             Assert.IsFalse(doc.Range.Text.Contains("DYNAMIC TEMPLATE"));
         }
 
@@ -109,17 +109,17 @@ namespace ApiExamples.HeaderFooter
             //ExFor:Range.Replace(String, String, Boolean, Boolean)
             //ExSummary:Shows how to replace text in the document footer.
             // Open the template document, containing obsolete copyright information in the footer.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "HeaderFooter.ReplaceText.doc");
+            Document doc = new Document(MyDir + "HeaderFooter.ReplaceText.doc");
 
             HeaderFooterCollection headersFooters = doc.FirstSection.HeadersFooters;
-            Aspose.Words.HeaderFooter footer = headersFooters[HeaderFooterType.FooterPrimary];
+            HeaderFooter footer = headersFooters[HeaderFooterType.FooterPrimary];
             footer.Range.Replace("(C) 2006 Aspose Pty Ltd.", "Copyright (C) 2011 by Aspose Pty Ltd.", false, false);
 
             doc.Save(MyDir + "HeaderFooter.ReplaceText Out.doc");
             //ExEnd
 
             // Verify that the appropriate changes were made to the output document.
-            doc = new Aspose.Words.Document(MyDir + "HeaderFooter.ReplaceText Out.doc");
+            doc = new Document(MyDir + "HeaderFooter.ReplaceText Out.doc");
             Assert.IsTrue(doc.Range.Text.Contains("Copyright (C) 2011 by Aspose Pty Ltd."));
         }
 
@@ -129,7 +129,7 @@ namespace ApiExamples.HeaderFooter
         [Test]
         public void HeaderFooterPrimerCaller()
         {
-            Primer();
+            this.Primer();
         }
 
         //ExStart
@@ -137,7 +137,7 @@ namespace ApiExamples.HeaderFooter
         //ExSummary:Maybe a bit complicated example, but demonstrates many things that can be done with headers/footers.
         public void Primer()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Aspose.Words.Section currentSection = builder.CurrentSection;
@@ -241,7 +241,7 @@ namespace ApiExamples.HeaderFooter
             CopyHeadersFootersFromPreviousSection(currentSection);
 
             // Find the footer that we want to change.
-            Aspose.Words.HeaderFooter primaryFooter = currentSection.HeadersFooters[HeaderFooterType.FooterPrimary];
+            HeaderFooter primaryFooter = currentSection.HeadersFooters[HeaderFooterType.FooterPrimary];
 
             Row row = primaryFooter.Tables[0].FirstRow;
             row.FirstCell.CellFormat.PreferredWidth = PreferredWidth.FromPercent(100 / 3);
@@ -263,7 +263,7 @@ namespace ApiExamples.HeaderFooter
 
             section.HeadersFooters.Clear();
 
-            foreach (Aspose.Words.HeaderFooter headerFooter in previousSection.HeadersFooters)
+            foreach (HeaderFooter headerFooter in previousSection.HeadersFooters)
                 section.HeadersFooters.Add(headerFooter.Clone(true));
         }
         //ExEnd

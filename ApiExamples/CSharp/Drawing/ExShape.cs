@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
@@ -7,12 +7,13 @@
 
 using System;
 using System.Drawing;
+
 using Aspose.Words;
 using Aspose.Words.Drawing;
+
 using NUnit.Framework;
 
-
-namespace ApiExamples.Drawing
+namespace ApiExamples
 {
     /// <summary>
     /// Examples using shapes in documents.
@@ -23,7 +24,7 @@ namespace ApiExamples.Drawing
         [Test]
         public void DeleteAllShapes()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Shape.DeleteAllShapes.doc");
+            Document doc = new Document(MyDir + "Shape.DeleteAllShapes.doc");
             
             //ExStart
             //ExFor:Shape
@@ -49,7 +50,7 @@ namespace ApiExamples.Drawing
             //ExStart
             //ExFor:ShapeBase.IsInline
             //ExSummary:Shows how to test if a shape in the document is inline or floating.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Shape.DeleteAllShapes.doc");
+            Document doc = new Document(MyDir + "Shape.DeleteAllShapes.doc");
 
             foreach (Shape shape in doc.GetChildNodes(NodeType.Shape, true))
             {
@@ -73,7 +74,7 @@ namespace ApiExamples.Drawing
             //ExFor:ShapeBase.FlipOrientation
             //ExFor:FlipOrientation
             //ExSummary:Creates two line shapes. One line goes from top left to bottom right. Another line goes from bottom left to top right.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             // The lines will cross the whole page.
             float pageWidth = (float)doc.FirstSection.PageSetup.PageWidth;
@@ -138,7 +139,7 @@ namespace ApiExamples.Drawing
             //ExFor:CompositeNode.InsertAfter(Node, Node)
             //ExFor:NodeCollection.ToArray
             //ExSummary:Shows how to replace all textboxes with images.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Shape.ReplaceTextboxesWithImages.doc");
+            Document doc = new Document(MyDir + "Shape.ReplaceTextboxesWithImages.doc");
 
             // This gets a live collection of all shape nodes in the document.
             NodeCollection shapeCollection = doc.GetChildNodes(NodeType.Shape, true);
@@ -191,7 +192,7 @@ namespace ApiExamples.Drawing
             //ExFor:ShapeBase.WrapType
             //ExSummary:Creates a textbox with some text and different formatting options in a new document.
             // Create a blank document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             // Create a new shape of type TextBox
             Shape textBox = new Shape(doc, ShapeType.TextBox);

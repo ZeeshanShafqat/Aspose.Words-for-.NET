@@ -1,9 +1,18 @@
-﻿namespace ApiExamples.Markup
-{
-    using Aspose.Words;
-    using Aspose.Words.Markup;
-    using NUnit.Framework;
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
+//
+// This file is part of Aspose.Words. The source code in this file
+// is only intended as a supplement to the documentation, and is provided
+// "as is", without warranty of any kind, either expressed or implied.
+//////////////////////////////////////////////////////////////////////////
 
+using Aspose.Words;
+using Aspose.Words.Markup;
+
+using NUnit.Framework;
+
+namespace ApiExamples
+{
+    //ToDo: Add examples
     /// <summary>
     /// Tests that verify work with structured document tags in the document 
     /// </summary>

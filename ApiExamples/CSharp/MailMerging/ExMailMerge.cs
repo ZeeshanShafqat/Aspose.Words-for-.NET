@@ -1,24 +1,26 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System;
-using System.Data;
-using System.Data.OleDb;
-using System.Web;
-using Aspose.Words;
-using Aspose.Words.MailMerging;
-using NUnit.Framework;
-
 //ExStart
 //ExId:UsingReportingNamespace
 //ExSummary:Include the following statement in your code if you are using mail merge functionality.
 //ExEnd
 
-namespace ApiExamples.MailMerging
+using System;
+using System.Data;
+using System.Data.OleDb;
+using System.Web;
+
+using Aspose.Words;
+using Aspose.Words.MailMerging;
+
+using NUnit.Framework;
+
+namespace ApiExamples
 {
     [TestFixture]
     public class ExMailMerge : ApiExampleBase
@@ -36,7 +38,7 @@ namespace ApiExamples.MailMerging
             //ExId:MailMergeArray
             //ExSummary:Performs a simple insertion of data into merge fields and sends the document to the browser inline.
             // Open an existing document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "MailMerge.ExecuteArray.doc");
+            Document doc = new Document(MyDir + "MailMerge.ExecuteArray.doc");
 
             // Fill the fields in the document with user data.
             doc.MailMerge.Execute(
@@ -57,7 +59,7 @@ namespace ApiExamples.MailMerging
             //ExFor:MailMerge.Execute(DataTable)
             //ExFor:Document.MailMerge
             //ExSummary:Executes mail merge from an ADO.NET DataTable.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "MailMerge.ExecuteDataTable.doc");
+            Document doc = new Document(MyDir + "MailMerge.ExecuteDataTable.doc");
 
             // This example creates a table, but you would normally load table from a database. 
             DataTable table = new DataTable("Test");
@@ -80,7 +82,7 @@ namespace ApiExamples.MailMerging
             //ExFor:MailMerge.Execute(IDataReader)
             //ExSummary:Executes mail merge from an ADO.NET DataReader.
             // Open the template document
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "MailingLabelsDemo.doc");
+            Document doc = new Document(MyDir + "MailingLabelsDemo.doc");
 
             // Open the database connection.
             string connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + 
@@ -110,7 +112,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void ExecuteDataViewCaller()
         {
-            ExecuteDataView();
+            this.ExecuteDataView();
         }
         
         //ExStart
@@ -119,7 +121,7 @@ namespace ApiExamples.MailMerging
         public void ExecuteDataView()
         {
             // Open the document that we want to fill with data.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "MailMerge.ExecuteDataView.doc");
+            Document doc = new Document(MyDir + "MailMerge.ExecuteDataView.doc");
 
             // Get the data from the database.
             DataTable orderTable = GetOrders();
@@ -167,7 +169,7 @@ namespace ApiExamples.MailMerging
             // Open the document. 
             // For a mail merge with repeatable regions, the document should have mail merge regions 
             // in the document designated with MERGEFIELD TableStart:MyTableName and TableEnd:MyTableName.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "MailMerge.ExecuteWithRegions.doc");
+            Document doc = new Document(MyDir + "MailMerge.ExecuteWithRegions.doc");
 
             int orderId = 10444;
 
@@ -198,7 +200,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void ExecuteWithRegionsDataTableCaller()
         {
-            ExecuteWithRegionsDataTable();
+            this.ExecuteWithRegionsDataTable();
         }
         
         //ExStart
@@ -209,7 +211,7 @@ namespace ApiExamples.MailMerging
         //ExSummary:Executes a mail merge with repeatable regions.
         public void ExecuteWithRegionsDataTable()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "MailMerge.ExecuteWithRegions.doc");
+            Document doc = new Document(MyDir + "MailMerge.ExecuteWithRegions.doc");
 
             int orderId = 10444;
 
@@ -271,7 +273,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void MappedDataFields()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             //ExStart
             //ExFor:MailMerge.MappedDataFields
             //ExFor:MappedDataFieldCollection
@@ -285,7 +287,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void GetFieldNames()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             //ExStart
             //ExFor:MailMerge.GetFieldNames
             //ExId:MailMergeGetFieldNames
@@ -297,7 +299,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void DeleteFields()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             //ExStart
             //ExFor:MailMerge.DeleteFields
             //ExId:MailMergeDeleteFields
@@ -309,7 +311,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void RemoveContainingFields()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             //ExStart
             //ExFor:MailMerge.CleanupOptions
             //ExFor:MailMergeCleanupOptions
@@ -322,7 +324,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void RemoveUnusedFields()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             //ExStart
             //ExFor:MailMerge.CleanupOptions
             //ExFor:MailMergeCleanupOptions
@@ -335,7 +337,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void RemoveEmptyParagraphs()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             //ExStart
             //ExFor:MailMerge.CleanupOptions
             //ExFor:MailMergeCleanupOptions
@@ -348,7 +350,7 @@ namespace ApiExamples.MailMerging
         [Test]
         public void UseNonMergeFields()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             //ExStart
             //ExFor:MailMerge.UseNonMergeFields
             //ExSummary:Shows how to perform mail merge into merge fields and into additional fields types.

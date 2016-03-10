@@ -1,20 +1,20 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
+using System;
+using System.Text;
+
+using Aspose.Words;
+using Aspose.Words.Fields;
+
+using NUnit.Framework;
+
 namespace ApiExamples
 {
-    using System;
-    using System.Text;
-
-    using Aspose.Words;
-    using Aspose.Words.Fields;
-
-    using NUnit.Framework;
-
     [TestFixture]
     public class ExVisitor : ApiExampleBase
     {
@@ -48,7 +48,7 @@ namespace ApiExamples
         public void ToText()
         {
             // Open the document we want to convert.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Visitor.ToText.doc");
+            Document doc = new Document(MyDir + "Visitor.ToText.doc");
 
             // Create an object that inherits from the DocumentVisitor class.
             MyDocToTxtWriter myConverter = new MyDocToTxtWriter();

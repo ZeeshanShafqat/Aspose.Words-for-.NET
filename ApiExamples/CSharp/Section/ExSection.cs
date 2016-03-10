@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
@@ -6,11 +6,13 @@
 //////////////////////////////////////////////////////////////////////////
 
 using System;
+using System.Drawing;
+
 using Aspose.Words;
+
 using NUnit.Framework;
 
-
-namespace ApiExamples.Section
+namespace ApiExamples
 {
     [TestFixture]
     public class ExSection : ApiExampleBase
@@ -24,7 +26,7 @@ namespace ApiExamples.Section
             //ExFor:Section.ProtectedForForms
             //ExSummary:Protects a section so only editing in form fields is possible.
             // Create a blank document
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             // Insert two sections with some text
             DocumentBuilder builder = new DocumentBuilder(doc);
@@ -52,7 +54,7 @@ namespace ApiExamples.Section
             //ExFor:NodeCollection.RemoveAt(Int32)
             //ExSummary:Shows how to add/remove sections in a document.
             // Open the document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Section.AddRemove.doc");
+            Document doc = new Document(MyDir + "Section.AddRemove.doc");
 
             // This shows what is in the document originally. The document has two sections.
             Console.WriteLine(doc.GetText());
@@ -62,7 +64,7 @@ namespace ApiExamples.Section
 
             // Duplicate the last section and append the copy to the end of the document.
             int lastSectionIdx = doc.Sections.Count - 1;
-            Aspose.Words.Section newSection = doc.Sections[lastSectionIdx].Clone();
+            Section newSection = doc.Sections[lastSectionIdx].Clone();
             doc.Sections.Add(newSection);
 
             // Check what the document contains after we changed it.
@@ -103,7 +105,7 @@ namespace ApiExamples.Section
 
             // Create an "empty" document. Note that like in Microsoft Word, 
             // the empty document has one section, body and one paragraph in it.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             // This truly makes the document empty. No sections (not possible in Microsoft Word).
             doc.RemoveAllChildren();
@@ -111,7 +113,7 @@ namespace ApiExamples.Section
             // Create a new section node. 
             // Note that the section has not yet been added to the document, 
             // but we have to specify the parent document.
-            Aspose.Words.Section section = new Aspose.Words.Section(doc);
+            Section section = new Section(doc);
 
             // Append the section to the document.
             doc.AppendChild(section);
@@ -144,7 +146,7 @@ namespace ApiExamples.Section
             // Create a new run of text and add it to our paragraph.
             Run run = new Run(doc);
             run.Text = "Hello World!";
-            run.Font.Color = System.Drawing.Color.Red;
+            run.Font.Color = Color.Red;
             para.AppendChild(run);
 
 
@@ -166,8 +168,8 @@ namespace ApiExamples.Section
             //ExFor:Section.EnsureMinimum
             //ExSummary:Ensures that a section is valid.
             // Create a blank document
-            Aspose.Words.Document doc = new Aspose.Words.Document();
-            Aspose.Words.Section section = doc.FirstSection;
+            Document doc = new Document();
+            Section section = doc.FirstSection;
 
             // Makes sure that the section contains a body with at least one paragraph.
             section.EnsureMinimum();
@@ -183,13 +185,13 @@ namespace ApiExamples.Section
             //ExSummary:Clears main text from all sections from the document leaving the sections themselves.
 
             // Open a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Section.BodyEnsureMinimum.doc");
+            Document doc = new Document(MyDir + "Section.BodyEnsureMinimum.doc");
             
             // This shows what is in the document originally. The document has two sections.
             Console.WriteLine(doc.GetText());
 
             // Loop through all sections in the document.
-            foreach (Aspose.Words.Section section in doc.Sections)
+            foreach (Section section in doc.Sections)
             {
                 // Each section has a Body node that contains main story (main text) of the section.
                 Body body = section.Body;
@@ -219,14 +221,14 @@ namespace ApiExamples.Section
             //ExSummary:Shows how you can enumerate through children of a composite node and detect types of the children nodes.
 
             // Open a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Section.BodyNodeType.doc");
+            Document doc = new Document(MyDir + "Section.BodyNodeType.doc");
             
             // Get the first section in the document.
-            Aspose.Words.Section section = doc.FirstSection;
+            Section section = doc.FirstSection;
 
             // A Section is a composite node and therefore can contain child nodes.
             // Section can contain only Body and HeaderFooter nodes.
-            foreach (Aspose.Words.Node node in section)
+            foreach (Node node in section)
             {
                 // Every node has the NodeType property.
                 switch (node.NodeType)
@@ -244,7 +246,7 @@ namespace ApiExamples.Section
                     case NodeType.HeaderFooter:
                     {
                         // If the node type is HeaderFooter, we can cast the node to the HeaderFooter class.
-                        Aspose.Words.HeaderFooter headerFooter = (Aspose.Words.HeaderFooter)node;
+                        HeaderFooter headerFooter = (HeaderFooter)node;
 
                         // Write the content of the header footer to the console.
                         Console.WriteLine("*** HeaderFooter ***");
@@ -269,8 +271,8 @@ namespace ApiExamples.Section
             //ExFor:SectionCollection.Item(Int32)
             //ExId:SectionsAccessByIndex
             //ExSummary:Shows how to access a section at the specified index.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
-            Aspose.Words.Section section = doc.Sections[0];
+            Document doc = new Document(MyDir + "Document.doc");
+            Section section = doc.Sections[0];
             //ExEnd
         }
 
@@ -281,8 +283,8 @@ namespace ApiExamples.Section
             //ExFor:NodeCollection.Add
             //ExId:SectionsAddSection
             //ExSummary:Shows how to add a section to the end of the document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
-            Aspose.Words.Section sectionToAdd = new Aspose.Words.Section(doc); 
+            Document doc = new Document(MyDir + "Document.doc");
+            Section sectionToAdd = new Section(doc); 
             doc.Sections.Add(sectionToAdd);
             //ExEnd
         }
@@ -293,7 +295,7 @@ namespace ApiExamples.Section
             //ExStart
             //ExId:SectionsDeleteSection
             //ExSummary:Shows how to remove a section at the specified index.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             doc.Sections.RemoveAt(0);
             //ExEnd
         }
@@ -305,7 +307,7 @@ namespace ApiExamples.Section
             //ExFor:NodeCollection.Clear
             //ExId:SectionsDeleteAllSections
             //ExSummary:Shows how to remove all sections from a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             doc.Sections.Clear();
             //ExEnd
         }
@@ -318,17 +320,17 @@ namespace ApiExamples.Section
             //ExFor:Section.PrependContent
             //ExId:SectionsAppendSectionContent
             //ExSummary:Shows how to append content of an existing section. The number of sections in the document remains the same.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Section.AppendContent.doc");
+            Document doc = new Document(MyDir + "Section.AppendContent.doc");
             
             // This is the section that we will append and prepend to.
-            Aspose.Words.Section section = doc.Sections[2];
+            Section section = doc.Sections[2];
 
             // This copies content of the 1st section and inserts it at the beginning of the specified section.
-            Aspose.Words.Section sectionToPrepend = doc.Sections[0];
+            Section sectionToPrepend = doc.Sections[0];
             section.PrependContent(sectionToPrepend);
 
             // This copies content of the 2nd section and inserts it at the end of the specified section.
-            Aspose.Words.Section sectionToAppend = doc.Sections[1];
+            Section sectionToAppend = doc.Sections[1];
             section.AppendContent(sectionToAppend);
             //ExEnd
         }
@@ -340,8 +342,8 @@ namespace ApiExamples.Section
             //ExFor:Section.ClearContent
             //ExId:SectionsDeleteSectionContent
             //ExSummary:Shows how to delete main content of a section.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
-            Aspose.Words.Section section = doc.Sections[0];
+            Document doc = new Document(MyDir + "Document.doc");
+            Section section = doc.Sections[0];
             section.ClearContent();
             //ExEnd
         }
@@ -353,8 +355,8 @@ namespace ApiExamples.Section
             //ExFor:Section.ClearHeadersFooters
             //ExId:SectionsDeleteHeaderFooter
             //ExSummary:Clears content of all headers and footers in a section.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
-            Aspose.Words.Section section = doc.Sections[0];
+            Document doc = new Document(MyDir + "Document.doc");
+            Section section = doc.Sections[0];
             section.ClearHeadersFooters();
             //ExEnd
         }
@@ -365,8 +367,8 @@ namespace ApiExamples.Section
             //ExStart
             //ExFor:Section.DeleteHeaderFooterShapes
             //ExSummary:Removes all images and shapes from all headers footers in a section.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
-            Aspose.Words.Section section = doc.Sections[0];
+            Document doc = new Document(MyDir + "Document.doc");
+            Section section = doc.Sections[0];
             section.DeleteHeaderFooterShapes();
             //ExEnd
         }
@@ -378,8 +380,8 @@ namespace ApiExamples.Section
             //ExStart
             //ExId:SectionsCloneSection
             //ExSummary:Shows how to create a duplicate of a particular section.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
-            Aspose.Words.Section cloneSection = doc.Sections[0].Clone();
+            Document doc = new Document(MyDir + "Document.doc");
+            Section cloneSection = doc.Sections[0].Clone();
             //ExEnd
         }
 
@@ -389,11 +391,11 @@ namespace ApiExamples.Section
             //ExStart
             //ExId:SectionsImportSection
             //ExSummary:Shows how to copy sections between documents.
-            Aspose.Words.Document srcDoc = new Aspose.Words.Document(MyDir + "Document.doc");
-            Aspose.Words.Document dstDoc = new Aspose.Words.Document();
+            Document srcDoc = new Document(MyDir + "Document.doc");
+            Document dstDoc = new Document();
 
-            Aspose.Words.Section sourceSection = srcDoc.Sections[0];
-            Aspose.Words.Section newSection = (Aspose.Words.Section)dstDoc.ImportNode(sourceSection, true);
+            Section sourceSection = srcDoc.Sections[0];
+            Section newSection = (Section)dstDoc.ImportNode(sourceSection, true);
             dstDoc.Sections.Add(newSection);
             //ExEnd
         }
@@ -401,14 +403,14 @@ namespace ApiExamples.Section
         [Test]
         public void MigrateFrom2XImportSection()
         {
-            Aspose.Words.Document srcDoc = new Aspose.Words.Document();
-            Aspose.Words.Document dstDoc = new Aspose.Words.Document();
+            Document srcDoc = new Document();
+            Document dstDoc = new Document();
 
             //ExStart
             //ExId:MigrateFrom2XImportSection
             //ExSummary:This fragment shows how to insert a section from another document in Aspose.Words 3.0 or higher.
-            Aspose.Words.Section sourceSection = srcDoc.Sections[0];
-            Aspose.Words.Section newSection = (Aspose.Words.Section)dstDoc.ImportNode(sourceSection, true);
+            Section sourceSection = srcDoc.Sections[0];
+            Section newSection = (Section)dstDoc.ImportNode(sourceSection, true);
             dstDoc.Sections.Add(newSection);
             //ExEnd
         }
@@ -419,11 +421,11 @@ namespace ApiExamples.Section
             //ExStart
             //ExId:ModifyPageSetupInAllSections
             //ExSummary:Shows how to set paper size for the whole document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Section.ModifyPageSetupInAllSections.doc");
+            Document doc = new Document(MyDir + "Section.ModifyPageSetupInAllSections.doc");
 
             // It is important to understand that a document can contain many sections and each
             // section has its own page setup. In this case we want to modify them all.
-            foreach (Aspose.Words.Section section in doc)
+            foreach (Section section in doc)
                 section.PageSetup.PaperSize = PaperSize.Letter;
 
             doc.Save(MyDir + "Section.ModifyPageSetupInAllSections Out.doc");

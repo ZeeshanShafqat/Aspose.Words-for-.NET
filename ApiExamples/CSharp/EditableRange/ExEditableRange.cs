@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
@@ -6,11 +6,10 @@
 //////////////////////////////////////////////////////////////////////////
 
 using Aspose.Words;
+
 using NUnit.Framework;
 
-
-
-namespace ApiExamples.EditableRange
+namespace ApiExamples
 {
     [TestFixture]
     class ExEditableRange : ApiExampleBase
@@ -21,12 +20,12 @@ namespace ApiExamples.EditableRange
             //ExStart
             //ExFor:EditableRange.Remove
             //ExSummary:Shows how to remove an editable range from a document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.doc");
+            Document doc = new Document(MyDir + "Document.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Create an EditableRange so we can remove it. Does not have to be well-formed.
             EditableRangeStart edRange1Start = builder.StartEditableRange();
-            Aspose.Words.EditableRange editableRange1 = edRange1Start.EditableRange;
+            EditableRange editableRange1 = edRange1Start.EditableRange;
             builder.Writeln("Paragraph inside editable range");
             EditableRangeEnd edRange1End = builder.EndEditableRange();
 

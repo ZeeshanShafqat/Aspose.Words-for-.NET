@@ -5,13 +5,16 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
+using System.Drawing;
+using System.IO;
+
+using Aspose.Words;
+using Aspose.Words.Drawing;
+
+using NUnit.Framework;
+
 namespace ApiExamples
 {
-    using Aspose.Words;
-    using Aspose.Words.Drawing;
-
-    using NUnit.Framework;
-
     [TestFixture]
     public class ExDocumentBuilderImages : ApiExampleBase
     {
@@ -21,10 +24,10 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(Stream, RelativeHorizontalPosition, Double, RelativeVerticalPosition, Double, Double, Double, WrapType)
             //ExSummary:Shows how to insert an image into a document from a stream, also using relative positions.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            System.IO.Stream stream = System.IO.File.OpenRead(MyDir + "Aspose.Words.gif");
+            Stream stream = File.OpenRead(MyDir + "Aspose.Words.gif");
             try
             {
                 builder.InsertImage(stream, RelativeHorizontalPosition.Margin, 100, RelativeVerticalPosition.Margin, 100,
@@ -45,12 +48,12 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(Byte[])
             //ExSummary:Shows how to import an image into a document from a byte array.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Prepare a byte array of an image.
-            System.Drawing.Image image = System.Drawing.Image.FromFile(MyDir + "Aspose.Words.gif");
-            System.Drawing.ImageConverter imageConverter = new System.Drawing.ImageConverter();
+            Image image = Image.FromFile(MyDir + "Aspose.Words.gif");
+            ImageConverter imageConverter = new ImageConverter();
             byte[] imageBytes = (byte[])imageConverter.ConvertTo(image, typeof (byte[]));
 
             builder.InsertImage(imageBytes);
@@ -64,12 +67,12 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(Byte[], Double, Double)
             //ExSummary:Shows how to import an image into a document from a byte array, with a custom size.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Prepare a byte array of an image.
-            System.Drawing.Image image = System.Drawing.Image.FromFile(MyDir + "Aspose.Words.gif");
-            System.Drawing.ImageConverter imageConverter = new System.Drawing.ImageConverter();
+            Image image = Image.FromFile(MyDir + "Aspose.Words.gif");
+            ImageConverter imageConverter = new ImageConverter();
             byte[] imageBytes = (byte[])imageConverter.ConvertTo(image, typeof(byte[]));
 
             builder.InsertImage(imageBytes, Aspose.Words.ConvertUtil.PixelToPoint(450), Aspose.Words.ConvertUtil.PixelToPoint(144));
@@ -83,12 +86,12 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(Byte[], RelativeHorizontalPosition, Double, RelativeVerticalPosition, Double, Double, Double, WrapType)
             //ExSummary:Shows how to import an image into a document from a byte array, also using relative positions.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Prepare a byte array of an image.
-            System.Drawing.Image image = System.Drawing.Image.FromFile(MyDir + "Aspose.Words.gif");
-            System.Drawing.ImageConverter imageConverter = new System.Drawing.ImageConverter();
+            Image image = Image.FromFile(MyDir + "Aspose.Words.gif");
+            ImageConverter imageConverter = new ImageConverter();
             byte[] imageBytes = (byte[])imageConverter.ConvertTo(image, typeof(byte[]));
 
             builder.InsertImage(imageBytes, RelativeHorizontalPosition.Margin, 100, RelativeVerticalPosition.Margin, 100,
@@ -103,10 +106,10 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(Image, Double, Double)
             //ExSummary:Shows how to import an image into a document, with a custom size.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            System.Drawing.Image rasterImage = System.Drawing.Image.FromFile(MyDir + "Aspose.Words.gif");
+            Image rasterImage = Image.FromFile(MyDir + "Aspose.Words.gif");
             try
             {
                 builder.InsertImage(rasterImage,
@@ -127,10 +130,10 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(Image, RelativeHorizontalPosition, Double, RelativeVerticalPosition, Double, Double, Double, WrapType)
             //ExSummary:Shows how to import an image into a document, also using relative positions.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            System.Drawing.Image rasterImage = System.Drawing.Image.FromFile(MyDir + "Aspose.Words.gif");
+            Image rasterImage = Image.FromFile(MyDir + "Aspose.Words.gif");
             try
             {
                 builder.InsertImage(rasterImage, RelativeHorizontalPosition.Margin, 100, RelativeVerticalPosition.Margin, 100,
@@ -151,10 +154,10 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(Stream, Double, Double)
             //ExSummary:Shows how to import an image from a stream into a document with a custom size.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            System.IO.Stream stream = System.IO.File.OpenRead(MyDir + "Aspose.Words.gif");
+            Stream stream = File.OpenRead(MyDir + "Aspose.Words.gif");
             try
             {
                 builder.InsertImage(stream, Aspose.Words.ConvertUtil.PixelToPoint(400), Aspose.Words.ConvertUtil.PixelToPoint(400));
@@ -174,7 +177,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:DocumentBuilder.InsertImage(String, Double, Double)
             //ExSummary:Shows how to import an image from a url into a document with a custom size.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Remote URI

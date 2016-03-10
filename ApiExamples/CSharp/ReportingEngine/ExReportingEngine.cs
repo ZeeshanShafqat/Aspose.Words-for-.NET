@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
@@ -152,7 +152,7 @@ public class ImageStream
 {
     public ImageStream(Stream stream)
     {
-        Image = stream;
+        this.Image = stream;
     }
 
     public Stream Image { get; set; }

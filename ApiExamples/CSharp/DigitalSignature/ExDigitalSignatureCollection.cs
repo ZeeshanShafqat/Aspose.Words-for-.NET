@@ -9,8 +9,7 @@ using System;
 using Aspose.Words;
 using NUnit.Framework;
 
-
-namespace ApiExamples.DigitalSignature
+namespace ApiExamples
 {
     [TestFixture]
     public class ExDigitalSignatureCollection : ApiExampleBase

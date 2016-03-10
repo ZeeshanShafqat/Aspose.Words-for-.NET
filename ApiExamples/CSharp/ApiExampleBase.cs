@@ -1,10 +1,19 @@
-﻿using System;
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
+//
+// This file is part of Aspose.Words. The source code in this file
+// is only intended as a supplement to the documentation, and is provided
+// "as is", without warranty of any kind, either expressed or implied.
+//////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using Aspose.Words;
+
     /// <summary>
     /// Provides common infrastructure for all API examples that are implemented as unit tests.
     /// </summary>
@@ -24,14 +33,14 @@ namespace ApiExamples
                 // You don't have to specify full path as shown here. You can specify just the 
                 // file name if you copy the license file into the same folder as your application
                 // binaries or you add the license to your project as an embedded resource.
-                Aspose.Words.License license = new Aspose.Words.License();
+                License license = new License();
                 license.SetLicense(TestLicenseFileName);
             }
         }
 
         internal static void RemoveLicense()
         {
-            Aspose.Words.License license = new Aspose.Words.License();
+            License license = new License();
             license.SetLicense("");
         }
 

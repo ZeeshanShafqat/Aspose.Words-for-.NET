@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //////////////////////////////////////////////////////////////////////////
 // Copyright 2001-2013 Aspose Pty Ltd. All Rights Reserved.
 //
@@ -7,25 +7,25 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
+
 using Aspose.Words;
 using Aspose.Words.Fields;
+
 using NUnit.Framework;
 
-
-namespace ApiExamples.Fields
+namespace ApiExamples
 {
     [TestFixture]
     public class ExField : ApiExampleBase
     {
         [Test]
-        public void UpdateTOC()
+        public void UpdateToc()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             //ExStart
             //ExId:UpdateTOC
@@ -37,7 +37,7 @@ namespace ApiExamples.Fields
         [Test]
         public void GetFieldType()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.TableOfContents.doc");
+            Document doc = new Document(MyDir + "Document.TableOfContents.doc");
 
             //ExStart
             //ExFor:FieldType
@@ -56,7 +56,7 @@ namespace ApiExamples.Fields
             //ExFor:FieldChar.GetField
             //ExId:GetField
             //ExSummary:Demonstrates how to retrieve the field class from an existing FieldStart node in the document.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.TableOfContents.doc");
+            Document doc = new Document(MyDir + "Document.TableOfContents.doc");
 
             FieldStart fieldStart = (FieldStart)doc.GetChild(NodeType.FieldStart, 0, true);
 
@@ -78,7 +78,7 @@ namespace ApiExamples.Fields
             //ExStart
             //ExId:GetFieldFromFieldCollection
             //ExSummary:Demonstrates how to retrieve a field using the range of a node.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.TableOfContents.doc");
+            Document doc = new Document(MyDir + "Document.TableOfContents.doc");
 
             Field field = doc.Range.Fields[0];
 
@@ -88,13 +88,13 @@ namespace ApiExamples.Fields
         }
 
         [Test]
-        public void InsertTCField()
+        public void InsertTcField()
         {
             //ExStart
             //ExId:InsertTCField
             //ExSummary:Shows how to insert a TC field into the document using DocumentBuilder.
             // Create a blank document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             // Create a document builder to insert content with.
             DocumentBuilder builder = new DocumentBuilder(doc);
@@ -108,7 +108,7 @@ namespace ApiExamples.Fields
         public void ChangeLocale()
         {
             // Create a blank document.
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder b = new DocumentBuilder(doc);
             b.InsertField("MERGEFIELD Date");
 
@@ -131,14 +131,14 @@ namespace ApiExamples.Fields
         }
 
         [Test]
-        public void RemoveTOCFromDocument()
+        public void RemoveTocFromDocument()
         {
             //ExStart
             //ExFor:CompositeNode.GetChildNodes(NodeType, Boolean)
             //ExId:RemoveTableOfContents
             //ExSummary:Demonstrates how to remove a specified TOC from a document.
             // Open a document which contains a TOC.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.TableOfContents.doc");
+            Document doc = new Document(MyDir + "Document.TableOfContents.doc");
 
             // Remove the first TOC from the document.
             Field tocField = doc.Range.Fields[0];
@@ -153,15 +153,15 @@ namespace ApiExamples.Fields
         //ExStart
         //ExId:TCFieldsRangeReplace
         //ExSummary:Shows how to find and insert a TC field at text in a document. 
-        public void InsertTCFieldsAtText()
+        public void InsertTcFieldsAtText()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             // Insert a TC field which displays "Chapter 1" just before the text "The Beginning" in the document.
-            doc.Range.Replace(new Regex("The Beginning"), new InsertTCFieldHandler("Chapter 1", "\\l 1"), false);
+            doc.Range.Replace(new Regex("The Beginning"), new InsertTcFieldHandler("Chapter 1", "\\l 1"), false);
         }
 
-        public class InsertTCFieldHandler : IReplacingCallback
+        public class InsertTcFieldHandler : IReplacingCallback
         {
             // Store the text and switches to be used for the TC fields.
             private string mFieldText;
@@ -170,24 +170,24 @@ namespace ApiExamples.Fields
             /// <summary>
             /// The switches to use for each TC field. Can be an empty string or null.
             /// </summary>
-            public InsertTCFieldHandler(string switches) : this(string.Empty, switches)
+            public InsertTcFieldHandler(string switches) : this(string.Empty, switches)
             {
-                mFieldSwitches = switches;
+                this.mFieldSwitches = switches;
             }
 
             /// <summary>
             /// The display text and switches to use for each TC field. Display name can be an empty string or null.
             /// </summary>
-            public InsertTCFieldHandler(string text, string switches)
+            public InsertTcFieldHandler(string text, string switches)
             {
-                mFieldText = text;
-                mFieldSwitches = switches;
+                this.mFieldText = text;
+                this.mFieldSwitches = switches;
             }
 
             ReplaceAction IReplacingCallback.Replacing(ReplacingArgs args)
             {
                 // Create a builder to insert the field.
-                DocumentBuilder builder = new DocumentBuilder((Aspose.Words.Document)args.MatchNode.Document);
+                DocumentBuilder builder = new DocumentBuilder((Document)args.MatchNode.Document);
                 // Move to the first node of the match.
                 builder.MoveTo(args.MatchNode);
 
@@ -195,13 +195,13 @@ namespace ApiExamples.Fields
                 // match string as the display text.
                 string insertText;
 
-                if (!string.IsNullOrEmpty(mFieldText))
-                    insertText = mFieldText;
+                if (!string.IsNullOrEmpty(this.mFieldText))
+                    insertText = this.mFieldText;
                 else
                     insertText = args.Match.Value;
 
                 // Insert the TC field before this node using the specified string as the display text and user defined switches.
-                builder.InsertField(string.Format("TC \"{0}\" {1}", insertText, mFieldSwitches));
+                builder.InsertField(string.Format("TC \"{0}\" {1}", insertText, this.mFieldSwitches));
 
                 // We have done what we want so skip replacement.
                 return ReplaceAction.Skip;

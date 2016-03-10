@@ -16,7 +16,7 @@ namespace ApiExamples
             //ExStart
             //ExFor:Paragraph.InsertField
             //ExSummary:Shows how to insert field using several methods: "field code", "field code and field value", "field code and field value after a run of text"
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             //Get the first paragraph of the document
             Paragraph para = doc.FirstSection.Body.FirstParagraph;
@@ -47,7 +47,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldBeforeText()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             InsertFieldUsingFieldCode(doc, " AUTHOR ", null, false);
 
@@ -59,7 +59,7 @@ namespace ApiExamples
         {
             string date = DateTime.Today.ToString("d");
 
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             InsertFieldUsingFieldCode(doc, " DATE ", null, true);
 
@@ -69,7 +69,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldBeforeTextWithoutUpdateField()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             InsertFieldUsingFieldType(doc, FieldType.FieldAuthor, false, null, false);
 
@@ -79,7 +79,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldAfterTextWithoutUpdateField()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             InsertFieldUsingFieldType(doc, FieldType.FieldAuthor, false, null, true);
 
@@ -89,7 +89,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldWithoutSeparator()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             InsertFieldUsingFieldType(doc, FieldType.FieldListNum, true, null, false);
 
@@ -99,7 +99,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldBeforeParagraphWithoutDocumentAuthor()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
             doc.BuiltInDocumentProperties.Author = "";
 
             InsertFieldUsingFieldCodeFieldString(doc, " AUTHOR ", null, null, false);
@@ -110,7 +110,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldAfterParagraphWithoutChangingDocumentAuthor()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             InsertFieldUsingFieldCodeFieldString(doc, " AUTHOR ", null, null, true);
 
@@ -120,7 +120,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldBeforeRunText()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             //Add some text into the paragraph
             Run run = DocumentHelper.InsertNewRun(doc, " Hello World!");
@@ -133,7 +133,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldAfterRunText()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
+            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             //Add some text into the paragraph
             Run run = DocumentHelper.InsertNewRun(doc, " Hello World!");
@@ -149,7 +149,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldEmptyParagraphWithoutUpdateField()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentWithoutDummyText();
+            Document doc = DocumentHelper.CreateDocumentWithoutDummyText();
 
             InsertFieldUsingFieldType(doc, FieldType.FieldAuthor, false, null, false);
 
@@ -162,7 +162,7 @@ namespace ApiExamples
         [Test]
         public void InsertFieldEmptyParagraphWithUpdateField()
         {
-            Aspose.Words.Document doc = DocumentHelper.CreateDocumentWithoutDummyText();
+            Document doc = DocumentHelper.CreateDocumentWithoutDummyText();
 
             InsertFieldUsingFieldType(doc, FieldType.FieldAuthor, true, null, false);
 
@@ -172,7 +172,7 @@ namespace ApiExamples
         /// <summary>
         /// Insert field into the first paragraph of the current document using field type
         /// </summary>
-        private static void InsertFieldUsingFieldType(Aspose.Words.Document doc, FieldType fieldType, bool updateField, Aspose.Words.Node refNode, bool isAfter)
+        private static void InsertFieldUsingFieldType(Document doc, FieldType fieldType, bool updateField, Aspose.Words.Node refNode, bool isAfter)
         {
             Paragraph para = DocumentHelper.GetParagraph(doc, 0);
             para.InsertField(fieldType, updateField, refNode, isAfter);
@@ -181,7 +181,7 @@ namespace ApiExamples
         /// <summary>
         /// Insert field into the first paragraph of the current document using field code
         /// </summary>
-        private static void InsertFieldUsingFieldCode(Aspose.Words.Document doc, string fieldCode, Aspose.Words.Node refNode, bool isAfter)
+        private static void InsertFieldUsingFieldCode(Document doc, string fieldCode, Aspose.Words.Node refNode, bool isAfter)
         {
             Paragraph para = DocumentHelper.GetParagraph(doc, 0);
             para.InsertField(fieldCode, refNode, isAfter);
@@ -190,7 +190,7 @@ namespace ApiExamples
         /// <summary>
         /// Insert field into the first paragraph of the current document using field code and field string
         /// </summary>
-        private static void InsertFieldUsingFieldCodeFieldString(Aspose.Words.Document doc, string fieldCode, string fieldValue, Aspose.Words.Node refNode, bool isAfter)
+        private static void InsertFieldUsingFieldCodeFieldString(Document doc, string fieldCode, string fieldValue, Aspose.Words.Node refNode, bool isAfter)
         {
             Paragraph para = DocumentHelper.GetParagraph(doc, 0);
             para.InsertField(fieldCode, fieldValue, refNode, isAfter);

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //////////////////////////////////////////////////////////////////////////
 // Copyright 2001-2013 Aspose Pty Ltd. All Rights Reserved.
 //
@@ -9,10 +9,10 @@
 
 using Aspose.Words;
 using Aspose.Words.Fields;
+
 using NUnit.Framework;
 
-
-namespace ApiExamples.Fields
+namespace ApiExamples
 {
     [TestFixture]
     public class ExFormFields : ApiExampleBase
@@ -25,7 +25,7 @@ namespace ApiExamples.Fields
             //ExFor:FormFieldCollection
             //ExId:FormFieldsGetFormFieldsCollection
             //ExSummary:Shows how to get a collection of form fields.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "FormFields.doc");
+            Document doc = new Document(MyDir + "FormFields.doc");
             FormFieldCollection formFields = doc.Range.FormFields;
             //ExEnd
         }
@@ -37,7 +37,7 @@ namespace ApiExamples.Fields
             //ExFor:FormField
             //ExId:FormFieldsGetByName
             //ExSummary:Shows how to access form fields.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "FormFields.doc");
+            Document doc = new Document(MyDir + "FormFields.doc");
             FormFieldCollection documentFormFields = doc.Range.FormFields;
 
             FormField formField1 = documentFormFields[3];
@@ -55,7 +55,7 @@ namespace ApiExamples.Fields
             //ExFor:FormField.Name
             //ExId:FormFieldsWorkWithProperties
             //ExSummary:Shows how to work with form field name, type, and result.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "FormFields.doc");
+            Document doc = new Document(MyDir + "FormFields.doc");
             
             FormField formField = doc.Range.FormFields[3];
 
@@ -71,7 +71,7 @@ namespace ApiExamples.Fields
             //ExFor:DocumentBuilder.InsertTextInput
             //ExId:FormFieldsInsertAndRetrieve
             //ExSummary:Shows how to insert form fields, set options and gather them back in for use 
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Insert a text input field. The unique name of this field is "TextInput1", the other parameters define

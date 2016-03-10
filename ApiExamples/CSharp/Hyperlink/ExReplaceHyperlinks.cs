@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
@@ -14,14 +14,15 @@
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+
 using Aspose.Words;
 using Aspose.Words.Fields;
-using NUnit.Framework;
 
+using NUnit.Framework;
 
 //ExSkip
 
-namespace ApiExamples.Hyperlink
+namespace ApiExamples
 {
     /// <summary>
     /// Shows how to replace hyperlinks in a Word document.
@@ -36,7 +37,7 @@ namespace ApiExamples.Hyperlink
         public void ReplaceHyperlinks()
         {
             // Specify your document name here.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "ReplaceHyperlinks.doc");
+            Document doc = new Document(MyDir + "ReplaceHyperlinks.doc");
 
             // Hyperlinks in a Word documents are fields, select all field start nodes so we can find the hyperlinks.
             NodeList fieldStarts = doc.SelectNodes("//FieldStart");
@@ -91,24 +92,24 @@ namespace ApiExamples.Hyperlink
             if (!fieldStart.FieldType.Equals(FieldType.FieldHyperlink))
                 throw new ArgumentException("Field start type must be FieldHyperlink.");
             
-            mFieldStart = fieldStart;
+            this.mFieldStart = fieldStart;
 
             // Find the field separator node.
-            mFieldSeparator = FindNextSibling(mFieldStart, NodeType.FieldSeparator);
-            if (mFieldSeparator == null)
+            this.mFieldSeparator = FindNextSibling(this.mFieldStart, NodeType.FieldSeparator);
+            if (this.mFieldSeparator == null)
                 throw new InvalidOperationException("Cannot find field separator.");
             
             // Find the field end node. Normally field end will always be found, but in the example document 
             // there happens to be a paragraph break included in the hyperlink and this puts the field end 
             // in the next paragraph. It will be much more complicated to handle fields which span several 
             // paragraphs correctly, but in this case allowing field end to be null is enough for our purposes.
-            mFieldEnd = FindNextSibling(mFieldSeparator, NodeType.FieldEnd);
+            this.mFieldEnd = FindNextSibling(this.mFieldSeparator, NodeType.FieldEnd);
 
             // Field code looks something like [ HYPERLINK "http:\\www.myurl.com" ], but it can consist of several runs.
-            string fieldCode = GetTextSameParent(mFieldStart.NextSibling, mFieldSeparator);
+            string fieldCode = GetTextSameParent(this.mFieldStart.NextSibling, this.mFieldSeparator);
             Match match = gRegex.Match(fieldCode.Trim());		
-            mIsLocal = (match.Groups[1].Length > 0);	//The link is local if \l is present in the field code.
-            mTarget = match.Groups[2].Value;			
+            this.mIsLocal = (match.Groups[1].Length > 0);	//The link is local if \l is present in the field code.
+            this.mTarget = match.Groups[2].Value;			
         }
 
         /// <summary>
@@ -118,17 +119,17 @@ namespace ApiExamples.Hyperlink
         {
             get
             {
-                return GetTextSameParent(mFieldSeparator, mFieldEnd);
+                return GetTextSameParent(this.mFieldSeparator, this.mFieldEnd);
             }
             set
             {
                 // Hyperlink display name is stored in the field result which is a Run 
                 // node between field separator and field end.
-                Run fieldResult = (Run)mFieldSeparator.NextSibling; 
+                Run fieldResult = (Run)this.mFieldSeparator.NextSibling; 
                 fieldResult.Text = value;
 
                 // But sometimes the field result can consist of more than one run, delete these runs.
-                RemoveSameParent(fieldResult.NextSibling, mFieldEnd);
+                RemoveSameParent(fieldResult.NextSibling, this.mFieldEnd);
             }
         }
 
@@ -140,12 +141,12 @@ namespace ApiExamples.Hyperlink
             get
             {
                 string dummy = null;  // This is needed to fool the C# to VB.NET converter.
-                return mTarget;
+                return this.mTarget;
             }
             set
             {
-                mTarget = value;
-                UpdateFieldCode();
+                this.mTarget = value;
+                this.UpdateFieldCode();
             }
         }
 
@@ -156,23 +157,23 @@ namespace ApiExamples.Hyperlink
         {
             get
             {
-                return mIsLocal;
+                return this.mIsLocal;
             }
             set
             {
-                mIsLocal = value;
-                UpdateFieldCode();
+                this.mIsLocal = value;
+                this.UpdateFieldCode();
             }
         }
 
         private void UpdateFieldCode()
         {
             // Field code is stored in a Run node between field start and field separator.
-            Run fieldCode = (Run)mFieldStart.NextSibling;
-            fieldCode.Text = string.Format("HYPERLINK {0}\"{1}\"", ((mIsLocal) ? "\\l " : ""), mTarget);
+            Run fieldCode = (Run)this.mFieldStart.NextSibling;
+            fieldCode.Text = string.Format("HYPERLINK {0}\"{1}\"", ((this.mIsLocal) ? "\\l " : ""), this.mTarget);
 
             // But sometimes the field code can consist of more than one run, delete these runs.
-            RemoveSameParent(fieldCode.NextSibling, mFieldSeparator);
+            RemoveSameParent(fieldCode.NextSibling, this.mFieldSeparator);
         }
 
         /// <summary>

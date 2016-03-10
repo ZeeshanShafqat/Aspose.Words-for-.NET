@@ -1,16 +1,15 @@
-﻿// Copyright (c) 2001-2014 Aspose Pty Ltd. All Rights Reserved.
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
 //
 // This file is part of Aspose.Words. The source code in this file
 // is only intended as a supplement to the documentation, and is provided
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System;
+using System.Drawing;
 using Aspose.Words;
 using NUnit.Framework;
 
-
-namespace ApiExamples.Border
+namespace ApiExamples
 {
     [TestFixture]
     public class ExBorder : ApiExampleBase
@@ -31,7 +30,7 @@ namespace ApiExamples.Border
             //ExSummary:Inserts a string surrounded by a border into a document.
             DocumentBuilder builder = new DocumentBuilder();
 
-            builder.Font.Border.Color = System.Drawing.Color.Green;
+            builder.Font.Border.Color = Color.Green;
             builder.Font.Border.LineWidth = 2.5;
             builder.Font.Border.LineStyle = LineStyle.DashDotStroker;
 
@@ -52,7 +51,7 @@ namespace ApiExamples.Border
             DocumentBuilder builder = new DocumentBuilder();
 
             Aspose.Words.Border topBorder = builder.ParagraphFormat.Borders[BorderType.Top];
-            topBorder.Color = System.Drawing.Color.Red;
+            topBorder.Color = Color.Red;
             topBorder.LineStyle = LineStyle.DashSmallGap;
             topBorder.LineWidth = 4;
 
@@ -66,7 +65,7 @@ namespace ApiExamples.Border
             //ExStart
             //ExFor:Border.ClearFormatting
             //ExSummary:Shows how to remove borders from a paragraph one by one.
-            Aspose.Words.Document doc = new Aspose.Words.Document(MyDir + "Document.Borders.doc");
+            Document doc = new Document(MyDir + "Document.Borders.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
             BorderCollection borders = builder.ParagraphFormat.Borders;
 

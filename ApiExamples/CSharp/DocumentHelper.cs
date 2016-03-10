@@ -1,4 +1,11 @@
-﻿using Aspose.Words;
+﻿// Copyright (c) 2001-2016 Aspose Pty Ltd. All Rights Reserved.
+//
+// This file is part of Aspose.Words. The source code in this file
+// is only intended as a supplement to the documentation, and is provided
+// "as is", without warranty of any kind, either expressed or implied.
+//////////////////////////////////////////////////////////////////////////
+
+using Aspose.Words;
 using Aspose.Words.Drawing;
 using Aspose.Words.Tables;
 
@@ -12,9 +19,9 @@ namespace ApiExamples
         /// <summary>
         /// Create new document without run in the paragraph
         /// </summary>
-        internal static Aspose.Words.Document CreateDocumentWithoutDummyText()
+        internal static Document CreateDocumentWithoutDummyText()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             //Remove the previous changes of the document
             doc.RemoveAllChildren();
@@ -32,9 +39,9 @@ namespace ApiExamples
         /// <summary>
         /// Create new document with text
         /// </summary>
-        internal static Aspose.Words.Document CreateDocumentFillWithDummyText()
+        internal static Document CreateDocumentFillWithDummyText()
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             //Remove the previous changes of the document
             doc.RemoveAllChildren();
@@ -61,9 +68,9 @@ namespace ApiExamples
         /// <summary>
         /// Create new document with textbox shape and some query
         /// </summary>
-        internal static Aspose.Words.Document CreateTemplateDocumentForReportingEngine(string templateText)
+        internal static Document CreateTemplateDocumentForReportingEngine(string templateText)
         {
-            Aspose.Words.Document doc = new Aspose.Words.Document();
+            Document doc = new Document();
 
             //ToDo: Maybe in future add shape(object) as parameter
             // Create textbox shape.
@@ -87,7 +94,7 @@ namespace ApiExamples
         /// <summary>
         /// Insert new table in the document
         /// </summary>
-        private static void InsertTable(Aspose.Words.Document doc)
+        private static void InsertTable(Document doc)
         {
             DocumentBuilder builder = new DocumentBuilder(doc);
             
@@ -123,7 +130,7 @@ namespace ApiExamples
         /// <summary>
         /// Insert TOC entries in the document
         /// </summary>
-        private static void InsertToc(Aspose.Words.Document doc)
+        private static void InsertToc(Document doc)
         {
             DocumentBuilder builder = new DocumentBuilder(doc);
 
@@ -167,7 +174,7 @@ namespace ApiExamples
         /// <param name="text">
         /// Custom text
         /// </param>
-        internal static Run InsertNewRun(Aspose.Words.Document doc, string text)
+        internal static Run InsertNewRun(Document doc, string text)
         {
             Paragraph para = GetParagraph(doc, 0);
 
@@ -187,7 +194,7 @@ namespace ApiExamples
         /// <param name="paraIndex">
         /// Paragraph number from collection
         /// </param>
-        internal static string GetParagraphText(Aspose.Words.Document doc, int paraIndex)
+        internal static string GetParagraphText(Document doc, int paraIndex)
         {
             return doc.FirstSection.Body.Paragraphs[paraIndex].GetText();
         }
@@ -201,7 +208,7 @@ namespace ApiExamples
         /// <param name="paraIndex">
         /// Paragraph number from collection
         /// </param>
-        internal static Paragraph GetParagraph(Aspose.Words.Document doc, int paraIndex)
+        internal static Paragraph GetParagraph(Document doc, int paraIndex)
         {
             return doc.FirstSection.Body.Paragraphs[paraIndex];
         }
