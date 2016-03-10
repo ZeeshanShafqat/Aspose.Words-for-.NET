@@ -25,6 +25,12 @@ namespace ApiExamples
             SetUnlimitedLicense();
         }
 
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            DeleteTempFiles();
+        }
+
         internal static void SetUnlimitedLicense()
         {
             if (File.Exists(TestLicenseFileName))
@@ -38,7 +44,14 @@ namespace ApiExamples
             }
         }
 
-        internal static void RemoveLicense()
+        internal static void DeleteTempFiles()
+        {
+            foreach (string file in Directory.GetFiles(TestDir))
+                if (file.Contains("_OUT"))
+                    File.Delete(file);
+        }
+
+    internal static void RemoveLicense()
         {
             License license = new License();
             license.SetLicense("");

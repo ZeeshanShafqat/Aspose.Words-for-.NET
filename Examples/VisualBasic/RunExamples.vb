@@ -89,6 +89,27 @@ Module RunExamples
         '' Comments
         '' =====================================================
         'ProcessComments.Run()
+        'AddComments.Run()
+        'AnchorComment.Run()
+
+        '' ConvertUtil
+        '' =====================================================
+        'UtilityClasses.Run()
+
+        '' Theme
+        '' =====================================================
+        'ManipulateThemeProperties.Run()
+
+        '' Charts
+        '' =====================================================
+        'CreateColumnChart.Run()
+        'InsertScatterChart.Run()
+        'InsertAreaChart.Run()
+        'InsertBubbleChart.Run()
+        'CreateChartUsingShape.Run()
+        'WorkWithChartDataLabel.Run()
+        'WorkWithSingleChartDataPoint.Run()
+        'WorkWithSingleChartSeries.Run()
 
         '' Document
         '' =====================================================
@@ -100,6 +121,11 @@ Module RunExamples
         'AccessStyles.Run()
         'GetVariables.Run()
         'SetViewOption.Run()
+        'CreateHeaderFooterUsingDocBuilder.Run()
+        'ExtractContentUsingDocumentVisitor.Run()
+        'RemoveFooters.Run()
+        'AddGroupShapeToDocument.Run()
+        'CompareDocument.Run()
 
         '' Fields
         '' =====================================================
@@ -120,16 +146,23 @@ Module RunExamples
         'FormFieldsGetFormFieldsCollection.Run()
         'FormFieldsGetByName.Run()
         'FormFieldsWorkWithProperties.Run()
+        'RenameMergeFields.Run()
 
         '' Images
         '' =====================================================
         'AddImageToEachPage.Run()
         'AddWatermark.Run()
         'CompressImages.Run()
+        'ExtractImagesToFiles.Run()
+        'InsertBarcodeImage.Run()
 
         '' Styles
         '' =====================================================
         'ExtractContentBasedOnStyles.Run()
+
+        '' Hyperlink
+        '' =====================================================
+        'ReplaceHyperlinks.Run()
 
         '' Ranges
         '' =====================================================
@@ -177,6 +210,11 @@ Module RunExamples
         'NestedMailMerge.Run()
         'RemoveEmptyRegions.Run()
         'XMLMailMerge.Run()
+        'ExecuteArray.Run()
+        'MailMergeAlternatingRows.Run()
+        'MailMergeImageFromBlob.Run()
+        'ProduceMultipleDocuments.Run()
+        MailMergeUsingMustacheSyntax.Run()
 
         '' =====================================================
         '' =====================================================
@@ -191,6 +229,16 @@ Module RunExamples
         'RenderShape.Run()
         'SaveAsMultipageTiff.Run()
         'ReadActiveXControlProperties.Run()
+        'SetTrueTypeFontsFolder.Run()
+        'SetFontsFoldersMultipleFolders.Run()
+        'SetFontsFoldersSystemAndCustomFolder.Run()
+        'SpecifyDefaultFontWhenRendering.Run()
+        'ReceiveNotificationsOfFont.Run()
+        'EmbeddedFontsInPDF.Run()
+        'EmbeddingWindowsStandardFonts.Run()
+        'HyphenateWordsOfLanguages.Run()
+        'LoadHyphenationDictionaryForLanguage.Run()
+        'PrintProgressDialog.Run()
 
         '' =====================================================
         '' =====================================================
@@ -230,15 +278,24 @@ Module RunExamples
     Public Function GetDataDir_LINQ() As [String]
         Return Path.GetFullPath(GetDataDir_Data() + "LINQ/")
     End Function
-
+    Public Function GetDataDir_Database() As [String]
+        Return Path.GetFullPath(GetDataDir_Data() + "Database/")
+    End Function
     Public Function GetDataDir_LoadingAndSaving() As [String]
         Return Path.GetFullPath(GetDataDir_Data() + "Loading-and-Saving/")
     End Function
-
+    Public Function GetDataDir_ConvertUtil() As [String]
+        Return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/ConvertUtil/")
+    End Function
     Public Function GetDataDir_JoiningAndAppending() As [String]
         Return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Joining-Appending/")
     End Function
-
+    Public Function GetDataDir_WorkingWithHyperlink() As [String]
+        Return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Hyperlink/")
+    End Function
+    Public Function GetDataDir_WorkingWithCharts() As [String]
+        Return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Charts/")
+    End Function
     Public Function GetDataDir_FindAndReplace() As [String]
         Return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Find-Replace/")
     End Function
@@ -283,6 +340,9 @@ Module RunExamples
 
     Public Function GetDataDir_QuickStart() As [String]
         Return Path.GetFullPath(GetDataDir_Data() + "Quick-Start/")
+    End Function
+    Public Function GetDataDir_WorkingWithTheme() As [String]
+        Return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Theme/")
     End Function
 
     Public Function GetDataDir_RenderingAndPrinting() As [String]

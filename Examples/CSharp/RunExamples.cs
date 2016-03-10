@@ -7,10 +7,14 @@ using CSharp.Programming_Documents.Comments;
 using CSharp.Programming_Documents.Working_With_Document;
 using CSharp.Programming_Documents.Working_with_Fields;
 using CSharp.Programming_Documents.Working_with_Ranges;
+using CSharp.Programming_Documents.Working_with_Hyperlink;
 using CSharp.Programming_Documents.Working_with_Images;
 using CSharp.Programming_Documents.Working_with_Styles;
 using CSharp.Programming_Documents.Working_with_Tables;
 using CSharp.Programming_Documents.Working_with_Sections;
+using CSharp.Programming_Documents.Working_with_ConvertUtil;
+using CSharp.Programming_Documents.Working_with_Charts;
+using CSharp.Programming_Documents.Working_with_Theme;
 using CSharp.Quick_Start;
 using CSharp.Rendering_and_Printing;
 using CSharp.LINQ;
@@ -113,6 +117,12 @@ namespace CSharp
             //// Comments
             //// =====================================================
             //ProcessComments.Run();
+            //AddComments.Run();
+            //AnchorComment.Run();
+
+            //// ConvertUtil
+            //// =====================================================
+            //UtilityClasses.Run();
 
             //// Document
             //// =====================================================
@@ -130,6 +140,11 @@ namespace CSharp
             //AccessStyles.Run();
             //GetVariables.Run();
             //SetViewOption.Run();
+            //CreateHeaderFooterUsingDocBuilder.Run();
+            //ExtractContentUsingDocumentVisitor.Run();
+            //RemoveFooters.Run();
+            //AddGroupShapeToDocument.Run();
+            //CompareDocument.Run();
 
             //// Fields
             //// =====================================================
@@ -150,17 +165,39 @@ namespace CSharp
             //FormFieldsGetFormFieldsCollection.Run();
             //FormFieldsGetByName.Run();
             //FormFieldsWorkWithProperties.Run();
+            //RenameMergeFields.Run();
             
             //// Images
             //// =====================================================
             //AddImageToEachPage.Run();
             //AddWatermark.Run();
             //CompressImages.Run();
+            //ExtractImagesToFiles.Run();
+            //InsertBarcodeImage.Run();
 
             //// Ranges
             //// =====================================================
             //RangesGetText.Run();
             //RangesDeleteText.Run();
+
+            //// Charts
+            //// =====================================================
+            //CreateColumnChart.Run();
+            //InsertScatterChart.Run();
+            //InsertAreaChart.Run();
+            //InsertBubbleChart.Run();
+            //CreateChartUsingShape.Run();
+            //WorkWithChartDataLabel.Run();
+            //WorkWithSingleChartDataPoint.Run();
+            //WorkWithSingleChartSeries.Run();
+
+            //// Theme
+            //// =====================================================
+            //ManipulateThemeProperties.Run();
+
+            //// Hyperlink
+            //// =====================================================
+            //ReplaceHyperlinks.Run();
             
 
             //// Styles
@@ -208,7 +245,12 @@ namespace CSharp
             //MultipleDocsInMailMerge.Run();
             //NestedMailMerge.Run();
             //RemoveEmptyRegions.Run();
-            //XMLMailMerge.Run();            
+            //XMLMailMerge.Run();           
+            //ExecuteArray.Run();
+            //MailMergeAlternatingRows.Run();
+            //MailMergeImageFromBlob.Run();
+            //ProduceMultipleDocuments.Run();
+            MailMergeUsingMustacheSyntax.Run();
 
             //// =====================================================
             //// =====================================================
@@ -223,6 +265,16 @@ namespace CSharp
             //RenderShape.Run();
             //SaveAsMultipageTiff.Run();
             //ReadActiveXControlProperties.Run();
+            //SetTrueTypeFontsFolder.Run();
+            //SetFontsFoldersMultipleFolders.Run();
+            //SetFontsFoldersSystemAndCustomFolder.Run();
+            //SpecifyDefaultFontWhenRendering.Run();
+            //ReceiveNotificationsOfFont.Run();
+            //EmbeddedFontsInPDF.Run();
+            //EmbeddingWindowsStandardFonts.Run();
+            //HyphenateWordsOfLanguages.Run();
+            //LoadHyphenationDictionaryForLanguage.Run();
+            //PrintProgressDialog.Run();
 
             //// =====================================================
             //// =====================================================
@@ -264,6 +316,10 @@ namespace CSharp
         {
             return Path.GetFullPath(GetDataDir_Data() + "LINQ/");
         }
+        public static String GetDataDir_Database()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Database/");
+        }
         public static String GetDataDir_LoadingAndSaving()
         {
             return Path.GetFullPath(GetDataDir_Data() + "Loading-and-Saving/");
@@ -278,7 +334,10 @@ namespace CSharp
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Find-Replace/");
         }
-
+        public static String GetDataDir_ConvertUtil()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/ConvertUtil/");
+        }
         public static String GetDataDir_WorkingWithBookmarks()
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Bookmarks/");
@@ -293,16 +352,26 @@ namespace CSharp
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Document/");
         }
-
         public static String GetDataDir_WorkingWithFields()
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Fields/");
+        }
+        public static String GetDataDir_WorkingWithHyperlink()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Hyperlink/");
+        }
+        public static String GetDataDir_WorkingWithCharts()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Charts/");
+        }
+        public static String GetDataDir_WorkingWithTheme()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Theme/");
         }
         public static String GetDataDir_WorkingWithRanges()
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Ranges/");
         }
-
         public static String GetDataDir_WorkingWithImages()
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Images/");

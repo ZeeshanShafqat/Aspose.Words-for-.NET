@@ -54,6 +54,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -106,10 +107,15 @@
     <Compile Include="Loading-and-Saving\PageSplitter.vb" />
     <Compile Include="Loading-and-Saving\SplitIntoHtmlPages.vb" />
     <Compile Include="Mail-Merge\ApplyCustomLogicToEmptyRegions.vb" />
+    <Compile Include="Mail-Merge\MailMergeUsingMustacheSyntax.vb" />
+    <Compile Include="Mail-Merge\MailMergeImageFromBlob.vb" />
+    <Compile Include="Mail-Merge\MailMergeAlternatingRows.vb" />
+    <Compile Include="Mail-Merge\ExecuteArray.vb" />
     <Compile Include="Mail-Merge\LINQtoXMLMailMerge.vb" />
     <Compile Include="Mail-Merge\MailMergeFormFields.vb" />
     <Compile Include="Mail-Merge\MultipleDocsInMailMerge.vb" />
     <Compile Include="Mail-Merge\NestedMailMerge.vb" />
+    <Compile Include="Mail-Merge\ProduceMultipleDocuments.vb" />
     <Compile Include="Mail-Merge\RemoveEmptyRegions.vb" />
     <Compile Include="Mail-Merge\XMLMailMerge.vb" />
     <Compile Include="Programming-Documents\Bookmarks\AccessBookmarks.vb" />
@@ -118,14 +124,30 @@
     <Compile Include="Programming-Documents\Bookmarks\CopyBookmarkedText.vb" />
     <Compile Include="Programming-Documents\Bookmarks\CreateBookmark.vb" />
     <Compile Include="Programming-Documents\Bookmarks\UntangleRowBookmarks.vb" />
+    <Compile Include="Programming-Documents\Charts\CreateChartUsingShape.vb" />
+    <Compile Include="Programming-Documents\Charts\CreateColumnChart.vb" />
+    <Compile Include="Programming-Documents\Charts\InsertAreaChart.vb" />
+    <Compile Include="Programming-Documents\Charts\InsertBubbleChart.vb" />
+    <Compile Include="Programming-Documents\Charts\InsertScatterChart.vb" />
+    <Compile Include="Programming-Documents\Charts\WorkWithChartDataLabel.vb" />
+    <Compile Include="Programming-Documents\Charts\WorkWithSingleChartDataPoint.vb" />
+    <Compile Include="Programming-Documents\Charts\WorkWithSingleChartSeries.vb" />
+    <Compile Include="Programming-Documents\Comments\AddComments.vb" />
+    <Compile Include="Programming-Documents\Comments\AnchorComment.vb" />
     <Compile Include="Programming-Documents\Comments\ProcessComments.vb" />
+    <Compile Include="Programming-Documents\ConvertUtil\UtilityClasses.vb" />
     <Compile Include="Programming-Documents\Document\AccessStyles.vb" />
+    <Compile Include="Programming-Documents\Document\AddGroupShapeToDocument.vb" />
     <Compile Include="Programming-Documents\Document\CloningDocument.vb" />
+    <Compile Include="Programming-Documents\Document\CompareDocument.vb" />
+    <Compile Include="Programming-Documents\Document\CreateHeaderFooterUsingDocBuilder.vb" />
     <Compile Include="Programming-Documents\Document\ExtractContent.vb" />
+    <Compile Include="Programming-Documents\Document\ExtractContentUsingDocumentVisitor.vb" />
     <Compile Include="Programming-Documents\Document\GetVariables.vb" />
     <Compile Include="Programming-Documents\Document\PageNumbersOfNodes.vb" />
     <Compile Include="Programming-Documents\Document\ProtectDocument.vb" />
     <Compile Include="Programming-Documents\Document\RemoveBreaks.vb" />
+    <Compile Include="Programming-Documents\Document\RemoveFooters.vb" />
     <Compile Include="Programming-Documents\Document\SetViewOption.vb" />
     <Compile Include="Programming-Documents\Fields\ChangeLocale.vb" />
     <Compile Include="Programming-Documents\Fields\ConvertFieldsInBody.vb" />
@@ -143,12 +165,16 @@
     <Compile Include="Programming-Documents\Fields\InsertMergeFieldUsingDOM.vb" />
     <Compile Include="Programming-Documents\Fields\InsertNestedFields.vb" />
     <Compile Include="Programming-Documents\Fields\RemoveField.vb" />
+    <Compile Include="Programming-Documents\Fields\RenameMergeFields.vb" />
     <Compile Include="Programming-Documents\Fields\UpdateDocFields.vb" />
     <Compile Include="Programming-Documents\Find-Replace\FindAndHighlight.vb" />
     <Compile Include="Programming-Documents\Find-Replace\ReplaceTextWithField.vb" />
+    <Compile Include="Programming-Documents\Hyperlink\ReplaceHyperlinks.vb" />
     <Compile Include="Programming-Documents\Images\AddImageToEachPage.vb" />
     <Compile Include="Programming-Documents\Images\AddWatermark.vb" />
     <Compile Include="Programming-Documents\Images\CompressImages.vb" />
+    <Compile Include="Programming-Documents\Images\ExtractImagesToFiles.vb" />
+    <Compile Include="Programming-Documents\Images\InsertBarcodeImage.vb" />
     <Compile Include="Programming-Documents\Joining-Appending\AppendDocumentManually.vb" />
     <Compile Include="Programming-Documents\Joining-Appending\BaseDocument.vb" />
     <Compile Include="Programming-Documents\Joining-Appending\ConvertNumPageFields.vb" />
@@ -192,6 +218,7 @@
     <Compile Include="Programming-Documents\Tables\JoiningAndSplittingTable.vb" />
     <Compile Include="Programming-Documents\Tables\RepeatRowsOnSubsequentPages.vb" />
     <Compile Include="Programming-Documents\Tables\SpecifyHeightAndWidth.vb" />
+    <Compile Include="Programming-Documents\Theme\ManipulateThemeProperties.vb" />
     <Compile Include="Quick-Start\AppendDocuments.vb" />
     <Compile Include="Quick-Start\ApplyLicense.vb" />
     <Compile Include="Loading-and-Saving\Doc2Pdf.vb" />
@@ -202,6 +229,11 @@
     <Compile Include="Quick-Start\SimpleMailMerge.vb" />
     <Compile Include="Quick-Start\UpdateFields.vb" />
     <Compile Include="Quick-Start\WorkingWithNodes.vb" />
+    <Compile Include="Rendering-Printing\EmbeddedFontsInPDF.vb" />
+    <Compile Include="Rendering-Printing\EmbeddingWindowsStandardFonts.vb" />
+    <Compile Include="Rendering-Printing\HyphenateWordsOfLanguages.vb" />
+    <Compile Include="Rendering-Printing\LoadHyphenationDictionaryForLanguage.vb" />
+    <Compile Include="Rendering-Printing\PrintProgressDialog.vb" />
     <Compile Include="Rendering-Printing\ReadActiveXControlProperties.vb" />
     <Compile Include="Rendering-Printing\DocumentLayoutHelper.vb" />
     <Compile Include="Rendering-Printing\DocumentPreviewAndPrint.vb">
@@ -209,9 +241,9 @@
     </Compile>
     <Compile Include="Rendering-Printing\EnumerateLayoutElements.vb" />
     <Compile Include="Rendering-Printing\ImageColorFilters.vb" />
+    <Compile Include="Rendering-Printing\ReceiveNotificationsOfFont.vb" />
     <Compile Include="Rendering-Printing\RenderShape.vb" />
     <Compile Include="Rendering-Printing\SaveAsMultipageTiff.vb" />
-    <Compile Include="RunExamples.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -227,6 +259,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Rendering-Printing\SetFontsFoldersMultipleFolders.vb" />
+    <Compile Include="Rendering-Printing\SetFontsFoldersSystemAndCustomFolder.vb" />
+    <Compile Include="Rendering-Printing\SetTrueTypeFontsFolder.vb" />
+    <Compile Include="Rendering-Printing\SpecifyDefaultFontWhenRendering.vb" />
+    <Compile Include="RunExamples.vb" />
     <Compile Include="Viewers-Visualizers\Document-Explorer\AboutForm.vb">
       <SubType>Form</SubType>
     </Compile>
