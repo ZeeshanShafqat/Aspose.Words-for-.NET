@@ -46,7 +46,7 @@ namespace ApiExamples
 
         internal static void DeleteTempFiles()
         {
-            foreach (string file in Directory.GetFiles(TestDir))
+            foreach (string file in Directory.GetFiles(MyDir))
                 if (file.Contains("_OUT"))
                     File.Delete(file);
         }
@@ -99,7 +99,6 @@ namespace ApiExamples
         }
 
         private static readonly string gAssemblyDir;
-        private static readonly string gTestDir;
         private static readonly string gMyDir;
         private static readonly string gDatabaseDir;
 

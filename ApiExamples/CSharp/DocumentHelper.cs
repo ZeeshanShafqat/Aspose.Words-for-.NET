@@ -51,8 +51,13 @@ namespace ApiExamples
 
             DocumentBuilder builder = new DocumentBuilder(doc);
 
+            builder.Write("Page ");
+            builder.InsertField("PAGE", "");
+            builder.Write(" of ");
+            builder.InsertField("NUMPAGES", "");
+
             //Insert new table with two rows and two cells
-            InsertTable(doc);
+            InsertTable(builder);
 
             builder.Writeln("Hello World!");
 
@@ -60,7 +65,7 @@ namespace ApiExamples
             builder.InsertBreak(BreakType.PageBreak);
 
             //Insert TOC entries
-            InsertToc(doc);
+            InsertToc(builder);
 
             return doc;
         }
@@ -90,14 +95,11 @@ namespace ApiExamples
             return doc;
         }
 
-
         /// <summary>
         /// Insert new table in the document
         /// </summary>
-        private static void InsertTable(Document doc)
+        private static void InsertTable(DocumentBuilder builder)
         {
-            DocumentBuilder builder = new DocumentBuilder(doc);
-            
             //Start creating a new table
             Table table = builder.StartTable();
 
@@ -107,7 +109,7 @@ namespace ApiExamples
 
             //Set width to fit the table contents
             table.AutoFit(AutoFitBehavior.AutoFitToContents);
-            
+
             //Insert Row 1 Cell 2
             builder.InsertCell();
             builder.Write(" ");
@@ -130,10 +132,8 @@ namespace ApiExamples
         /// <summary>
         /// Insert TOC entries in the document
         /// </summary>
-        private static void InsertToc(Document doc)
+        private static void InsertToc(DocumentBuilder builder)
         {
-            DocumentBuilder builder = new DocumentBuilder(doc);
-
             // Creating TOC entries
             builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.Heading1;
 
@@ -142,31 +142,22 @@ namespace ApiExamples
             builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.Heading2;
 
             builder.Writeln("Heading 1.1");
-            builder.Writeln("Heading 1.2");
 
             builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.Heading4;
 
             builder.Writeln("Heading 1.1.1.1");
-            builder.Writeln("Heading 1.1.1.2");
-
-            builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.Heading1;
-
-            builder.Writeln("Heading 2.1");
 
             builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.Heading5;
 
-            builder.Writeln("Heading 2.1.1.1.1");
-            builder.Writeln("Heading 2.1.1.1.2");
-            builder.Writeln("Heading 2.1.1.1.3");
+            builder.Writeln("Heading 1.1.1.1.1");
 
             builder.ParagraphFormat.StyleIdentifier = StyleIdentifier.Heading9;
 
-            builder.Writeln("Heading 2.1.1.1.1.1.1.1.1");
-            builder.Write("Heading 2.1.1.1.1.1.1.1.2");
+            builder.Writeln("Heading 1.1.1.1.1.1.1.1.1");
         }
 
         /// <summary>
-        /// Insert text into the current document
+        /// Insert run into the current document
         /// </summary>
         /// <param name="doc">
         /// Current document
@@ -174,15 +165,35 @@ namespace ApiExamples
         /// <param name="text">
         /// Custom text
         /// </param>
-        internal static Run InsertNewRun(Document doc, string text)
+        /// <param name="paraIndex">
+        /// Paragraph index
+        /// </param>
+        internal static Run InsertNewRun(Document doc, string text, int paraIndex)
         {
-            Paragraph para = GetParagraph(doc, 0);
+            Paragraph para = GetParagraph(doc, paraIndex);
 
             Run run = new Run(doc) { Text = text };
 
             para.AppendChild(run);
 
             return run;
+        }
+
+        /// <summary>
+        /// Insert text into the current document
+        /// </summary>
+        /// <param name="builder">
+        /// Current document builder
+        /// </param>
+        /// <param name="textStrings">
+        /// Custom text
+        /// </param>
+        internal static void InsertBuilderText(DocumentBuilder builder, string[] textStrings)
+        {
+            foreach (string textString in textStrings)
+            {
+                builder.Writeln(textString);
+            }
         }
 
         /// <summary>

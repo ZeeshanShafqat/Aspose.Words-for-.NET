@@ -13,21 +13,22 @@ using Aspose.Words.Drawing;
 using Aspose.Words.Reporting;
 using NUnit.Framework;
 
+//ToDo: Need to fix
 namespace ApiExamples
 {
     [TestFixture]
     public class ExReportingEngine : ApiExampleBase
     {
-        private readonly string image = MyDir + @"Images\Test_636_852.gif";
+        private readonly string _image = MyDir + @"Images\Test_636_852.gif";
 
         [Test]
-        public void StretchImageFitHeight()
+        public void StretchImage_fitHeight()
         {
             Document doc = DocumentHelper.CreateTemplateDocumentForReportingEngine("<<image [src.Image] -fitHeight>>");
 
-            ImageStream imageStream = new ImageStream(new FileStream(this.image, FileMode.Open, FileAccess.Read));
+            ImageStream imageStream = new ImageStream(new FileStream(this._image, FileMode.Open, FileAccess.Read));
 
-            BuildReport(doc, imageStream, "src");
+            BuildReport(doc, imageStream, "src", ReportBuildOptions.None);
 
             MemoryStream dstStream = new MemoryStream();
             doc.Save(dstStream, SaveFormat.Docx);
@@ -50,13 +51,13 @@ namespace ApiExamples
         }
 
         [Test]
-        public void StretchImageFitWidth()
+        public void StretchImage_fitWidth()
         {
             Document doc = DocumentHelper.CreateTemplateDocumentForReportingEngine("<<image [src.Image] -fitWidth>>");
 
-            ImageStream imageStream = new ImageStream(new FileStream(this.image, FileMode.Open, FileAccess.Read));
+            ImageStream imageStream = new ImageStream(new FileStream(this._image, FileMode.Open, FileAccess.Read));
 
-            BuildReport(doc, imageStream, "src");
+            BuildReport(doc, imageStream, "src", ReportBuildOptions.None);
 
             MemoryStream dstStream = new MemoryStream();
             doc.Save(dstStream, SaveFormat.Docx);
@@ -79,13 +80,13 @@ namespace ApiExamples
         }
 
         [Test]
-        public void StretchImageFitSize()
+        public void StretchImage_fitSize()
         {
             Document doc = DocumentHelper.CreateTemplateDocumentForReportingEngine("<<image [src.Image] -fitSize>>");
 
-            ImageStream imageStream = new ImageStream(new FileStream(this.image, FileMode.Open, FileAccess.Read));
+            ImageStream imageStream = new ImageStream(new FileStream(this._image, FileMode.Open, FileAccess.Read));
 
-            BuildReport(doc, imageStream, "src");
+            BuildReport(doc, imageStream, "src", ReportBuildOptions.None);
 
             MemoryStream dstStream = new MemoryStream();
             doc.Save(dstStream, SaveFormat.Docx);
@@ -109,40 +110,38 @@ namespace ApiExamples
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void AllowMissingDataFieldsException()
+        public void WithoutMissingMembers()
         {
-            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder();
 
-            DocumentHelper.InsertNewRun(doc, "<<if [value == “true”] >>ok<<else>>Cancel<</if>>");
+            //Add templete to the document for reporting engine
+            DocumentHelper.InsertBuilderText(builder, new[] { "<<[missingObject.First().id]>>", "<<foreach [in missingObject]>><<[id]>><</foreach>>" });
 
-            DataSet dataSet = new DataSet();
-            dataSet.ReadXml(MyDir + "DataSet.xml", XmlReadMode.InferSchema);
-
-            BuildReport(doc, dataSet, "Bad");
+            //Assert that build report failed without "ReportBuildOptions.AllowMissingMembers"
+            BuildReport(builder.Document, new DataSet(), "", ReportBuildOptions.None);
         }
 
-        /// <summary>
-        /// Assert that the exception from previous test is not repeated with AllowMissingMembers parameter
-        /// </summary>
         [Test]
-        public void AllowMissingDataFields()
+        public void WithMissingMembers()
         {
-            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder();
 
-            DocumentHelper.InsertNewRun(doc, "<<if [value == “true”] >>ok<<else>>Cancel<</if>>");
+            //Add templete to the document for reporting engine
+            DocumentHelper.InsertBuilderText(builder, new[] { "<<[missingObject.First().id]>>", "<<foreach [in missingObject]>><<[id]>><</foreach>>" });
 
-            DataSet dataSet = new DataSet();
-            dataSet.ReadXml(MyDir + "DataSet.xml", XmlReadMode.InferSchema);
+            BuildReport(builder.Document, new DataSet(), "", ReportBuildOptions.AllowMissingMembers);
 
-            ReportingEngine engine = new ReportingEngine();
-            engine.Options = ReportBuildOptions.AllowMissingMembers;
-
-            engine.BuildReport(doc, dataSet, "Bad");
+            //Assert that build report success with "ReportBuildOptions.AllowMissingMembers"
+            Assert.AreEqual(
+            ControlChar.ParagraphBreak + ControlChar.ParagraphBreak + ControlChar.SectionBreak,
+            builder.Document.GetText());
         }
 
-        private static void BuildReport(Document document, object dataSource, string dataSourceName)
+        private static void BuildReport(Document document, object dataSource, string dataSourceName, ReportBuildOptions reportBuildOptions)
         {
             ReportingEngine engine = new ReportingEngine();
+            engine.Options = reportBuildOptions;
+
             engine.BuildReport(document, dataSource, dataSourceName);
         }
     }
