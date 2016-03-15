@@ -208,5 +208,18 @@ namespace ApiExamples
             }
         }
         //ExEnd
+
+        //ToDo: Check that all correct
+        [Test]
+        public void InsertBarCodeField()
+        {
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            builder.InsertField(@"BARCODE \* MERGEFORMAT");
+            doc.UpdateFields();
+
+            doc.Save(MyDir + "123.docx");
+        }
     }
 }

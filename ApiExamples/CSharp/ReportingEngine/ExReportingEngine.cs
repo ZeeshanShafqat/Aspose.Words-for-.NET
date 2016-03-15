@@ -24,7 +24,7 @@ namespace ApiExamples
         [Test]
         public void StretchImage_fitHeight()
         {
-            Document doc = DocumentHelper.CreateTemplateDocumentForReportingEngine("<<image [src.Image] -fitHeight>>");
+            Document doc = DocumentHelper.CreateTemplateDocumentWithDrawObjects("<<image [src.Image] -fitHeight>>", ShapeType.TextBox);
 
             ImageStream imageStream = new ImageStream(new FileStream(this._image, FileMode.Open, FileAccess.Read));
 
@@ -53,7 +53,7 @@ namespace ApiExamples
         [Test]
         public void StretchImage_fitWidth()
         {
-            Document doc = DocumentHelper.CreateTemplateDocumentForReportingEngine("<<image [src.Image] -fitWidth>>");
+            Document doc = DocumentHelper.CreateTemplateDocumentWithDrawObjects("<<image [src.Image] -fitWidth>>", ShapeType.TextBox);
 
             ImageStream imageStream = new ImageStream(new FileStream(this._image, FileMode.Open, FileAccess.Read));
 
@@ -82,7 +82,7 @@ namespace ApiExamples
         [Test]
         public void StretchImage_fitSize()
         {
-            Document doc = DocumentHelper.CreateTemplateDocumentForReportingEngine("<<image [src.Image] -fitSize>>");
+            Document doc = DocumentHelper.CreateTemplateDocumentWithDrawObjects("<<image [src.Image] -fitSize>>", ShapeType.TextBox);
 
             ImageStream imageStream = new ImageStream(new FileStream(this._image, FileMode.Open, FileAccess.Read));
 

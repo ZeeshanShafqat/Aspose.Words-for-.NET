@@ -75,6 +75,26 @@ namespace ApiExamples
             //ExEnd
         }
 
+        //ToDo: Check AWNET realisation
+        [Test]
+        public void TrimWhiteSpaces()
+        {
+            Document doc = new Document(MyDir + "MailMerge.ExecuteDataTable.doc");
+
+            // This example creates a table, but you would normally load table from a database. 
+            DataTable table = new DataTable("Test");
+            table.Columns.Add("CustomerName");
+            table.Columns.Add("Address");
+            table.Rows.Add(new object[] { "Thomas Hardy", "120 Hanover Sq., London" });
+            table.Rows.Add(new object[] { "Paolo Accorti", "Via Monte Bianco 34, Torino" });
+
+            doc.MailMerge.TrimWhitespaces = true;
+            // Field values from the table are inserted into the mail merge fields found in the document.
+            doc.MailMerge.Execute(table);
+
+            doc.Save(MyDir + "MailMerge.ExecuteDataTable Out.doc");
+        }
+
         [Test]
         public void ExecuteDataReader()
         {

@@ -14,6 +14,11 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.IO;
+    using System.Threading;
+
     [TestFixture]
     public class ExSection : ApiExampleBase
     {
@@ -430,6 +435,59 @@ namespace ApiExamples
 
             doc.Save(MyDir + "Section.ModifyPageSetupInAllSections Out.doc");
             //ExEnd
+        }
+
+        [Test]
+        public void CultureInfoPageSetupDefaults()
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+            
+            Document docEn = new Document();
+
+            //Assert that page defaults comply current culture info
+            Section sectionEn = docEn.Sections[0];
+            Assert.AreEqual(72.0, sectionEn.PageSetup.LeftMargin);          // 2.54 cm         
+            Assert.AreEqual(72.0, sectionEn.PageSetup.RightMargin);         // 2.54 cm
+            Assert.AreEqual(72.0, sectionEn.PageSetup.TopMargin);           // 2.54 cm
+            Assert.AreEqual(72.0, sectionEn.PageSetup.BottomMargin);        // 2.54 cm
+            Assert.AreEqual(36.0, sectionEn.PageSetup.HeaderDistance);      // 1.27 cm
+            Assert.AreEqual(36.0, sectionEn.PageSetup.FooterDistance);      // 1.27 cm
+            Assert.AreEqual(36.0, sectionEn.PageSetup.TextColumns.Spacing); // 1.27 cm
+
+            //Change culture and assert that the page defaults are changed
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("de-de");
+
+            Document docDe = new Document();
+
+            Section sectionDe = docDe.Sections[0];
+            Assert.AreEqual(72.0, sectionDe.PageSetup.LeftMargin);          // 2.5 cm         
+            Assert.AreEqual(72.0, sectionDe.PageSetup.RightMargin);         // 2.5 cm
+            Assert.AreEqual(72.0, sectionDe.PageSetup.TopMargin);           // 2.5 cm
+            Assert.AreEqual(72.0, sectionDe.PageSetup.BottomMargin);        // 2 cm
+            Assert.AreEqual(36.0, sectionDe.PageSetup.HeaderDistance);      // 1.25 cm
+            Assert.AreEqual(36.0, sectionDe.PageSetup.FooterDistance);      // 1.25 cm
+            Assert.AreEqual(36.0, sectionDe.PageSetup.TextColumns.Spacing); // 1.25 cm
+
+            //Change page defaults
+            sectionDe.PageSetup.LeftMargin = 90;            // 3.17 cm
+            sectionDe.PageSetup.RightMargin = 90;           // 3.17 cm
+            sectionDe.PageSetup.TopMargin = 72;             // 2.54 cm
+            sectionDe.PageSetup.BottomMargin = 72;          // 2.54 cm
+            sectionDe.PageSetup.HeaderDistance = 35.4;      // 1.25 cm
+            sectionDe.PageSetup.FooterDistance = 35.4;      // 1.25 cm
+            sectionDe.PageSetup.TextColumns.Spacing = 35.4; // 1.25 cm
+
+            MemoryStream dstStream = new MemoryStream();
+            docDe.Save(dstStream, SaveFormat.Docx);
+
+            Section sectionDeAfter = docDe.Sections[0];
+            Assert.AreEqual(90.0, sectionDeAfter.PageSetup.LeftMargin);          // 3.17 cm         
+            Assert.AreEqual(90.0, sectionDeAfter.PageSetup.RightMargin);         // 3.17 cm
+            Assert.AreEqual(72.0, sectionDeAfter.PageSetup.TopMargin);           // 2.54 cm
+            Assert.AreEqual(72.0, sectionDeAfter.PageSetup.BottomMargin);        // 2.54 cm
+            Assert.AreEqual(35.4, sectionDeAfter.PageSetup.HeaderDistance);      // 1.25 cm
+            Assert.AreEqual(35.4, sectionDeAfter.PageSetup.FooterDistance);      // 1.25 cm
+            Assert.AreEqual(35.4, sectionDeAfter.PageSetup.TextColumns.Spacing); // 1.25 cm
         }
     }
 }

@@ -15,6 +15,10 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using System.IO;
+
+    using Aspose.Words.Drawing.Ole;
+
     /// <summary>
     /// Examples using shapes in documents.
     /// </summary>
@@ -227,6 +231,49 @@ namespace ApiExamples
             // Save the output
             doc.Save(MyDir + "Shape.CreateTextBox Out.doc");
             //ExEnd
+        }
+
+        //ToDo: Need to add ActiveX control from template and maybe create from this test example
+        [Test]
+        public void OleControl()
+        {
+            string fileName = MyDir + "Shape.OleObject.docx";
+
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+            builder.InsertOleObject(fileName, "checkbox", false, false, null);
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+            OleControl oleControl = shape.OleFormat.OleControl;
+
+            if (oleControl.IsForms2OleControl)
+            {
+                Forms2OleControl htmlfile = (Forms2OleControl)oleControl;
+                Console.WriteLine("Caption: " + htmlfile.Caption);
+                Console.WriteLine("Value: " + htmlfile.Value);
+                Console.WriteLine("Enabled: " + htmlfile.Enabled);
+                Console.WriteLine("Type: " + htmlfile.Type);
+                Console.WriteLine("ChildNodes: " + htmlfile.ChildNodes);
+            }
+        }
+
+        //ToDo: Get more info about oleobjects
+        [Test]
+        public void SuggestedFileName()
+        {
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            builder.InsertOleObject("http://www.aspose.com", "htmlfile", true, true, null);
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+            Assert.IsNotEmpty(shape.OleFormat.SuggestedFileName);
         }
     }
 }

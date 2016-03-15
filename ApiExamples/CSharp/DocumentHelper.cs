@@ -73,13 +73,12 @@ namespace ApiExamples
         /// <summary>
         /// Create new document with textbox shape and some query
         /// </summary>
-        internal static Document CreateTemplateDocumentForReportingEngine(string templateText)
+        internal static Document CreateTemplateDocumentWithDrawObjects(string templateText, ShapeType shapeType)
         {
             Document doc = new Document();
 
-            //ToDo: Maybe in future add shape(object) as parameter
             // Create textbox shape.
-            Shape textbox = new Shape(doc, ShapeType.TextBox);
+            Shape textbox = new Shape(doc, shapeType);
             textbox.Width = 431.5;
             textbox.Height = 346.35;
 
