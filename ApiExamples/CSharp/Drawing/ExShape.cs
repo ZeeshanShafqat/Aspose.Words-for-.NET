@@ -7,7 +7,7 @@
 
 using System;
 using System.Drawing;
-
+using System.Web.UI.WebControls;
 using Aspose.Words;
 using Aspose.Words.Drawing;
 
@@ -233,47 +233,41 @@ namespace ApiExamples
             //ExEnd
         }
 
-        //ToDo: Need to add ActiveX control from template and maybe create from this test example
         [Test]
         public void OleControl()
         {
-            string fileName = MyDir + "Shape.OleObject.docx";
-
-            Document doc = new Document();
-            DocumentBuilder builder = new DocumentBuilder(doc);
-            builder.InsertOleObject(fileName, "checkbox", false, false, null);
-
-            MemoryStream dstStream = new MemoryStream();
-            doc.Save(dstStream, SaveFormat.Docx);
-
+            Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
+            
             Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
             OleControl oleControl = shape.OleFormat.OleControl;
 
             if (oleControl.IsForms2OleControl)
             {
-                Forms2OleControl htmlfile = (Forms2OleControl)oleControl;
-                Console.WriteLine("Caption: " + htmlfile.Caption);
-                Console.WriteLine("Value: " + htmlfile.Value);
-                Console.WriteLine("Enabled: " + htmlfile.Enabled);
-                Console.WriteLine("Type: " + htmlfile.Type);
-                Console.WriteLine("ChildNodes: " + htmlfile.ChildNodes);
+                Forms2OleControl checkBox = (Forms2OleControl)oleControl;
+                Assert.AreEqual("Первый", checkBox.Caption);
+                Assert.AreEqual("0", checkBox.Value);
+                Assert.AreEqual(true, checkBox.Enabled);
+                Assert.AreEqual(Forms2OleControlType.CheckBox, checkBox.Type);
+                Assert.AreEqual(null, checkBox.ChildNodes);
             }
         }
 
-        //ToDo: Get more info about oleobjects
         [Test]
         public void SuggestedFileName()
         {
-            Document doc = new Document();
-            DocumentBuilder builder = new DocumentBuilder(doc);
+            Document doc = new Document(MyDir + "Shape.SuggestedFileName.rtf");
+            
+            Shape oleShape = (Shape)doc.FirstSection.Body.GetChild(NodeType.Shape, 0, true);
+            Assert.AreEqual("CSV.csv", oleShape.OleFormat.SuggestedFileName);
+        }
 
-            builder.InsertOleObject("http://www.aspose.com", "htmlfile", true, true, null);
-
-            MemoryStream dstStream = new MemoryStream();
-            doc.Save(dstStream, SaveFormat.Docx);
+        [Test]
+        public void SuggestedFileNameNotExtract()
+        {
+            Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
 
             Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
-            Assert.IsNotEmpty(shape.OleFormat.SuggestedFileName);
+            Assert.IsEmpty(shape.OleFormat.SuggestedFileName);
         }
     }
 }

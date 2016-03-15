@@ -14,7 +14,7 @@ using System;
 using System.Data;
 using System.Data.OleDb;
 using System.Web;
-
+using System.Windows.Forms;
 using Aspose.Words;
 using Aspose.Words.MailMerging;
 
@@ -93,7 +93,28 @@ namespace ApiExamples
             doc.MailMerge.Execute(table);
 
             doc.Save(MyDir + "MailMerge.ExecuteDataTable Out.doc");
-        }
+
+            //ToDo: Do this tests
+        //    /// <summary>
+        //    /// Tests how the <see cref="MailMerge.TrimWhitespaces"/> option works.
+        //    /// </summary>
+        //[Test]
+        //[TestCase(true, "first line\rsecond line\rthird line\f")]
+        //[TestCase(false, " first line\rsecond line\rthird line \f")]
+        //public void TestTrimWhiteSpaces(bool option, string expectedText)
+        //{
+        //    DocumentBuilder builder = new DocumentBuilder();
+        //    builder.InsertField("MERGEFIELD field", null);
+        //    Document doc = builder.Document;
+
+        //    doc.MailMerge.TrimWhitespaces = option;
+        //    doc.MailMerge.Execute(
+        //        new string[] { "field" },
+        //        new object[] { " first line\rsecond line\rthird line " });
+
+        //    Assert.AreEqual(expectedText, doc.GetText());
+        //}
+    }
 
         [Test]
         public void ExecuteDataReader()

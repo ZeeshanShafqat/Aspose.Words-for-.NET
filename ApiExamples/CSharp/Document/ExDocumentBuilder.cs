@@ -1992,7 +1992,6 @@ namespace ApiExamples
         {
             //ExStart
             //ExFor:DocumentBuilder.InsertOleObject(String, Boolean, Boolean, Image)
-            //ExFor:DocumentBuilder.InsertOleObject(String, String, Boolean, Boolean, Image)
             //ExSummary:Shows how to insert an OLE object into a document.
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
@@ -2000,11 +1999,13 @@ namespace ApiExamples
             Image representingImage = Image.FromFile(MyDir + "Aspose.Words.gif");
             
             Shape oleObject = builder.InsertOleObject(MyDir + "Document.Spreadsheet.xlsx", false, false, representingImage);
-            Shape oleObjectProgId = builder.InsertOleObject("http://www.aspose.com", "htmlfile", true, true, representingImage);
-
+            
             // Double click on the image in the .doc to see the spreadsheet.
             doc.Save(MyDir + @"Document.InsertedOleObject.doc");
             //ExEnd
+
+            //ToDo: There is some bug, need more info for this
+            Shape oleObjectProgId = builder.InsertOleObject("http://www.aspose.com", "htmlfile", true, true, null);
         }
 
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Пустое имя пути не допускается.")]

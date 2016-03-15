@@ -9,10 +9,12 @@
 
 using System;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 
 using Aspose.Words;
+using Aspose.Words.Drawing;
 using Aspose.Words.Fields;
 
 using NUnit.Framework;
@@ -209,7 +211,6 @@ namespace ApiExamples
         }
         //ExEnd
 
-        //ToDo: Check that all correct
         [Test]
         public void InsertBarCodeField()
         {
@@ -219,7 +220,25 @@ namespace ApiExamples
             builder.InsertField(@"BARCODE \* MERGEFORMAT");
             doc.UpdateFields();
 
-            doc.Save(MyDir + "123.docx");
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            FieldCollection fields = doc.Range.Fields;
+            foreach (Field field in fields)
+            {
+                if (field.Type == FieldType.FieldBarcode)
+                    Assert.IsTrue(field.Separator.NextSibling == field.End);
+            }
+
+            //ToDo: Check this issue 4499
+            //Document doc = TestUtil.Open(@"Fields\Other\TestJira4499.docx");
+
+            //// Set custom barcode generator
+            //doc.FieldOptions.BarcodeGenerator = new CustomBarcodeGenerator();
+
+            //doc.MailMerge.Execute(new string[] { "ZIP4" }, new object[] { "60629-5113" });
+
+            //TestFieldUtil.VerifyDocumentPdf(doc, @"Fields\Other\TestJira4499");
         }
     }
 }
