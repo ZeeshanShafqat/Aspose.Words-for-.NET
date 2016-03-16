@@ -28,7 +28,7 @@ namespace ApiExamples
         [TestFixtureTearDown]
         public void TearDown()
         {
-            DeleteTempFiles();
+            //DeleteTempFiles();
         }
 
         internal static void SetUnlimitedLicense()
@@ -51,7 +51,7 @@ namespace ApiExamples
                     File.Delete(file);
         }
 
-    internal static void RemoveLicense()
+        internal static void RemoveLicense()
         {
             License license = new License();
             license.SetLicense("");

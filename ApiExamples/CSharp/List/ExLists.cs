@@ -20,7 +20,7 @@ namespace ApiExamples
     [TestFixture]
     public class ExLists : ApiExampleBase
     {
-        private readonly string _image = MyDir + @"Images\Test_636_852.gif";
+        private readonly string _image = MyDir + "Test_636_852.gif";
 
         [Test]
         public void ApplyDefaultBulletsAndNumbers()
@@ -760,10 +760,13 @@ namespace ApiExamples
             //ExEnd
         }
 
-        //ToDo: Fix
         [Test]
-        public void ListLevel_PictureBullet()
+        public void CreatePictureBullet()
         {
+            //ExStart
+            //ExFor: ListLevel.CreatePictureBullet
+            //ExFor: ListLevel.DeletePictureBullet
+            //ExSummary: Shows how to creating and deleting picture bullet with custom image
             Document doc = new Document();
 
             // Create a list with template
@@ -779,8 +782,9 @@ namespace ApiExamples
             
             // Delete picture bullet
             list.ListLevels[0].DeletePictureBullet();
-
+            
             Assert.IsNull(list.ListLevels[0].ImageData);
+            //ExEnd
         }
     }
 }

@@ -78,18 +78,18 @@ namespace ApiExamples
             Document doc = new Document();
 
             // Create textbox shape.
-            Shape textbox = new Shape(doc, shapeType);
-            textbox.Width = 431.5;
-            textbox.Height = 346.35;
+            Shape shape = new Shape(doc, shapeType);
+            shape.Width = 431.5;
+            shape.Height = 346.35;
 
             Paragraph paragraph = new Paragraph(doc);
             paragraph.AppendChild(new Run(doc, templateText));
 
             // Insert paragraph into the textbox.
-            textbox.AppendChild(paragraph);
+            shape.AppendChild(paragraph);
 
             // Insert textbox into the document.
-            doc.FirstSection.Body.FirstParagraph.AppendChild(textbox);
+            doc.FirstSection.Body.FirstParagraph.AppendChild(shape);
 
             return doc;
         }

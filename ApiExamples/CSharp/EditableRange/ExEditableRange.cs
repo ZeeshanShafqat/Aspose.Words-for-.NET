@@ -37,87 +37,49 @@ namespace ApiExamples
             //ExEnd
         }
 
-        //ToDo: Check that all tests after are not already exist
         [Test]
-        public void EditableRanges_AddEditableRanges()
+        public void EditableRangeEx()
         {
-            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
-
+            //ExStart
+            //ExFor:DocumentBuilder.StartEditableRange
+            //ExFor:DocumentBuilder.EndEditableRange()
+            //ExFor:DocumentBuilder.EndEditableRange(EditableRangeStart)
+            //ExSummary:Shows how to start and end an editable range.
+            Document doc = new Document(MyDir + "Document.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            //Get paragraphs of the current document 
-            Paragraph paraFirst = DocumentHelper.GetParagraph(doc, 0);
-            Paragraph paraSecond = DocumentHelper.GetParagraph(doc, 1);
+            // Start an editable range.
+            EditableRangeStart edRange1Start = builder.StartEditableRange();
 
-            builder.MoveTo(paraFirst);
+            // An EditableRange object is created for the EditableRangeStart that we just made.
+            EditableRange editableRange1 = edRange1Start.EditableRange;
 
-            //Add EditableRangeStart to the first paragraph
-            EditableRangeStart startRangeParaFirst = builder.StartEditableRange();
+            // Put something inside the editable range.
+            builder.Writeln("Paragraph inside first editable range");
 
-            builder.Writeln("EditableRange_1_1");
-            builder.Writeln("EditableRange_1_2");
+            // An editable range is well-formed if it has a start and an end. 
+            // Multiple editable ranges can be nested and overlapping. 
+            EditableRangeEnd edRange1End = builder.EndEditableRange();
 
-            //Mark the current position as an editable range end for "startRangeParaFirst"
-            //"EndEditableRange()" closes the first created EditableRangeStart
-            builder.EndEditableRange();
+            // Both the start and end automatically belong to editableRange1.
+            Console.WriteLine(editableRange1.EditableRangeStart.Equals(edRange1Start)); // True
+            Console.WriteLine(editableRange1.EditableRangeEnd.Equals(edRange1End)); // True
 
-            //Add text to non-editable region of a document
-            builder.Writeln("NotEditableRange_1_1");
-            builder.Writeln("NotEditableRange_1_2");
+            // Explicitly state which EditableRangeStart a new EditableRangeEnd should be paired with.
+            EditableRangeStart edRange2Start = builder.StartEditableRange();
+            builder.Writeln("Paragraph inside second editable range");
+            EditableRange editableRange2 = edRange2Start.EditableRange;
+            EditableRangeEnd edRange2End = builder.EndEditableRange(edRange2Start);
 
-            builder.MoveTo(paraSecond);
-
-            //Add EditableRangeStart to the second paragraph
-            EditableRangeStart startRangeParaSecond = builder.StartEditableRange();
-
-            builder.Writeln("EditableRange_2_1");
-
-            //Mark the current position as an editable range end for "startRangeParaSecond"
-            //"EndEditableRange(EditableRangeStart)" closes EditableRangeStart which you specify in paramert
-            builder.EndEditableRange(startRangeParaSecond);
-
-            //Add text to non-editable region of a document
-            builder.Writeln("NotEditableRange_2_1");
-
-            //Sets the editor for editable range regions
-            startRangeParaFirst.EditableRange.EditorGroup = EditorType.Everyone;
-            startRangeParaSecond.EditableRange.EditorGroup = EditorType.Everyone;
-
-            //Sets that the document read only and is password-protected
-            doc.Protect(ProtectionType.ReadOnly, "123");
-
-            MemoryStream dstStream = new MemoryStream();
-            doc.Save(dstStream, SaveFormat.Docx);
-
-            NodeCollection startNodes = doc.GetChildNodes(NodeType.EditableRangeStart, true);
-
-            //Assert that the document have nodes of EditableRangeStart
-            Assert.AreEqual(2, startNodes.Count);
-
-            //Assert that is the current region and structure is not broken
-            Node startRangeRun1 = startNodes[0].NextSibling;
-            Assert.AreEqual(startRangeRun1.GetText(), "EditableRange_1_1");
-
-            //Assert that is the current region and structure is not broken
-            Node startRangeRun2 = startNodes[1].NextSibling;
-            Assert.AreEqual(startRangeRun2.GetText(), "EditableRange_2_1");
-
-            //Assert that the document have nodes of EditableRangeEnd
-            NodeCollection endNodes = doc.GetChildNodes(NodeType.EditableRangeEnd, true);
-            Assert.AreEqual(2, endNodes.Count);
-
-            //Assert that is the current region and structure is not broken
-            Node endRangeRun1 = endNodes[0].NextSibling;
-            Assert.AreEqual(endRangeRun1.GetText(), "NotEditableRange_1_1");
-
-            //Assert that is the current region and structure is not broken
-            Node endRangeRun2 = endNodes[1].NextSibling;
-            Assert.AreEqual(endRangeRun2.GetText(), "NotEditableRange_2_1");
+            // Both the start and end automatically belong to editableRange2.
+            Console.WriteLine(editableRange2.EditableRangeStart.Equals(edRange2Start)); // True
+            Console.WriteLine(editableRange2.EditableRangeEnd.Equals(edRange2End)); // True
+            //ExEnd
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException), ExpectedMessage = "EndEditableRange can not be called before StartEditableRange.")]
-        public void EditableRanges_InvalidOperationException()
+        public void IncorrectStructureException()
         {
             Document doc = new Document();
 
@@ -130,12 +92,15 @@ namespace ApiExamples
         }
 
         [Test]
-        public void EditableRanges_WithoutEnd()
+        public void IncorrectStructureDoNotAdded()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
             DocumentBuilder builder = new DocumentBuilder(doc);
 
+            //ExStart
+            //ExFor: EditableRange.EditorGroup
+            //ExSummary:Shows how to add editing group for editableranges
             //Add EditableRangeStart
             EditableRangeStart startRange1 = builder.StartEditableRange();
 
@@ -144,9 +109,7 @@ namespace ApiExamples
 
             //Sets the editor for editable range region
             startRange1.EditableRange.EditorGroup = EditorType.Everyone;
-
-            //Sets that the document read only and is password-protected
-            doc.Protect(ProtectionType.ReadOnly, "123");
+            //ExEnd
 
             MemoryStream dstStream = new MemoryStream();
             doc.Save(dstStream, SaveFormat.Docx);

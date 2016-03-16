@@ -5,18 +5,18 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using Aspose.Words;
+
 using NUnit.Framework;
+using System.IO;
+
+using Aspose.Words;
+using Aspose.Pdf.Facades;
+using Aspose.Words.Saving;
+
+using Bookmark = Aspose.Words.Bookmark;
 
 namespace ApiExamples
 {
-    using System.IO;
-
-    using Aspose.Pdf.Facades;
-    using Aspose.Words.Saving;
-
-    using Bookmark = Bookmark;
-
     [TestFixture]
     public class ExBookmarks : ApiExampleBase
     {
@@ -180,78 +180,54 @@ namespace ApiExamples
             //ExEnd
         }
 
-        //ToDo: Check that all tests are correct
         [Test]
-        public void BookmarkWhiteSpacesPdf()
+        [TestCase(SaveFormat.Pdf)]
+        [TestCase(SaveFormat.Xps)]
+        [TestCase(SaveFormat.Swf)]
+        public void AddBookmarkWithWhiteSpaces(SaveFormat saveFormat)
         {
             Document doc = new Document();
 
             InsertBookmarks(doc);
 
-            //Save document with pdf save options
-            doc.Save(MyDir + "Bookmark_WhiteSpaces_OUT.pdf", AddBookmarkSaveOptions(SaveFormat.Pdf));
+            if (saveFormat == SaveFormat.Pdf)
+            {
+                //Save document with pdf save options
+                doc.Save(MyDir + "Bookmark_WhiteSpaces_OUT.pdf", AddBookmarkSaveOptions(SaveFormat.Pdf));
 
-            //Bind pdf with Aspose PDF
-            PdfBookmarkEditor bookmarkEditor = new PdfBookmarkEditor();
-            bookmarkEditor.BindPdf(MyDir + "Bookmark_WhiteSpaces_OUT.pdf");
+                //Bind pdf with Aspose PDF
+                PdfBookmarkEditor bookmarkEditor = new PdfBookmarkEditor();
+                bookmarkEditor.BindPdf(MyDir + "Bookmark_WhiteSpaces_OUT.pdf");
 
-            //Get all bookmarks from the document
-            Bookmarks bookmarks = bookmarkEditor.ExtractBookmarks();
+                //Get all bookmarks from the document
+                Bookmarks bookmarks = bookmarkEditor.ExtractBookmarks();
 
-            Assert.AreEqual(3, bookmarks.Count);
+                Assert.AreEqual(3, bookmarks.Count);
 
-            //Assert that all the bookmarks title are with witespaces
-            Assert.AreEqual("My Bookmark", bookmarks[0].Title);
-            Assert.AreEqual("Nested Bookmark", bookmarks[1].Title);
+                //Assert that all the bookmarks title are with witespaces
+                Assert.AreEqual("My Bookmark", bookmarks[0].Title);
+                Assert.AreEqual("Nested Bookmark", bookmarks[1].Title);
 
-            //Assert that the bookmark title without witespaces
-            Assert.AreEqual("Bookmark_WithoutWhiteSpaces", bookmarks[2].Title);
-        }
+                //Assert that the bookmark title without witespaces
+                Assert.AreEqual("Bookmark_WithoutWhiteSpaces", bookmarks[2].Title);
+            }
+            else
+            {
+                MemoryStream dstStream = new MemoryStream();
+                doc.Save(dstStream, AddBookmarkSaveOptions(saveFormat));
 
-        [Test]
-        public void BookmarkWhiteSpacesXps()
-        {
-            Document doc = new Document();
+                //Get bookmarks from the document
+                BookmarkCollection bookmarks = doc.Range.Bookmarks;
 
-            InsertBookmarks(doc);
+                Assert.AreEqual(3, bookmarks.Count);
 
-            MemoryStream dstStream = new MemoryStream();
-            doc.Save(dstStream, AddBookmarkSaveOptions(SaveFormat.Xps));
+                //Assert that all the bookmarks title are with witespaces
+                Assert.AreEqual("My Bookmark", bookmarks[0].Name);
+                Assert.AreEqual("Nested Bookmark", bookmarks[1].Name);
 
-            //Get bookmarks from the document
-            BookmarkCollection bookmarks = doc.Range.Bookmarks;
-
-            Assert.AreEqual(3, bookmarks.Count);
-
-            //Assert that all the bookmarks title are with witespaces
-            Assert.AreEqual("My Bookmark", bookmarks[0].Name);
-            Assert.AreEqual("Nested Bookmark", bookmarks[1].Name);
-
-            //Assert that the bookmark title without witespaces
-            Assert.AreEqual("Bookmark_WithoutWhiteSpaces", bookmarks[2].Name);
-        }
-
-        [Test]
-        public void BookmarkWhiteSpacesSwf()
-        {
-            Document doc = new Document();
-
-            InsertBookmarks(doc);
-
-            MemoryStream dstStream = new MemoryStream();
-            doc.Save(dstStream, AddBookmarkSaveOptions(SaveFormat.Swf));
-
-            //Get bookmarks from the document
-            BookmarkCollection bookmarks = doc.Range.Bookmarks;
-
-            Assert.AreEqual(3, bookmarks.Count);
-
-            //Assert that all the bookmarks title are with witespaces
-            Assert.AreEqual("My Bookmark", bookmarks[0].Name);
-            Assert.AreEqual("Nested Bookmark", bookmarks[1].Name);
-
-            //Assert that the bookmark title without witespaces
-            Assert.AreEqual("Bookmark_WithoutWhiteSpaces", bookmarks[2].Name);
+                //Assert that the bookmark title without witespaces
+                Assert.AreEqual("Bookmark_WithoutWhiteSpaces", bookmarks[2].Name);
+            }
         }
 
         private static void InsertBookmarks(Document doc)

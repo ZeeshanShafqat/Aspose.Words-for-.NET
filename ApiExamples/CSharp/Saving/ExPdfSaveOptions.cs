@@ -7,19 +7,18 @@
 
 using Aspose.Words;
 using Aspose.Words.Saving;
+using Aspose.Pdf.Facades;
+using Aspose.Pdf.Text;
 
 using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using Aspose.Pdf.Facades;
-    using Aspose.Pdf.Text;
-
     [TestFixture]
     internal class ExPdfSaveOptions : ApiExampleBase
     {
         [Test]
-        public void CreateMissingOutlineLevelsEx()
+        public void CreateMissingOutlineLevels()
         {
             //ExStart
             //ExFor:Saving.PdfSaveOptions.OutlineOptions.CreateMissingOutlineLevels
@@ -52,27 +51,8 @@ namespace ApiExamples
             pdfSaveOptions.OutlineOptions.CreateMissingOutlineLevels = true;
             pdfSaveOptions.SaveFormat = SaveFormat.Pdf;
 
-            doc.Save(MyDir + "CreateMissingOutlineLevels.pdf", pdfSaveOptions);
-            //ExEnd
-        }
-
-
-        //ToDo: unit "CreateMissingOutlineLevels" with "CreateMissingOutlineLevelsEx"
-        [Test]
-        public void CreateMissingOutlineLevels()
-        {
-            Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
-
-            PdfSaveOptions pdfSaveOptions = new PdfSaveOptions();
-
-            //Set maximum value of levels of headings
-            pdfSaveOptions.OutlineOptions.HeadingsOutlineLevels = 9;
-            pdfSaveOptions.OutlineOptions.CreateMissingOutlineLevels = true;
-            pdfSaveOptions.OutlineOptions.ExpandedOutlineLevels = 9;
-
-            pdfSaveOptions.SaveFormat = SaveFormat.Pdf;
-
             doc.Save(MyDir + "CreateMissingOutlineLevels_OUT.pdf", pdfSaveOptions);
+            //ExEnd
 
             //Bind pdf with Aspose PDF
             PdfBookmarkEditor bookmarkEditor = new PdfBookmarkEditor();
@@ -81,7 +61,7 @@ namespace ApiExamples
             //Get all bookmarks from the document
             Bookmarks bookmarks = bookmarkEditor.ExtractBookmarks();
 
-            Assert.AreEqual(9, bookmarks.Count);
+            Assert.AreEqual(11, bookmarks.Count);
         }
 
         //Note: Test doesn't containt validation result, because it's difficult

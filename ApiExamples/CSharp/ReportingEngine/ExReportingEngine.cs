@@ -13,16 +13,15 @@ using Aspose.Words.Drawing;
 using Aspose.Words.Reporting;
 using NUnit.Framework;
 
-//ToDo: Need to fix
 namespace ApiExamples
 {
     [TestFixture]
     public class ExReportingEngine : ApiExampleBase
     {
-        private readonly string _image = MyDir + @"Images\Test_636_852.gif";
+        private readonly string _image = MyDir + "Test_636_852.gif";
 
         [Test]
-        public void StretchImage_fitHeight()
+        public void StretchImagefitHeight()
         {
             Document doc = DocumentHelper.CreateTemplateDocumentWithDrawObjects("<<image [src.Image] -fitHeight>>", ShapeType.TextBox);
 
@@ -51,7 +50,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void StretchImage_fitWidth()
+        public void StretchImagefitWidth()
         {
             Document doc = DocumentHelper.CreateTemplateDocumentWithDrawObjects("<<image [src.Image] -fitWidth>>", ShapeType.TextBox);
 
@@ -80,7 +79,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void StretchImage_fitSize()
+        public void StretchImagefitSize()
         {
             Document doc = DocumentHelper.CreateTemplateDocumentWithDrawObjects("<<image [src.Image] -fitSize>>", ShapeType.TextBox);
 

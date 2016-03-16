@@ -12,7 +12,6 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
-    //ToDo: Add examples
     /// <summary>
     /// Tests that verify work with structured document tags in the document 
     /// </summary>

@@ -1,13 +1,12 @@
-﻿using Aspose.Words;
+﻿using System;
+
+using Aspose.Words;
 using Aspose.Words.Fields;
 
 using NUnit.Framework;
 
-//ToDo: Need to fix
 namespace ApiExamples
 {
-    using System;
-
     [TestFixture]
     internal class ExParagraph : ApiExampleBase
     {
@@ -46,7 +45,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_BeforeTextInParagraph()
+        public void InsertFieldBeforeTextInParagraph()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
@@ -56,7 +55,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_AfterTextInParagraph()
+        public void InsertFieldAfterTextInParagraph()
         {
             string date = DateTime.Today.ToString("d");
 
@@ -68,7 +67,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_BeforeTextInParagraph_WithoutUpdateField()
+        public void InsertFieldBeforeTextInParagraphWithoutUpdateField()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
@@ -78,7 +77,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_AfterTextInParagraph_WithoutUpdateField()
+        public void InsertFieldAfterTextInParagraphWithoutUpdateField()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
@@ -98,7 +97,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_BeforeParagraph_WithoutDocumentAuthor()
+        public void InsertFieldBeforeParagraphWithoutDocumentAuthor()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
             doc.BuiltInDocumentProperties.Author = "";
@@ -109,7 +108,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_AfterParagraph_WithoutChangingDocumentAuthor()
+        public void InsertFieldAfterParagraphWithoutChangingDocumentAuthor()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
@@ -119,7 +118,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_BeforeRunText()
+        public void InsertFieldBeforeRunText()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
@@ -132,7 +131,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void InsertField_AfterRunText()
+        public void InsertFieldAfterRunText()
         {
             Document doc = DocumentHelper.CreateDocumentFillWithDummyText();
 
@@ -148,7 +147,7 @@ namespace ApiExamples
         /// Test for WORDSNET-12396
         /// </summary>
         [Test]
-        public void InsertField_EmptyParagraph_WithoutUpdateField()
+        public void InsertFieldEmptyParagraphWithoutUpdateField()
         {
             Document doc = DocumentHelper.CreateDocumentWithoutDummyText();
 

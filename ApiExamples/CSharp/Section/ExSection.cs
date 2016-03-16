@@ -460,13 +460,13 @@ namespace ApiExamples
             Document docDe = new Document();
 
             Section sectionDe = docDe.Sections[0];
-            Assert.AreEqual(72.0, sectionDe.PageSetup.LeftMargin);          // 2.5 cm         
-            Assert.AreEqual(72.0, sectionDe.PageSetup.RightMargin);         // 2.5 cm
-            Assert.AreEqual(72.0, sectionDe.PageSetup.TopMargin);           // 2.5 cm
-            Assert.AreEqual(72.0, sectionDe.PageSetup.BottomMargin);        // 2 cm
-            Assert.AreEqual(36.0, sectionDe.PageSetup.HeaderDistance);      // 1.25 cm
-            Assert.AreEqual(36.0, sectionDe.PageSetup.FooterDistance);      // 1.25 cm
-            Assert.AreEqual(36.0, sectionDe.PageSetup.TextColumns.Spacing); // 1.25 cm
+            Assert.AreEqual(70.85, sectionDe.PageSetup.LeftMargin);          // 2.5 cm         
+            Assert.AreEqual(70.85, sectionDe.PageSetup.RightMargin);         // 2.5 cm
+            Assert.AreEqual(70.85, sectionDe.PageSetup.TopMargin);           // 2.5 cm
+            Assert.AreEqual(56.7, sectionDe.PageSetup.BottomMargin);        // 2 cm
+            Assert.AreEqual(35.4, sectionDe.PageSetup.HeaderDistance);      // 1.25 cm
+            Assert.AreEqual(35.4, sectionDe.PageSetup.FooterDistance);      // 1.25 cm
+            Assert.AreEqual(35.4, sectionDe.PageSetup.TextColumns.Spacing); // 1.25 cm
 
             //Change page defaults
             sectionDe.PageSetup.LeftMargin = 90;            // 3.17 cm
