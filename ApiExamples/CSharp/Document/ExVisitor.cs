@@ -165,7 +165,7 @@ namespace ApiExamples
             /// <summary>
             /// Called when a HeaderFooter node is encountered in the document.
             /// </summary>
-            public override VisitorAction VisitHeaderFooterStart(Aspose.Words.HeaderFooter headerFooter)
+            public override VisitorAction VisitHeaderFooterStart(HeaderFooter headerFooter)
             {
                 // Returning this value from a visitor method causes visiting of this
                 // node to stop and move on to visiting the next sibling node.

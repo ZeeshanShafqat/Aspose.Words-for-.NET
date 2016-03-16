@@ -50,7 +50,7 @@ namespace ApiExamples
             //ExSummary:Inserts a paragraph with a top border.
             DocumentBuilder builder = new DocumentBuilder();
 
-            Aspose.Words.Border topBorder = builder.ParagraphFormat.Borders[BorderType.Top];
+            Border topBorder = builder.ParagraphFormat.Borders[BorderType.Top];
             topBorder.Color = Color.Red;
             topBorder.LineStyle = LineStyle.DashSmallGap;
             topBorder.LineWidth = 4;
@@ -69,7 +69,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
             BorderCollection borders = builder.ParagraphFormat.Borders;
 
-            foreach (Aspose.Words.Border border in borders)
+            foreach (Border border in borders)
             {
                 border.ClearFormatting();
             }

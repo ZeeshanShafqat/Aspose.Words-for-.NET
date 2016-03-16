@@ -22,6 +22,8 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using System.IO;
+
     [TestFixture]
     public class ExMailMerge : ApiExampleBase
     {
@@ -75,46 +77,21 @@ namespace ApiExamples
             //ExEnd
         }
 
-        //ToDo: Check AWNET realisation
         [Test]
-        public void TrimWhiteSpaces()
+        [TestCase(true, "first line\rsecond line\rthird line\f")]
+        [TestCase(false, " first line\rsecond line\rthird line \f")]
+        public void TrimWhiteSpaces(bool option, string expectedText)
         {
-            Document doc = new Document(MyDir + "MailMerge.ExecuteDataTable.doc");
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+            
+            builder.InsertField("MERGEFIELD field", null);
 
-            // This example creates a table, but you would normally load table from a database. 
-            DataTable table = new DataTable("Test");
-            table.Columns.Add("CustomerName");
-            table.Columns.Add("Address");
-            table.Rows.Add(new object[] { "Thomas Hardy", "120 Hanover Sq., London" });
-            table.Rows.Add(new object[] { "Paolo Accorti", "Via Monte Bianco 34, Torino" });
+            doc.MailMerge.TrimWhitespaces = option;
+            doc.MailMerge.Execute(new[] { "field" }, new object[] { " first line\rsecond line\rthird line " });
 
-            doc.MailMerge.TrimWhitespaces = true;
-            // Field values from the table are inserted into the mail merge fields found in the document.
-            doc.MailMerge.Execute(table);
-
-            doc.Save(MyDir + "MailMerge.ExecuteDataTable Out.doc");
-
-            //ToDo: Do this tests
-        //    /// <summary>
-        //    /// Tests how the <see cref="MailMerge.TrimWhitespaces"/> option works.
-        //    /// </summary>
-        //[Test]
-        //[TestCase(true, "first line\rsecond line\rthird line\f")]
-        //[TestCase(false, " first line\rsecond line\rthird line \f")]
-        //public void TestTrimWhiteSpaces(bool option, string expectedText)
-        //{
-        //    DocumentBuilder builder = new DocumentBuilder();
-        //    builder.InsertField("MERGEFIELD field", null);
-        //    Document doc = builder.Document;
-
-        //    doc.MailMerge.TrimWhitespaces = option;
-        //    doc.MailMerge.Execute(
-        //        new string[] { "field" },
-        //        new object[] { " first line\rsecond line\rthird line " });
-
-        //    Assert.AreEqual(expectedText, doc.GetText());
-        //}
-    }
+            Assert.AreEqual(expectedText, doc.GetText());
+        }
 
         [Test]
         public void ExecuteDataReader()

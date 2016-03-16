@@ -316,7 +316,7 @@ namespace ApiExamples
 
             // Create a new list style. 
             // List formatting associated with this list style is default numbered.
-            Aspose.Words.Style listStyle = doc.Styles.Add(StyleType.List, "MyListStyle");
+            Style listStyle = doc.Styles.Add(StyleType.List, "MyListStyle");
 
             // This list defines the formatting of the list style.
             // Note this list can not be used directly to apply formatting to paragraphs (see below).
@@ -696,7 +696,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Create a paragraph style and specify some formatting for it.
-            Aspose.Words.Style style = doc.Styles.Add(StyleType.Paragraph, "MyStyle1");
+            Style style = doc.Styles.Add(StyleType.Paragraph, "MyStyle1");
             style.Font.Size = 24;
             style.Font.Name = "Verdana";
             style.ParagraphFormat.SpaceAfter = 12;

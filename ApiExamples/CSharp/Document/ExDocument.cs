@@ -37,6 +37,8 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using Font = Aspose.Words.Font;
+
     [TestFixture]
     public class ExDocument : ApiExampleBase
     {
@@ -186,8 +188,8 @@ namespace ApiExamples
             // Verify some properties of the image.
             Assert.IsTrue(shape.IsImage);
             Assert.IsNotNull(shape.ImageData.ImageBytes);
-            Assert.AreEqual(80.0, Aspose.Words.ConvertUtil.PointToPixel(shape.Width));
-            Assert.AreEqual(60.0, Aspose.Words.ConvertUtil.PointToPixel(shape.Height));
+            Assert.AreEqual(80.0, ConvertUtil.PointToPixel(shape.Width));
+            Assert.AreEqual(60.0, ConvertUtil.PointToPixel(shape.Height));
         }
 
         [Test]
@@ -612,7 +614,7 @@ namespace ApiExamples
                 // Change the font of inserted text contained in the Run nodes.
                 if (args.Node.NodeType == NodeType.Run)
                 {
-                    Aspose.Words.Font font = ((Run)args.Node).Font;
+                    Font font = ((Run)args.Node).Font;
                     font.Size = 24;
                     font.Name = "Arial";
                 }
@@ -821,7 +823,7 @@ namespace ApiExamples
             // Load the document which contains signature.
             Document doc = new Document(MyDir + "Document.Signed.docx");
 
-            foreach (Aspose.Words.DigitalSignature signature in doc.DigitalSignatures)
+            foreach (DigitalSignature signature in doc.DigitalSignatures)
             {
                 Console.WriteLine("*** Signature Found ***");
                 Console.WriteLine("Is valid: " + signature.IsValid);
@@ -834,7 +836,7 @@ namespace ApiExamples
             }
             //ExEnd
 
-            Aspose.Words.DigitalSignature digitalSig = doc.DigitalSignatures[0];
+            DigitalSignature digitalSig = doc.DigitalSignatures[0];
             Assert.True(digitalSig.IsValid);
             Assert.AreEqual("Test Sign", digitalSig.Comments);
             Assert.AreEqual("XmlDsig", digitalSig.SignatureType.ToString());
@@ -1497,6 +1499,40 @@ namespace ApiExamples
 
             doc.UpdateThumbnail(tgo);
             //ExEnd
+        }
+
+        //ToDo: Need to assert functional logic
+        [Test]
+        public void HyphenationOptions()
+        {
+            Document doc = new Document();
+            
+            doc.HyphenationOptions.AutoHyphenation = true;
+            doc.HyphenationOptions.ConsecutiveHyphenLimit = 2;
+            doc.HyphenationOptions.HyphenationZone = 720; // 0.5 inch
+            doc.HyphenationOptions.HyphenateCaps = false;
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Assert.AreEqual(true, doc.HyphenationOptions.AutoHyphenation);
+            Assert.AreEqual(2, doc.HyphenationOptions.ConsecutiveHyphenLimit);
+            Assert.AreEqual(720, doc.HyphenationOptions.HyphenationZone);
+            Assert.AreEqual(false, doc.HyphenationOptions.HyphenateCaps);
+        }
+
+        [Test]
+        public void HyphenationOptionsDefaultValues()
+        {
+            Document doc = new Document();
+            
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Assert.AreEqual(false, doc.HyphenationOptions.AutoHyphenation);
+            Assert.AreEqual(0, doc.HyphenationOptions.ConsecutiveHyphenLimit);
+            Assert.AreEqual(360, doc.HyphenationOptions.HyphenationZone); // 0.25 inch
+            Assert.AreEqual(true, doc.HyphenationOptions.HyphenateCaps);
         }
     }
 }

@@ -75,7 +75,7 @@ namespace ApiExamples
             ImageConverter imageConverter = new ImageConverter();
             byte[] imageBytes = (byte[])imageConverter.ConvertTo(image, typeof(byte[]));
 
-            builder.InsertImage(imageBytes, Aspose.Words.ConvertUtil.PixelToPoint(450), Aspose.Words.ConvertUtil.PixelToPoint(144));
+            builder.InsertImage(imageBytes, ConvertUtil.PixelToPoint(450), ConvertUtil.PixelToPoint(144));
             builder.Document.Save(MyDir + "Image.CreateFromByteArrayCustomSize Out.doc");
             //ExEnd
         }
@@ -113,7 +113,7 @@ namespace ApiExamples
             try
             {
                 builder.InsertImage(rasterImage,
-                                    Aspose.Words.ConvertUtil.PixelToPoint(450), Aspose.Words.ConvertUtil.PixelToPoint(144));
+                                    ConvertUtil.PixelToPoint(450), ConvertUtil.PixelToPoint(144));
                 builder.Writeln();
             }
             finally
@@ -160,7 +160,7 @@ namespace ApiExamples
             Stream stream = File.OpenRead(MyDir + "Aspose.Words.gif");
             try
             {
-                builder.InsertImage(stream, Aspose.Words.ConvertUtil.PixelToPoint(400), Aspose.Words.ConvertUtil.PixelToPoint(400));
+                builder.InsertImage(stream, ConvertUtil.PixelToPoint(400), ConvertUtil.PixelToPoint(400));
             }
             finally
             {
@@ -182,11 +182,11 @@ namespace ApiExamples
 
             // Remote URI
             builder.InsertImage("http://www.aspose.com/images/aspose-logo.gif",
-                Aspose.Words.ConvertUtil.PixelToPoint(450), Aspose.Words.ConvertUtil.PixelToPoint(144));
+                ConvertUtil.PixelToPoint(450), ConvertUtil.PixelToPoint(144));
 
             // Local URI
             builder.InsertImage(MyDir + "Aspose.Words.gif",
-                Aspose.Words.ConvertUtil.PixelToPoint(400), Aspose.Words.ConvertUtil.PixelToPoint(400));
+                ConvertUtil.PixelToPoint(400), ConvertUtil.PixelToPoint(400));
 
             doc.Save(MyDir + "DocumentBuilder.InsertImageFromUrlCustomSize Out.doc");
             //ExEnd

@@ -19,6 +19,8 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using Font = Aspose.Words.Font;
+
     [TestFixture]
     public class ExDocumentBuilder : ApiExampleBase
     {
@@ -37,7 +39,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder();
 
             // Specify font formatting before adding text.
-            Aspose.Words.Font font = builder.Font;
+            Font font = builder.Font;
             font.Size = 16;
             font.Bold = true;
             font.Color = Color.Blue;
@@ -1089,7 +1091,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             Table table = builder.StartTable();
-            builder.CellFormat.PreferredWidth = PreferredWidth.FromPoints(Aspose.Words.ConvertUtil.InchToPoint(3));
+            builder.CellFormat.PreferredWidth = PreferredWidth.FromPoints(ConvertUtil.InchToPoint(3));
             builder.InsertCell();
             //ExEnd
 
@@ -1149,7 +1151,7 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "DocumentBuilder.doc");
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.Node curNode = builder.CurrentNode;
+            Node curNode = builder.CurrentNode;
             Paragraph curParagraph = builder.CurrentParagraph;
             //ExEnd
         }
@@ -1290,7 +1292,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Specify font formatting
-            Aspose.Words.Font font = builder.Font;
+            Font font = builder.Font;
             font.Size = 16;
             font.Bold = true;
             font.Color = Color.Blue;
@@ -1551,7 +1553,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set font formatting properties
-            Aspose.Words.Font font = builder.Font;
+            Font font = builder.Font;
             font.Bold = true;
             font.Color = Color.DarkBlue;
             font.Italic = true;
@@ -1825,7 +1827,7 @@ namespace ApiExamples
             EditableRangeStart edRange1Start = builder.StartEditableRange();
 
             // An EditableRange object is created for the EditableRangeStart that we just made.
-            Aspose.Words.EditableRange editableRange1 = edRange1Start.EditableRange;
+            EditableRange editableRange1 = edRange1Start.EditableRange;
 
             // Put something inside the editable range.
             builder.Writeln("Paragraph inside first editable range");
@@ -1841,7 +1843,7 @@ namespace ApiExamples
             // Explicitly state which EditableRangeStart a new EditableRangeEnd should be paired with.
             EditableRangeStart edRange2Start = builder.StartEditableRange();
             builder.Writeln("Paragraph inside second editable range");
-            Aspose.Words.EditableRange editableRange2 = edRange2Start.EditableRange;
+            EditableRange editableRange2 = edRange2Start.EditableRange;
             EditableRangeEnd edRange2End = builder.EndEditableRange(edRange2Start);
 
             // Both the start and end automatically belong to editableRange2.
@@ -1908,11 +1910,11 @@ namespace ApiExamples
             Assert.AreEqual(2, startNodes.Count);
 
             //Assert that is the current region and structure is not broken
-            Aspose.Words.Node startRangeRun1 = startNodes[0].NextSibling;
+            Node startRangeRun1 = startNodes[0].NextSibling;
             Assert.AreEqual(startRangeRun1.GetText(), "EditableRange_1_1");
 
             //Assert that is the current region and structure is not broken
-            Aspose.Words.Node startRangeRun2 = startNodes[1].NextSibling;
+            Node startRangeRun2 = startNodes[1].NextSibling;
             Assert.AreEqual(startRangeRun2.GetText(), "EditableRange_2_1");
 
             //Assert that the document have nodes of EditableRangeEnd
@@ -1920,11 +1922,11 @@ namespace ApiExamples
             Assert.AreEqual(2, endNodes.Count);
 
             //Assert that is the current region and structure is not broken
-            Aspose.Words.Node endRangeRun1 = endNodes[0].NextSibling;
+            Node endRangeRun1 = endNodes[0].NextSibling;
             Assert.AreEqual(endRangeRun1.GetText(), "NotEditableRange_1_1");
 
             //Assert that is the current region and structure is not broken
-            Aspose.Words.Node endRangeRun2 = endNodes[1].NextSibling;
+            Node endRangeRun2 = endNodes[1].NextSibling;
             Assert.AreEqual(endRangeRun2.GetText(), "NotEditableRange_2_1");
         }
 
@@ -2005,7 +2007,7 @@ namespace ApiExamples
             //ExEnd
 
             //ToDo: There is some bug, need more info for this
-            Shape oleObjectProgId = builder.InsertOleObject("http://www.aspose.com", "htmlfile", true, true, null);
+            //Shape oleObjectProgId = builder.InsertOleObject("http://www.aspose.com", "htmlfile", true, false, null);
         }
 
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Пустое имя пути не допускается.")]
@@ -2027,8 +2029,8 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            builder.InsertChart(ChartType.Pie, Aspose.Words.ConvertUtil.PixelToPoint(300),
-                                Aspose.Words.ConvertUtil.PixelToPoint(300));
+            builder.InsertChart(ChartType.Pie, ConvertUtil.PixelToPoint(300),
+                                ConvertUtil.PixelToPoint(300));
 
             doc.Save(MyDir + @"Document.InsertedChartDouble.doc");
             //ExEnd

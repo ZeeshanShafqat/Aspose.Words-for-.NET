@@ -179,9 +179,9 @@ namespace ApiExamples
         /// <summary>
         /// Goes through siblings starting from the start node until it finds a node of the specified type or null.
         /// </summary>
-        private static Aspose.Words.Node FindNextSibling(Aspose.Words.Node startNode, NodeType nodeType)
+        private static Node FindNextSibling(Node startNode, NodeType nodeType)
         {
-            for (Aspose.Words.Node node = startNode; node != null; node = node.NextSibling)
+            for (Node node = startNode; node != null; node = node.NextSibling)
             {
                 if (node.NodeType.Equals(nodeType))
                     return node;
@@ -192,13 +192,13 @@ namespace ApiExamples
         /// <summary>
         /// Retrieves text from start up to but not including the end node.
         /// </summary>
-        private static string GetTextSameParent(Aspose.Words.Node startNode, Aspose.Words.Node endNode)
+        private static string GetTextSameParent(Node startNode, Node endNode)
         {
             if ((endNode != null) && (startNode.ParentNode != endNode.ParentNode))
                 throw new ArgumentException("Start and end nodes are expected to have the same parent.");
 
             StringBuilder builder = new StringBuilder();
-            for (Aspose.Words.Node child = startNode; !child.Equals(endNode); child = child.NextSibling)
+            for (Node child = startNode; !child.Equals(endNode); child = child.NextSibling)
                 builder.Append(child.GetText());
 
             return builder.ToString();
@@ -208,23 +208,23 @@ namespace ApiExamples
         /// Removes nodes from start up to but not including the end node.
         /// Start and end are assumed to have the same parent.
         /// </summary>
-        private static void RemoveSameParent(Aspose.Words.Node startNode, Aspose.Words.Node endNode)
+        private static void RemoveSameParent(Node startNode, Node endNode)
         {
             if ((endNode != null) && (startNode.ParentNode != endNode.ParentNode))
                 throw new ArgumentException("Start and end nodes are expected to have the same parent.");
 
-            Aspose.Words.Node curChild = startNode;
+            Node curChild = startNode;
             while ((curChild != null) && (curChild != endNode))
             {
-                Aspose.Words.Node nextChild = curChild.NextSibling;
+                Node nextChild = curChild.NextSibling;
                 curChild.Remove();
                 curChild = nextChild;
             }
         }
 
-        private readonly Aspose.Words.Node mFieldStart;
-        private readonly Aspose.Words.Node mFieldSeparator;
-        private readonly Aspose.Words.Node mFieldEnd;
+        private readonly Node mFieldStart;
+        private readonly Node mFieldSeparator;
+        private readonly Node mFieldEnd;
         private bool mIsLocal;
         private string mTarget;
 

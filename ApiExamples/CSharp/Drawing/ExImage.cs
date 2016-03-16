@@ -306,10 +306,10 @@ namespace ApiExamples
             //ExStart
             //ExFor:Node.NextPreOrder
             //ExSummary:Shows how to delete all images from a document using pre-order tree traversal.
-            Aspose.Words.Node curNode = doc;
+            Node curNode = doc;
             while (curNode != null)
             {
-                Aspose.Words.Node nextNode = curNode.NextPreOrder(doc);
+                Node nextNode = curNode.NextPreOrder(doc);
 
                 if (curNode.NodeType.Equals(NodeType.Shape))
                 {

@@ -54,7 +54,7 @@ namespace ApiExamples
             //ExSummary:Deletes all footers from all sections, but leaves headers intact.
             Document doc = new Document(MyDir + "HeaderFooter.RemoveFooters.doc");
 
-            foreach (Aspose.Words.Section section in doc)
+            foreach (Section section in doc)
             {
                 // Up to three different footers are possible in a section (for first, even and odd pages).
                 // We check and delete all of them.
@@ -140,8 +140,8 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.Section currentSection = builder.CurrentSection;
-            Aspose.Words.PageSetup pageSetup = currentSection.PageSetup;
+            Section currentSection = builder.CurrentSection;
+            PageSetup pageSetup = currentSection.PageSetup;
 
             // Specify if we want headers/footers of the first page to be different from other pages.
             // You can also use PageSetup.OddAndEvenPagesHeaderFooter property to specify
@@ -254,9 +254,9 @@ namespace ApiExamples
         /// <summary>
         /// Clones and copies headers/footers form the previous section to the specified section.
         /// </summary>
-        private static void CopyHeadersFootersFromPreviousSection(Aspose.Words.Section section)
+        private static void CopyHeadersFootersFromPreviousSection(Section section)
         {
-            Aspose.Words.Section previousSection = (Aspose.Words.Section)section.PreviousSibling;
+            Section previousSection = (Section)section.PreviousSibling;
 
             if (previousSection == null)
                 return;

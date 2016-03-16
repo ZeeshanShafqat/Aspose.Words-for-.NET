@@ -26,7 +26,7 @@ namespace ApiExamples
             while (enumerator.MoveNext())
             {
                 // Do something useful
-                Aspose.Words.DigitalSignature ds = (Aspose.Words.DigitalSignature)enumerator.Current;
+                DigitalSignature ds = (DigitalSignature)enumerator.Current;
                 Console.WriteLine(ds.ToString());
             }
             //ExEnd

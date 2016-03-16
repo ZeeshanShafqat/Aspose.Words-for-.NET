@@ -150,7 +150,7 @@ namespace ApiExamples
 
             // Since we will be adding/removing nodes, it is better to copy all collection
             // into a fixed size array, otherwise iterator will be invalidated.
-            Aspose.Words.Node[] shapes = shapeCollection.ToArray();
+            Node[] shapes = shapeCollection.ToArray();
 
             foreach (Shape shape in shapes)
             {

@@ -15,7 +15,7 @@ namespace ApiExamples
     using Aspose.Pdf.Facades;
     using Aspose.Words.Saving;
 
-    using Bookmark = Aspose.Words.Bookmark;
+    using Bookmark = Bookmark;
 
     [TestFixture]
     public class ExBookmarks : ApiExampleBase

@@ -39,7 +39,7 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.PageSetup pageSetup = builder.PageSetup;
+            PageSetup pageSetup = builder.PageSetup;
             pageSetup.TopMargin = ConvertUtil.InchToPoint(1.0);
             pageSetup.BottomMargin = ConvertUtil.InchToPoint(1.0);
             pageSetup.LeftMargin = ConvertUtil.InchToPoint(1.5);
@@ -58,7 +58,7 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.PageSetup pageSetup = builder.PageSetup;
+            PageSetup pageSetup = builder.PageSetup;
             pageSetup.TopMargin = ConvertUtil.MillimeterToPoint(25.0);
             pageSetup.BottomMargin = ConvertUtil.MillimeterToPoint(25.0);
             pageSetup.LeftMargin = ConvertUtil.MillimeterToPoint(37.5);
@@ -80,7 +80,7 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.PageSetup pageSetup = builder.PageSetup;
+            PageSetup pageSetup = builder.PageSetup;
             pageSetup.TopMargin = ConvertUtil.InchToPoint(2.0);
 
             Console.WriteLine("The size of my top margin is {0} points, or {1} inches.",
@@ -98,7 +98,7 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.PageSetup pageSetupNoDpi = builder.PageSetup;
+            PageSetup pageSetupNoDpi = builder.PageSetup;
             pageSetupNoDpi.TopMargin = ConvertUtil.PixelToPoint(100.0);
             pageSetupNoDpi.BottomMargin = ConvertUtil.PixelToPoint(100.0);
             pageSetupNoDpi.LeftMargin = ConvertUtil.PixelToPoint(150.0);
@@ -111,7 +111,7 @@ namespace ApiExamples
 
             double myDpi = 150.0;
 
-            Aspose.Words.PageSetup pageSetupWithDpi = builder.PageSetup;
+            PageSetup pageSetupWithDpi = builder.PageSetup;
             pageSetupWithDpi.TopMargin = ConvertUtil.PixelToPoint(100.0, myDpi);
             pageSetupWithDpi.BottomMargin = ConvertUtil.PixelToPoint(100.0, myDpi);
             pageSetupWithDpi.LeftMargin = ConvertUtil.PixelToPoint(150.0, myDpi);
@@ -133,7 +133,7 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.PageSetup pageSetup = builder.PageSetup;
+            PageSetup pageSetup = builder.PageSetup;
             pageSetup.TopMargin = ConvertUtil.PixelToPoint(2.0);
 
             double myDpi = 192.0;
@@ -155,7 +155,7 @@ namespace ApiExamples
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
-            Aspose.Words.PageSetup pageSetup = builder.PageSetup;
+            PageSetup pageSetup = builder.PageSetup;
             pageSetup.TopMargin = 72;
             double oldDpi = 92.0;
             double newDpi = 192.0;

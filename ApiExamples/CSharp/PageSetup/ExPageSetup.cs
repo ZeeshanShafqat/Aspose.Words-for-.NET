@@ -113,7 +113,7 @@ namespace ApiExamples
             // The paper tray value stored in documents is completely printer specific. This means 
             // The code below resets all page tray values to use the current printers default tray.
             // You can enumerate PrinterSettings.PaperSources to find the other valid paper tray values of the selected printer.
-            foreach (Aspose.Words.Section section in doc.Sections)
+            foreach (Section section in doc.Sections)
             {
                 section.PageSetup.FirstPageTray = settings.DefaultPageSettings.PaperSource.RawKind;
                 section.PageSetup.OtherPagesTray = settings.DefaultPageSettings.PaperSource.RawKind;
@@ -139,7 +139,7 @@ namespace ApiExamples
             int printerTrayForLetter = settings.PaperSources[1].RawKind;
 
             // Set the page tray used for each section based off the paper size used in the section.
-            foreach (Aspose.Words.Section section in doc.Sections)
+            foreach (Section section in doc.Sections)
             {
                 if (section.PageSetup.PaperSize == PaperSize.Letter)
                 {
@@ -352,7 +352,7 @@ namespace ApiExamples
             builder.InsertField("PAGE", "");
 
             // Set first section page numbering.
-            Aspose.Words.Section section = doc.Sections[0];
+            Section section = doc.Sections[0];
             section.PageSetup.RestartPageNumbering = true;
             section.PageSetup.PageStartingNumber = 5;
             section.PageSetup.PageNumberStyle = NumberStyle.UppercaseRoman;

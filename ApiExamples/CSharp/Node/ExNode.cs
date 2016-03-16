@@ -226,7 +226,7 @@ namespace ApiExamples
             //ExFor:Node.Remove
             //ExSummary:Shows how to remove all nodes of a specific type from a composite node. In this example we remove tables from a section body.
             // Get the section that we want to work on.
-            Aspose.Words.Section section = doc.Sections[0];
+            Section section = doc.Sections[0];
             Body body = section.Body;
 
             // Select the first child node in the body.
@@ -262,7 +262,7 @@ namespace ApiExamples
             //ExFor:Node.NodeType
             //ExSummary:Shows how to enumerate immediate child nodes of a composite node using NextSibling. In this example we enumerate all paragraphs of a section body.
             // Get the section that we want to work on.
-            Aspose.Words.Section section = doc.Sections[0];
+            Section section = doc.Sections[0];
             Body body = section.Body;
 
             // Loop starting from the first child until we reach null.
@@ -287,7 +287,7 @@ namespace ApiExamples
             //ExId:TypedPropertiesAccess
             //ExSummary:Demonstrates how to use typed properties to access nodes of the document tree.
             // Quick typed access to the first child Section node of the Document.
-            Aspose.Words.Section section = doc.FirstSection;
+            Section section = doc.FirstSection;
 
             // Quick typed access to the Body child node of the Section.
             Body body = section.Body;
@@ -405,7 +405,7 @@ namespace ApiExamples
 
             Paragraph para = new Paragraph(doc);
 
-            Aspose.Words.Section section = doc.LastSection;
+            Section section = doc.LastSection;
             section.Body.AppendChild(para);
             //ExEnd
         }

@@ -14,6 +14,8 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using Aspose.Words.Fields;
+
     [TestFixture]
     internal class ExHtmlFixedSaveOptions : ApiExampleBase
     {
@@ -37,11 +39,10 @@ namespace ApiExamples
             };
 
             //Uses "HtmlFixedSaveOptions"
-            doc.Save(MyDir + "UseEncoding.html", htmlFixedSaveOptions);
+            doc.Save(MyDir + "UseEncoding_OUT.html", htmlFixedSaveOptions);
             //ExEnd
         }
 
-        //ToDo: maybe unit tests with "UseEncoding"
         //Note: Tests doesn't containt validation result, because it's may take a lot of time for assert result
         //For validation result, you can save the document to html file and check out with notepad++, that file encoding will be correctly displayed (Encoding tab in Notepad++)
         [Test]
@@ -59,7 +60,7 @@ namespace ApiExamples
                 ExportEmbeddedSvg = true
             };
 
-            doc.Save(MyDir + "EncodingUsingSystemTextEncoding_OUT.html", htmlFixedSaveOptions);
+            doc.Save(MyDir + "EncodingUsingSystemTextEncoding.html", htmlFixedSaveOptions);
         }
 
         [Test]
@@ -77,7 +78,7 @@ namespace ApiExamples
                 ExportEmbeddedSvg = true
             };
 
-            doc.Save(MyDir + "EncodingUsingNewEncoding_OUT.html", htmlFixedSaveOptions);
+            doc.Save(MyDir + "EncodingUsingNewEncoding.html", htmlFixedSaveOptions);
         }
 
         [Test]
@@ -95,7 +96,38 @@ namespace ApiExamples
                 ExportEmbeddedSvg = true
             };
 
-            doc.Save(MyDir + "EncodingUsingGetEncoding_OUT.html", htmlFixedSaveOptions);
+            doc.Save(MyDir + "EncodingUsingGetEncoding.html", htmlFixedSaveOptions);
+        }
+
+        [Test]
+        [TestCase(true)]
+        [TestCase(false)]
+        public void ExportFormFields(bool exportFormFields)
+        {
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            builder.InsertCheckBox("CheckBox", false, 15);
+
+            HtmlFixedSaveOptions htmlFixedSaveOptions = new HtmlFixedSaveOptions
+            {
+                SaveFormat = SaveFormat.HtmlFixed,
+                ExportEmbeddedCss = true,
+                ExportEmbeddedFonts = true,
+                ExportEmbeddedImages = true,
+                ExportEmbeddedSvg = true,
+                ExportFormFields = exportFormFields
+            };
+
+            //For assert test result you need to open documents and check that checkbox are clickable in "ExportFormFiels.html" file and are not clickable in "WithoutExportFormFiels.html" file
+            if (exportFormFields == true)
+            {
+                doc.Save(MyDir + "ExportFormFiels.html", htmlFixedSaveOptions);
+            }
+            else
+            {
+                doc.Save(MyDir + "WithoutExportFormFiels.html", htmlFixedSaveOptions);
+            }
         }
     }
 }

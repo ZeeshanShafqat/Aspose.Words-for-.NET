@@ -478,7 +478,7 @@ namespace ApiExamples
             // Loop through every run node.
             foreach (Run run in runs)
             {
-                Aspose.Words.Style charStyle = run.Font.Style;
+                Style charStyle = run.Font.Style;
 
                 // If the style of the run is not a built-in character style, apply double underline.
                 if (!charStyle.BuiltIn)
@@ -746,12 +746,12 @@ namespace ApiExamples
             /// <summary>
             /// Returns true if the node passed is set as hidden, returns false if it is visible.
             /// </summary>
-            private bool isHidden(Aspose.Words.Node node)
+            private bool isHidden(Node node)
             {
-                if (node is Aspose.Words.Inline)
+                if (node is Inline)
                 {
                     // If the node is Inline then cast it to retrieve the Font property which contains the hidden property
-                    Aspose.Words.Inline currentNode = (Aspose.Words.Inline)node;
+                    Inline currentNode = (Inline)node;
                     return currentNode.Font.Hidden;
                 }
                 else if (node.NodeType == NodeType.Paragraph)

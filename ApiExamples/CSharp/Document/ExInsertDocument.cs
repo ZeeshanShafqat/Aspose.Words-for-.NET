@@ -30,7 +30,7 @@ namespace ApiExamples
         /// <param name="insertAfterNode">Node in the destination document after which the content 
         /// should be inserted. This node should be a block level node (paragraph or table).</param>
         /// <param name="srcDoc">The document to insert.</param>
-        static void InsertDocument(Aspose.Words.Node insertAfterNode, Document srcDoc)
+        static void InsertDocument(Node insertAfterNode, Document srcDoc)
         {
             // Make sure that the node is either a paragraph or table.
             if ((!insertAfterNode.NodeType.Equals(NodeType.Paragraph)) &
@@ -44,10 +44,10 @@ namespace ApiExamples
             NodeImporter importer = new NodeImporter(srcDoc, insertAfterNode.Document, ImportFormatMode.KeepSourceFormatting);
 
             // Loop through all sections in the source document.
-            foreach (Aspose.Words.Section srcSection in srcDoc.Sections)
+            foreach (Section srcSection in srcDoc.Sections)
             {
                 // Loop through all block level nodes (paragraphs and tables) in the body of the section.
-                foreach (Aspose.Words.Node srcNode in srcSection.Body)
+                foreach (Node srcNode in srcSection.Body)
                 {
                     // Let's skip the node if it is a last empty paragraph in a section.
                     if (srcNode.NodeType.Equals(NodeType.Paragraph))
@@ -58,7 +58,7 @@ namespace ApiExamples
                     }
 
                     // This creates a clone of the node, suitable for insertion into the destination document.
-                    Aspose.Words.Node newNode = importer.ImportNode(srcNode, true);
+                    Node newNode = importer.ImportNode(srcNode, true);
 
                     // Insert new node after the reference node.
                     dstStory.InsertAfter(newNode, insertAfterNode);
@@ -77,7 +77,7 @@ namespace ApiExamples
             Document mainDoc = new Document(MyDir + "InsertDocument1.doc");
             Document subDoc = new Document(MyDir + "InsertDocument2.doc");
 
-            Aspose.Words.Bookmark bookmark = mainDoc.Range.Bookmarks["insertionPlace"];
+            Bookmark bookmark = mainDoc.Range.Bookmarks["insertionPlace"];
             InsertDocument(bookmark.BookmarkStart.ParentNode, subDoc);
 
             mainDoc.Save(MyDir + "InsertDocumentAtBookmark Out.doc");
