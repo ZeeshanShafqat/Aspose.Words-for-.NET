@@ -14,6 +14,8 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using System.IO;
+
     [TestFixture]
     public class ExFormFields : ApiExampleBase
     {
@@ -78,6 +80,46 @@ namespace ApiExamples
             // what type of FormField it is, the format of the text, the field result and the maximum text length (0 = no limit)
             builder.InsertTextInput("TextInput1", TextFormFieldType.Regular, "", "", 0);
             //ExEnd
+        }
+
+        [Test]
+        public void DeleteFormField()
+        {
+            //ExStart
+            //ExFor:FormField.RemoveField
+            //ExSummary:Shows how to delete complete form field
+            Document doc = new Document(MyDir + "FormFields.doc");
+
+            FormField formField = doc.Range.FormFields[3];
+            formField.RemoveField();
+            //ExEnd
+
+            FormField formFieldAfter = doc.Range.FormFields[3];
+            
+            Assert.IsNull(formFieldAfter);
+        }
+
+        [Test]
+        public void DeleteFormFieldAssociatedWithTheFormField()
+        {
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            builder.StartBookmark("MyBookmark");
+            builder.InsertTextInput("TextInput1", TextFormFieldType.Regular, "TestFormField", "SomeText", 0);
+            builder.EndBookmark("MyBookmark");
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            BookmarkCollection bookmarkBeforeDeleteFormField = doc.Range.Bookmarks;
+            Assert.AreEqual("MyBookmark", bookmarkBeforeDeleteFormField[0].Name);
+
+            FormField formField = doc.Range.FormFields[0];
+            formField.RemoveField();
+
+            BookmarkCollection bookmarkAfterDeleteFormField = doc.Range.Bookmarks;
+            Assert.AreEqual("MyBookmark", bookmarkAfterDeleteFormField[0].Name);
         }
     }
 }

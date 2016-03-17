@@ -375,5 +375,23 @@ namespace ApiExamples
             doc.MailMerge.UseNonMergeFields = true;
             //ExEnd
         }
+
+        //Todo: need to add tests
+        [Test]
+        public void MustasheTemplateSyntax()
+        {
+            // Open an existing document.
+            Document doc = new Document(MyDir + "MailMerge.ExecuteArray.doc");
+
+            doc.MailMerge.UseNonMergeFields = true;
+
+            // Fill the fields in the document with user data.
+            doc.MailMerge.Execute(
+                new string[] { "FullName", "Company", "Address", "Address2", "City" },
+                new object[] { "James Bond", "MI5 Headquarters", "Milbank", "", "London" });
+
+            doc.Save(MyDir + "MailMerge.ExecuteArray Out.doc");
+ 
+        }
     }
 }
