@@ -376,22 +376,25 @@ namespace ApiExamples
             //ExEnd
         }
 
-        //Todo: need to add tests
         [Test]
-        public void MustasheTemplateSyntax()
+        [TestCase(true, "{{ testfield1 }}value 1{{ testfield3 }}\f")]
+        [TestCase(false, "\u0013MERGEFIELD \"testfield1\"\u0014«testfield1»\u0015value 1\u0013MERGEFIELD \"testfield3\"\u0014«testfield3»\u0015\f")]
+        public void MustasheTemplateSyntax(bool restoreTags, string sectionText)
         {
-            // Open an existing document.
-            Document doc = new Document(MyDir + "MailMerge.ExecuteArray.doc");
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+            builder.Write("{{ testfield1 }}");
+            builder.Write("{{ testfield2 }}");
+            builder.Write("{{ testfield3 }}");
 
             doc.MailMerge.UseNonMergeFields = true;
+            doc.MailMerge.PreserveUnusedTags = restoreTags;
 
-            // Fill the fields in the document with user data.
-            doc.MailMerge.Execute(
-                new string[] { "FullName", "Company", "Address", "Address2", "City" },
-                new object[] { "James Bond", "MI5 Headquarters", "Milbank", "", "London" });
+            doc.MailMerge.Execute(new string[] { "testfield2" }, new object[] { "value 1" });
 
-            doc.Save(MyDir + "MailMerge.ExecuteArray Out.doc");
- 
+            string paraText = DocumentHelper.GetParagraphText(doc, 0);
+
+            Assert.AreEqual(sectionText, paraText);
         }
     }
 }

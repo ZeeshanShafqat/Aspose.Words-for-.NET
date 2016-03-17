@@ -1501,16 +1501,18 @@ namespace ApiExamples
             //ExEnd
         }
 
-        //ToDo: Need to assert functional logic
+        //For assert this test you need to open "HyphenationOptions OUT.docx" and check that hyphen are added in the end of the first line
         [Test]
         public void HyphenationOptions()
         {
             Document doc = new Document();
-            
+
+            DocumentHelper.InsertNewRun(doc, "poqwjopiqewhpefobiewfbiowefob ewpj weiweohiewobew ipo efoiewfihpewfpojpief pijewfoihewfihoewfphiewfpioihewfoihweoihewfpj", 0);
+
             doc.HyphenationOptions.AutoHyphenation = true;
             doc.HyphenationOptions.ConsecutiveHyphenLimit = 2;
             doc.HyphenationOptions.HyphenationZone = 720; // 0.5 inch
-            doc.HyphenationOptions.HyphenateCaps = false;
+            doc.HyphenationOptions.HyphenateCaps = true;
 
             MemoryStream dstStream = new MemoryStream();
             doc.Save(dstStream, SaveFormat.Docx);
@@ -1518,7 +1520,9 @@ namespace ApiExamples
             Assert.AreEqual(true, doc.HyphenationOptions.AutoHyphenation);
             Assert.AreEqual(2, doc.HyphenationOptions.ConsecutiveHyphenLimit);
             Assert.AreEqual(720, doc.HyphenationOptions.HyphenationZone);
-            Assert.AreEqual(false, doc.HyphenationOptions.HyphenateCaps);
+            Assert.AreEqual(true, doc.HyphenationOptions.HyphenateCaps);
+
+            doc.Save(MyDir + "HyphenationOptions OUT.docx");
         }
 
         [Test]
@@ -1533,6 +1537,17 @@ namespace ApiExamples
             Assert.AreEqual(0, doc.HyphenationOptions.ConsecutiveHyphenLimit);
             Assert.AreEqual(360, doc.HyphenationOptions.HyphenationZone); // 0.25 inch
             Assert.AreEqual(true, doc.HyphenationOptions.HyphenateCaps);
+        }
+
+        [Test]
+        [TestCase(0, 0, ExpectedException = typeof(ArgumentOutOfRangeException))]
+        [TestCase(-1, 360, ExpectedException = typeof(ArgumentOutOfRangeException))]
+        public void HyphenationOptionsExceptions(int consecutiveHyphenLimit, int hyphenationZone)
+        {
+            Document doc = new Document();
+
+            doc.HyphenationOptions.ConsecutiveHyphenLimit = consecutiveHyphenLimit;
+            doc.HyphenationOptions.HyphenationZone = hyphenationZone;
         }
     }
 }
