@@ -210,38 +210,45 @@ namespace ApiExamples
         //ExEnd
 
         //ToDo: Need to more info from dev
-        //[Test]
-        //public void InsertBarCodeWord2Pdf()
-        //{
-        //    Document doc = new Document();
+        [Test]
+        public void InsertBarCodeWord2Pdf()
+        {
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            FieldBarcode barcode = new FieldBarcode();
+            barcode.IsUSPostalAddress = true;
+            barcode.PostalAddress = "60629-5113";
             
-        //    // Set custom barcode generator
-        //    doc.FieldOptions.BarcodeGenerator = new CustomBarcodeGenerator();
-        //    doc.MailMerge.Execute(new string[] { "ZIP4" }, new object[] { "60629-5113" });
+            doc.Save(MyDir + "123.docx");
 
-        //    doc.Save(MyDir + "InsertBarCodeWord2Pdf.docx", SaveFormat.Docx);
+            //// Set custom barcode generator
+            //doc.FieldOptions.BarcodeGenerator = new CustomBarcodeGenerator();
+            //doc.MailMerge.Execute(new string[] { "ZIP4" }, new object[] { "60629-5113" });
 
-        //    //MemoryStream dstStream = new MemoryStream();
-        //    //doc.Save(dstStream, SaveFormat.Docx);
+            //doc.Save(MyDir + "InsertBarCodeWord2Pdf.docx", SaveFormat.Docx);
 
-        //    //FieldCollection fields = doc.Range.Fields;
-        //    //foreach (Field field in fields)
-        //    //{
-        //    //    if (field.Type == FieldType.FieldDisplayBarcode)
-        //    //        Assert.IsTrue(field.Separator.NextSibling == field.End);
-        //    //}
+            ////MemoryStream dstStream = new MemoryStream();
+            ////doc.Save(dstStream, SaveFormat.Docx);
 
-        //    doc.Save(MyDir + "InsertBarCodeWord2Pdf.pdf", SaveFormat.Pdf);
-            
-        //    //// Open document
-        //    //Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(MyDir + "InsertBarCodeWord2Pdf_OUT.pdf");
-        //    //// Get values from all fields
-        //    //foreach (Aspose.Pdf.InteractiveFeatures.Forms.Field formField in pdfDocument.Form)
-        //    //{
-        //    //    Console.WriteLine("Field Name : {0} ", formField.PartialName);
-        //    //    Console.WriteLine("Value : {0} ", formField.Value);
-        //    //}
-        //}
+            ////FieldCollection fields = doc.Range.Fields;
+            ////foreach (Field field in fields)
+            ////{
+            ////    if (field.Type == FieldType.FieldDisplayBarcode)
+            ////        Assert.IsTrue(field.Separator.NextSibling == field.End);
+            ////}
+
+            //doc.Save(MyDir + "InsertBarCodeWord2Pdf.pdf", SaveFormat.Pdf);
+
+            //// Open document
+            //Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(MyDir + "InsertBarCodeWord2Pdf_OUT.pdf");
+            //// Get values from all fields
+            //foreach (Aspose.Pdf.InteractiveFeatures.Forms.Field formField in pdfDocument.Form)
+            //{
+            //    Console.WriteLine("Field Name : {0} ", formField.PartialName);
+            //    Console.WriteLine("Value : {0} ", formField.Value);
+            //}
+        }
 
         ///// <summary>
         ///// Sample of custom barcode generator implementation (with underlying Aspose.BarCode module)

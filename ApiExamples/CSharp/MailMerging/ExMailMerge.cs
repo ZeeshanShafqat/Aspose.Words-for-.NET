@@ -390,7 +390,11 @@ namespace ApiExamples
             doc.MailMerge.UseNonMergeFields = true;
             doc.MailMerge.PreserveUnusedTags = restoreTags;
 
-            doc.MailMerge.Execute(new string[] { "testfield2" }, new object[] { "value 1" });
+            DataTable table = new DataTable("Test");
+            table.Columns.Add("testfield2");
+            table.Rows.Add(new object[] { "value 1" });
+
+            doc.MailMerge.Execute(table);
 
             string paraText = DocumentHelper.GetParagraphText(doc, 0);
 

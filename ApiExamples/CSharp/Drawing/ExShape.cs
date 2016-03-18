@@ -234,13 +234,23 @@ namespace ApiExamples
         }
 
         [Test]
-        public void OleControl()
+        public void GetActiveXControlProperties()
         {
+            //ExStart
+            //ExFor:OleControl
+            //ExFor:Forms2OleControlCollection.Caption
+            //ExFor:Forms2OleControlCollection.Value
+            //ExFor:Forms2OleControlCollection.Enabled
+            //ExFor:Forms2OleControlCollection.Type
+            //ExFor:Forms2OleControlCollection.ChildNodes
+            //ExSummary: Shows how to get ActiveX control from the document and how to get properties of this document
             Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
             
+            //Get ActiveX control from the document 
             Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
             OleControl oleControl = shape.OleFormat.OleControl;
 
+            //Get ActiveX control properties
             if (oleControl.IsForms2OleControl)
             {
                 Forms2OleControl checkBox = (Forms2OleControl)oleControl;
@@ -250,19 +260,26 @@ namespace ApiExamples
                 Assert.AreEqual(Forms2OleControlType.CheckBox, checkBox.Type);
                 Assert.AreEqual(null, checkBox.ChildNodes);
             }
+            //ExEnd
         }
 
         [Test]
         public void SuggestedFileName()
         {
+            //ExStart
+            //ExFor:OleFormat.SuggestedFileName
+            //ExSummary:Shows how to get suggested file name from the object
             Document doc = new Document(MyDir + "Shape.SuggestedFileName.rtf");
             
+            //Gets the file name suggested for the current embedded object if you want to save it into a file.
             Shape oleShape = (Shape)doc.FirstSection.Body.GetChild(NodeType.Shape, 0, true);
-            Assert.AreEqual("CSV.csv", oleShape.OleFormat.SuggestedFileName);
+            string suggestedFileName = oleShape.OleFormat.SuggestedFileName;
+            //ExEnd
+            Assert.AreEqual("CSV.csv", suggestedFileName);
         }
 
         [Test]
-        public void SuggestedFileNameNotExtract()
+        public void ObjectDidNotHaveSuggestedFileName()
         {
             Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
 
