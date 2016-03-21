@@ -271,6 +271,16 @@ namespace ApiExamples
         }
 
         [Test]
+        public void LoadFormatForOldDocuments()
+        {
+            //Todo: Get old format docs from dev
+            LoadOptions loadOptions = new LoadOptions();
+            loadOptions.LoadFormat = Aspose.Words.LoadFormat.DocPreWord60;
+
+            Document doc = new Document(MyDir + "Document.LoadFormat.Word95.doc", loadOptions);
+        }
+
+        [Test]
         public void LoadEncryptedFromFile()
         {
             //ExStart

@@ -1544,6 +1544,12 @@ namespace ApiExamples
         }
 
         [Test]
+        public void DocumentBuilderInsertSignatureLine()
+        {
+            //Todo: add tests for signature line
+        }
+
+        [Test]
         public void DocumentBuilderSetFontFormatting()
         {
             //ExStart
