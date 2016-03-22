@@ -209,6 +209,55 @@ namespace ApiExamples
         }
         //ExEnd
 
+        //Bug: there is no isAfter parameter at BuildAndInsert (exception), need more info from dev
+        //Todo: get more info from dev
+        [Test]
+        public void InsertFieldWithFieldBuilder()
+        {
+            Document doc = new Document();
+
+            //Add some text into the paragraph
+            Run run = DocumentHelper.InsertNewRun(doc, " Hello World!", 0);
+            
+            FieldArgumentBuilder argumentBuilder = new FieldArgumentBuilder();
+            argumentBuilder.AddField(new FieldBuilder(FieldType.FieldMergeField));
+            argumentBuilder.AddText("BestField");
+
+            FieldBuilder fieldBuilder = new FieldBuilder(FieldType.FieldIf);
+            fieldBuilder.AddArgument(argumentBuilder)
+                .AddArgument("=")
+                .AddArgument("BestField")
+                .AddArgument(10)
+                .AddArgument(20.0)
+                .BuildAndInsert(run);
+
+            doc.UpdateFields();
+            doc.Save(MyDir + "123.docx");
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Cannot add a node before/after itself.")]
+        public void InsertFieldWithFieldBuilderException()
+        {
+            Document doc = new Document();
+
+            //Add some text into the paragraph
+            Run run = DocumentHelper.InsertNewRun(doc, " Hello World!", 0);
+
+            FieldArgumentBuilder argumentBuilder = new FieldArgumentBuilder();
+            argumentBuilder.AddField(new FieldBuilder(FieldType.FieldMergeField));
+            argumentBuilder.AddNode(run);
+            argumentBuilder.AddText("Text argument builder");
+
+            FieldBuilder fieldBuilder = new FieldBuilder(FieldType.FieldIncludeText);
+            fieldBuilder.AddArgument(argumentBuilder)
+                .AddArgument("=")
+                .AddArgument("BestField")
+                .AddArgument(10)
+                .AddArgument(20.0)
+                .BuildAndInsert(run);
+        }
+
         //ToDo: Need to more info from dev
         [Test]
         public void InsertBarCodeWord2Pdf()

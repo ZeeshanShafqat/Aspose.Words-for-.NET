@@ -22,6 +22,7 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using System.Collections;
     using System.IO;
 
     [TestFixture]
@@ -399,6 +400,30 @@ namespace ApiExamples
             string paraText = DocumentHelper.GetParagraphText(doc, 0);
 
             Assert.AreEqual(sectionText, paraText);
+        }
+
+        //Todo: Get test doc from dev for example (and add more tests for other parameters)
+        [Test]
+        public void TestMailMergeGetRegionsHierarchy()
+        {
+            Document doc = new Document(@"MailMerge\TestRegionsHierarchy.doc");
+            MailMergeRegionInfo regionInfo = doc.MailMerge.GetRegionsHierarchy();
+
+            ArrayList topRegions = regionInfo.Regions;
+            Assert.AreEqual(2, topRegions.Count);
+            Assert.AreEqual(((MailMergeRegionInfo)topRegions[0]).Name, "Region1");
+            Assert.AreEqual(((MailMergeRegionInfo)topRegions[1]).Name, "Region2");
+
+            ArrayList nestedRegions = ((MailMergeRegionInfo)topRegions[0]).Regions;
+            Assert.AreEqual(2, nestedRegions.Count);
+            Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[0]).Name, "NestedRegion1");
+            Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[1]).Name, "NestedRegion2");
+
+            nestedRegions = ((MailMergeRegionInfo)topRegions[1]).Regions;
+            Assert.AreEqual(2, nestedRegions.Count);
+            Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[0]).Name, "NestedRegion1");
+            Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[1]).Name, "NestedRegion2");
+
         }
     }
 }

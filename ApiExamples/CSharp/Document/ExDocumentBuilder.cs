@@ -1544,9 +1544,66 @@ namespace ApiExamples
         }
 
         [Test]
-        public void DocumentBuilderInsertSignatureLine()
+        public void InsertSignatureLineCurrentPozition()
         {
-            //Todo: add tests for signature line
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            SignatureLineOptions options = new SignatureLineOptions();
+            options.Signer = "John Doe";
+            options.SignerTitle = "Manager";
+            options.Email = "johndoe@aspose.com";
+            options.ShowDate = true;
+            options.DefaultInstructions = false;
+            options.Instructions = "You need more info about signature line";
+            options.AllowComments = true;
+
+            builder.InsertSignatureLine(options);
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+            SignatureLine signatureLine = shape.SignatureLine;
+
+            Assert.AreEqual("John Doe", signatureLine.Signer);
+            Assert.AreEqual("Manager", signatureLine.SignerTitle);
+            Assert.AreEqual("johndoe@aspose.com", signatureLine.Email);
+            Assert.AreEqual(true, signatureLine.ShowDate);
+            Assert.AreEqual(false, signatureLine.DefaultInstructions);
+            Assert.AreEqual("You need more info about signature line", signatureLine.Instructions);
+            Assert.AreEqual(true, signatureLine.AllowComments);
+            Assert.AreEqual(false, signatureLine.IsSigned);
+            Assert.AreEqual(false, signatureLine.IsValid);
+        }
+
+        [Test]
+        public void InsertSignatureLineSpecifiedPosition()
+        {
+            Document doc = new Document();
+            DocumentBuilder builder = new DocumentBuilder(doc);
+
+            SignatureLineOptions options = new SignatureLineOptions();
+            options.Signer = "John Doe";
+            options.SignerTitle = "Manager";
+            options.Email = "johndoe@aspose.com";
+            options.ShowDate = true;
+            options.DefaultInstructions = false;
+            options.Instructions = "You need more info about signature line";
+            options.AllowComments = true;
+
+            //Bug: If wraptype are not inline shape break his position
+            builder.InsertSignatureLine(options, RelativeHorizontalPosition.RightMargin, 2.0, RelativeVerticalPosition.Page, 3.0, WrapType.Inline);
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+            Assert.AreEqual(RelativeHorizontalPosition.RightMargin, shape.RelativeHorizontalPosition);
+            Assert.AreEqual(2.0, shape.Left);
+            Assert.AreEqual(RelativeVerticalPosition.Page, shape.RelativeVerticalPosition);
+            Assert.AreEqual(3.0, shape.Top);
+            Assert.AreEqual(WrapType.Inline, shape.WrapType);
         }
 
         [Test]
