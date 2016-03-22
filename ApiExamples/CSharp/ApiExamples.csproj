@@ -103,6 +103,7 @@
     <Compile Include="Range\ExRange.cs" />
     <Compile Include="Rendering\ExRendering.cs" />
     <Compile Include="ReportingEngine\ExReportingEngine.cs" />
+    <Compile Include="Saving\ExImageSaveOptions.cs" />
     <Compile Include="Saving\ExHtmlSaveOptions.cs" />
     <Compile Include="Saving\ExHtmlFixedSaveOptions.cs" />
     <Compile Include="Saving\ExPdfSaveOptions.cs" />
