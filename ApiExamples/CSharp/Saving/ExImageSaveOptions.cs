@@ -15,14 +15,14 @@ namespace ApiExamples
     [TestFixture]
     internal class ExImageSaveOptions : ApiExampleBase
     {
-        //Todo: add more examples
+        //Todo: need more info
         [Test]
         public void UseGdiEmfRenderer()
         {
-            Document doc = new Document();
+            Document doc = new Document(MyDir + "Rendering.doc");
 
             ImageSaveOptions saveOptions = new ImageSaveOptions(SaveFormat.Emf);
-            saveOptions.UseGdiEmfRenderer = true;
+            saveOptions.UseGdiEmfRenderer = false;
 
             doc.Save(MyDir + "UseGdiEmfRenderer_OUT.emf", saveOptions);
         }

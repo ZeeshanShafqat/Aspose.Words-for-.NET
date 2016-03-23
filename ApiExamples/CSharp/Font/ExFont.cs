@@ -519,6 +519,45 @@ namespace ApiExamples
 
         }
 
+        //Todo: Get more font exeptions
+        [Test]
+        public void FontSubstitutionPerFirstAvailableFont()
+        {
+            // Store the font sources currently used so we can restore them later. 
+            FontSourceBase[] origFontSources = FontSettings.DefaultInstance.GetFontsSources();
+
+            //ExStart
+            //ExFor:IWarningCallback
+            //ExFor:SaveOptions.WarningCallback
+            //ExId:FontSubstitutionNotification
+            //ExSummary:Demonstrates how to recieve notifications of font substitutions by using IWarningCallback.
+            // Load the document to render.
+            Document doc = new Document(MyDir + "Document.doc");
+
+            // Create a new class implementing IWarningCallback and assign it to the PdfSaveOptions class.
+            ExRendering.HandleDocumentWarnings callback = new ExRendering.HandleDocumentWarnings();
+            doc.WarningCallback = callback;
+
+            // We can choose the default font to use in the case of any missing fonts.
+            FontSettings.DefaultInstance.DefaultFontName = "Arial";
+
+            // For testing we will set Aspose.Words to look for fonts only in a folder which doesn't exist. Since Aspose.Words won't
+            // find any fonts in the specified directory, then during rendering the fonts in the document will be subsuited with the default 
+            // font specified under FontSettings.DefaultFontName. We can pick up on this subsuition using our callback.
+            FontSettings.DefaultInstance.SetFontsFolder(string.Empty, false);
+
+            // Pass the save options along with the save path to the save method.
+            doc.Save(MyDir + "Rendering.MissingFontNotification Out.pdf");
+            //ExEnd
+
+            Assert.Greater(callback.mFontWarnings.Count, 0);
+            Assert.True(callback.mFontWarnings[0].WarningType == WarningType.FontSubstitution);
+            Assert.True(callback.mFontWarnings[0].Description.Equals("Font 'Times New Roman' has not been found. Using 'Fanwood' font instead. Reason: first available font."));
+
+            // Restore default fonts. 
+            FontSettings.DefaultInstance.SetFontsSources(origFontSources);
+        }
+
         /// <summary>
         /// This calls the below method to resolve skipping of [Test] in VB.NET.
         /// </summary>
