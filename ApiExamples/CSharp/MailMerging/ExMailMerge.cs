@@ -406,7 +406,7 @@ namespace ApiExamples
         [Test]
         public void TestMailMergeGetRegionsHierarchy()
         {
-            Document doc = new Document(@"MailMerge\TestRegionsHierarchy.doc");
+            Document doc = new Document(MyDir+ "TestRegionsHierarchy.doc");
             MailMergeRegionInfo regionInfo = doc.MailMerge.GetRegionsHierarchy();
 
             ArrayList topRegions = regionInfo.Regions;

@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.BarCode, Version=7.7.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>packages\Aspose.BarCode.7.7.0\lib\net4.5\Aspose.BarCode.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Aspose.Pdf, Version=11.4.0.0, Culture=neutral, PublicKeyToken=6947866647e416ec, processorArchitecture=MSIL">
       <HintPath>packages\Aspose.Pdf.11.4.0\lib\net40-client\Aspose.Pdf.dll</HintPath>
       <Private>True</Private>
@@ -78,6 +82,7 @@
     <Compile Include="Drawing\ExImage.cs" />
     <Compile Include="Drawing\ExShape.cs" />
     <Compile Include="EditableRange\ExEditableRange.cs" />
+    <Compile Include="Fields\CustomBarcodeGenerator.cs" />
     <Compile Include="Fields\ExField.cs" />
     <Compile Include="Fields\ExFormFields.cs" />
     <Compile Include="Fields\ExRenameMergeFields.cs" />

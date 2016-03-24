@@ -5,6 +5,7 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
+using System.Drawing.Imaging;
 using NUnit.Framework;
 
 namespace ApiExamples
@@ -15,16 +16,14 @@ namespace ApiExamples
     [TestFixture]
     internal class ExImageSaveOptions : ApiExampleBase
     {
-        //Todo: need more info
+        //Todo: add as example
         [Test]
         public void UseGdiEmfRenderer()
         {
-            Document doc = new Document(MyDir + "Rendering.doc");
+            Document doc = new Document(MyDir + "MyraidPro Sample.docx");
 
             ImageSaveOptions saveOptions = new ImageSaveOptions(SaveFormat.Emf);
             saveOptions.UseGdiEmfRenderer = false;
-
-            doc.Save(MyDir + "UseGdiEmfRenderer_OUT.emf", saveOptions);
         }
     }
 }

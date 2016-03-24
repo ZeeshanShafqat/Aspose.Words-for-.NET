@@ -105,6 +105,6 @@ namespace ApiExamples
         /// <summary>
         /// This is where the test license is on my development machine.
         /// </summary>
-        internal const string TestLicenseFileName = @"X:\awuex\Licenses\Aspose.Words.lic";
+        internal const string TestLicenseFileName = @"X:\awuex\Licenses\Aspose.Total.lic";
     }
 }
