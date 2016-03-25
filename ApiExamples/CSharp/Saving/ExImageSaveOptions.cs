@@ -16,14 +16,17 @@ namespace ApiExamples
     [TestFixture]
     internal class ExImageSaveOptions : ApiExampleBase
     {
-        //Todo: add as example
         [Test]
         public void UseGdiEmfRenderer()
         {
-            Document doc = new Document(MyDir + "MyraidPro Sample.docx");
+            //ExStart
+            //ExFor:ImageSaveOptions.UseGdiEmfRenderer
+            //ExSummary:Shows how to save metafiles directly without using GDI+ to EMF.
+            Document doc = new Document(MyDir + "SaveOptions.MyraidPro.docx");
 
             ImageSaveOptions saveOptions = new ImageSaveOptions(SaveFormat.Emf);
             saveOptions.UseGdiEmfRenderer = false;
+            //ExEnd
         }
     }
 }

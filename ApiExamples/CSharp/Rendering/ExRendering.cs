@@ -894,7 +894,7 @@ namespace ApiExamples
         public void AddFontSubstitutes()
         {
             FontSettings fontSettings = new FontSettings();
-            fontSettings.AddFontSubstitutes("Slab", new string[] { "Times New Roman", "Arial" });
+            fontSettings.SetFontSubstitutes("Slab", new string[] { "Times New Roman", "Arial" });
             fontSettings.AddFontSubstitutes("Arvo", new string[] { "Open Sans", "Arial" });
             
             Document doc = new Document(MyDir + "Rendering.doc");

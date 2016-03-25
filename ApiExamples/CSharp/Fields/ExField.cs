@@ -209,7 +209,6 @@ namespace ApiExamples
         //ExEnd
 
         //Bug: there is no isAfter parameter at BuildAndInsert (exception), need more info from dev
-        //Todo: get more info from dev
         [Test]
         public void InsertFieldWithFieldBuilder()
         {

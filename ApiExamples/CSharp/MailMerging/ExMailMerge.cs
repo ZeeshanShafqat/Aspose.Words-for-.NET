@@ -404,11 +404,11 @@ namespace ApiExamples
             Assert.AreEqual(sectionText, paraText);
         }
 
-        //todo: easy
         [Test]
         public void TestMailMergeGetRegionsHierarchy()
         {
             Document doc = new Document(MyDir+ "MailMerge.TestRegionsHierarchy.doc");
+
             MailMergeRegionInfo regionInfo = doc.MailMerge.GetRegionsHierarchy();
 
             //Get top regions in the document

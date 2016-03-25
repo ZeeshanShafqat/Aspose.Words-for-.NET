@@ -8,11 +8,12 @@
 using System;
 using System.Collections;
 using System.Drawing;
-
+using System.IO;
 using Aspose.Words;
 using Aspose.Words.Drawing;
 using Aspose.Words.Fields;
 using Aspose.Words.Fonts;
+using Aspose.Words.Saving;
 using Aspose.Words.Tables;
 
 using NUnit.Framework;
@@ -556,6 +557,51 @@ namespace ApiExamples
 
             // Restore default fonts. 
             FontSettings.DefaultInstance.SetFontsSources(origFontSources);
+        }
+
+        [Test]
+        public void FontSubstitutionWarnings()
+        {
+            Document doc = new Document(MyDir + "Rendering.doc");
+
+            // Create a new class implementing IWarningCallback and assign it to the PdfSaveOptions class.
+            ExRendering.HandleDocumentWarnings callback = new ExRendering.HandleDocumentWarnings();
+            doc.WarningCallback = callback;
+
+            FontSettings fontSettings = new FontSettings();
+            fontSettings.DefaultFontName = "Arial";
+            fontSettings.SetFontSubstitutes("Arial", new string[] { "Arvo", "Slab" });
+            fontSettings.SetFontsFolder(MyDir + @"MyFonts\", false);
+
+            doc.FontSettings = fontSettings;
+
+            doc.Save(MyDir + "Rendering.MissingFontNotification Out.pdf");
+            //doc.Save(MyDir + "Rendering.MissingFontNotification Out.emf", SaveFormat.Emf);
+
+            Assert.True(callback.mFontWarnings[0].Description.Equals("Font substitutes: 'Arial' replaced with 'Arvo'."));
+            Assert.True(callback.mFontWarnings[1].Description.Equals("Font 'Times New Roman' has not been found. Using 'Arvo' font instead. Reason: default font setting."));
+        }
+
+        [Test]
+        public void FontSubstitutionWarningsGdiRender()
+        {
+            Document doc = new Document(MyDir + "Rendering.doc");
+
+            // Create a new class implementing IWarningCallback and assign it to the PdfSaveOptions class.
+            ExRendering.HandleDocumentWarnings callback = new ExRendering.HandleDocumentWarnings();
+            doc.WarningCallback = callback;
+
+            FontSettings fontSettings = new FontSettings();
+            fontSettings.DefaultFontName = "Arvo";
+            //fontSettings.SetFontSubstitutes("Arial", new string[] { "Arvo", "Slab" });
+            //fontSettings.SetFontsFolder(MyDir + @"MyFonts\", false);
+
+            doc.FontSettings = fontSettings;
+
+            doc.Save(MyDir + "Rendering.MissingFontNotification Out.png", SaveFormat.Png);
+
+            Assert.True(callback.mFontWarnings[0].Description.Equals("Font substitutes: 'Arial' replaced with 'Arvo'."));
+            Assert.True(callback.mFontWarnings[1].Description.Equals("Font 'Times New Roman' has not been found. Using 'Arvo' font instead. Reason: default font setting."));
         }
 
         /// <summary>
