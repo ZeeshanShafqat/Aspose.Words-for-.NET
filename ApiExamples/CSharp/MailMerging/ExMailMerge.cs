@@ -25,6 +25,8 @@ namespace ApiExamples
     using System.Collections;
     using System.IO;
 
+    using Aspose.Words.Fields;
+
     [TestFixture]
     public class ExMailMerge : ApiExampleBase
     {
@@ -402,28 +404,71 @@ namespace ApiExamples
             Assert.AreEqual(sectionText, paraText);
         }
 
-        //Todo: Get test doc from dev for example (and add more tests for other parameters)
+        //todo: easy
         [Test]
         public void TestMailMergeGetRegionsHierarchy()
         {
-            Document doc = new Document(MyDir+ "TestRegionsHierarchy.doc");
+            Document doc = new Document(MyDir+ "MailMerge.TestRegionsHierarchy.doc");
             MailMergeRegionInfo regionInfo = doc.MailMerge.GetRegionsHierarchy();
 
+            //Get top regions in the document
             ArrayList topRegions = regionInfo.Regions;
             Assert.AreEqual(2, topRegions.Count);
             Assert.AreEqual(((MailMergeRegionInfo)topRegions[0]).Name, "Region1");
             Assert.AreEqual(((MailMergeRegionInfo)topRegions[1]).Name, "Region2");
 
+            //Get nested region in first top region
             ArrayList nestedRegions = ((MailMergeRegionInfo)topRegions[0]).Regions;
             Assert.AreEqual(2, nestedRegions.Count);
             Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[0]).Name, "NestedRegion1");
             Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[1]).Name, "NestedRegion2");
 
+            //Get nested region in second top region
             nestedRegions = ((MailMergeRegionInfo)topRegions[1]).Regions;
             Assert.AreEqual(2, nestedRegions.Count);
             Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[0]).Name, "NestedRegion1");
             Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[1]).Name, "NestedRegion2");
 
+            //Get field list in first top region
+            ArrayList fieldList = ((MailMergeRegionInfo)topRegions[0]).Fields;
+            Assert.AreEqual(4, fieldList.Count);
+
+            //Get field list in second top region
+            fieldList = ((MailMergeRegionInfo)topRegions[1]).Fields;
+            Assert.AreEqual(4, fieldList.Count);
+
+            FieldMergeField fieldMergeField = ((MailMergeRegionInfo)nestedRegions[0]).StartField;
+            Assert.AreEqual("TableStart:NestedRegion1", fieldMergeField.FieldName);
+        }
+
+        [Test]
+        public void TestTagsReplacedEventShouldRisedWithUseNonMergeFieldsOption()
+        {
+            Document document = new Document();
+            document.MailMerge.UseNonMergeFields = true;
+            MailMergeCallbackStub mailMergeCallbackStub = new MailMergeCallbackStub();
+            document.MailMerge.MailMergeCallback = mailMergeCallbackStub;
+
+            document.MailMerge.Execute(
+                new string[0],
+                new object[0]);
+
+            Assert.AreEqual(1, mailMergeCallbackStub.TagsReplacedCounter);
+        }
+
+        private class MailMergeCallbackStub : IMailMergeCallback
+        {
+            public void TagsReplaced()
+            {
+                mTagsReplacedCounter++;
+            }
+
+            public int TagsReplacedCounter
+            {
+                get { return mTagsReplacedCounter; }
+            }
+
+            private int mTagsReplacedCounter;
         }
     }
 }
