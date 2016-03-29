@@ -9,8 +9,10 @@
 
 using System;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Aspose.BarCodeRecognition;
 using Aspose.Words;
 using Aspose.Words.Fields;
 
@@ -43,7 +45,7 @@ namespace ApiExamples
             //ExFor:FieldChar
             //ExFor:FieldChar.FieldType
             //ExSummary:Shows how to find the type of field that is represented by a node which is derived from FieldChar.
-            FieldChar fieldStart = (FieldChar)doc.GetChild(NodeType.FieldStart, 0, true);
+            FieldChar fieldStart = (FieldChar) doc.GetChild(NodeType.FieldStart, 0, true);
             FieldType type = fieldStart.FieldType;
             //ExEnd
         }
@@ -57,11 +59,11 @@ namespace ApiExamples
             //ExSummary:Demonstrates how to retrieve the field class from an existing FieldStart node in the document.
             Document doc = new Document(MyDir + "Document.TableOfContents.doc");
 
-            FieldStart fieldStart = (FieldStart)doc.GetChild(NodeType.FieldStart, 0, true);
+            FieldStart fieldStart = (FieldStart) doc.GetChild(NodeType.FieldStart, 0, true);
 
             // Retrieve the facade object which represents the field in the document.
             Field field = fieldStart.GetField();
-            
+
             Console.WriteLine("Field code:" + field.GetFieldCode());
             Console.WriteLine("Field result: " + field.Result);
             Console.WriteLine("Is locked: " + field.IsLocked);
@@ -120,7 +122,7 @@ namespace ApiExamples
             Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
 
             // Execute mail merge.
-            doc.MailMerge.Execute(new string[] { "Date" }, new object[] { DateTime.Now });
+            doc.MailMerge.Execute(new string[] {"Date"}, new object[] {DateTime.Now});
 
             // Restore the original culture.
             Thread.CurrentThread.CurrentCulture = currentCulture;
@@ -186,7 +188,7 @@ namespace ApiExamples
             ReplaceAction IReplacingCallback.Replacing(ReplacingArgs args)
             {
                 // Create a builder to insert the field.
-                DocumentBuilder builder = new DocumentBuilder((Document)args.MatchNode.Document);
+                DocumentBuilder builder = new DocumentBuilder((Document) args.MatchNode.Document);
                 // Move to the first node of the match.
                 builder.MoveTo(args.MatchNode);
 
@@ -206,6 +208,7 @@ namespace ApiExamples
                 return ReplaceAction.Skip;
             }
         }
+
         //ExEnd
 
         //Bug: there is no isAfter parameter at BuildAndInsert (exception), need more info from dev
@@ -216,7 +219,7 @@ namespace ApiExamples
 
             //Add some text into the paragraph
             Run run = DocumentHelper.InsertNewRun(doc, " Hello World!", 0);
-            
+
             FieldArgumentBuilder argumentBuilder = new FieldArgumentBuilder();
             argumentBuilder.AddField(new FieldBuilder(FieldType.FieldMergeField));
             argumentBuilder.AddText("BestField");
@@ -234,7 +237,7 @@ namespace ApiExamples
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Cannot add a node before/after itself.")]
+        [ExpectedException(typeof (ArgumentException), ExpectedMessage = "Cannot add a node before/after itself.")]
         public void InsertFieldWithFieldBuilderException()
         {
             Document doc = new Document();
@@ -256,38 +259,50 @@ namespace ApiExamples
                 .BuildAndInsert(run);
         }
 
-        //ToDo: Need to more info from dev
         [Test]
-        public void InsertBarCodeWord2Pdf()
+        public void BarCodeWord2Pdf()
         {
-            Document doc = new Document(MyDir + "TestJira4499.docx");
+            Document doc = new Document(MyDir + "BarCode.docx");
 
             // Set custom barcode generator
             doc.FieldOptions.BarcodeGenerator = new CustomBarcodeGenerator();
-            doc.MailMerge.Execute(new string[] {"ZIP4"}, new object[] {"60629-5113"});
 
-            doc.Save(MyDir + "InsertBarCodeWord2Pdf.docx", SaveFormat.Docx);
+            doc.Save(MyDir + "BarCode_OUT.pdf");
 
-            //MemoryStream dstStream = new MemoryStream();
-            //doc.Save(dstStream, SaveFormat.Docx);
+            BarCodeReader barCode = BarCodeReaderPdf(MyDir + "BarCode_OUT.pdf");
+            Assert.AreEqual("QR", barCode.GetReadType().ToString());
+        }
 
-            //FieldCollection fields = doc.Range.Fields;
-            //foreach (Field field in fields)
-            //{
-            //    if (field.Type == FieldType.FieldDisplayBarcode)
-            //        Assert.IsTrue(field.Separator.NextSibling == field.End);
-            //}
+        private BarCodeReader BarCodeReaderPdf(string filename)
+        {
+            Aspose.BarCode.License licenceBarCode = new Aspose.BarCode.License();
+            licenceBarCode.SetLicense(@"X:\awuex\Licenses\Aspose.Total.lic");
 
-            doc.Save(MyDir + "InsertBarCodeWord2Pdf_OUT.pdf", SaveFormat.Pdf);
+            // bind the pdf document
+            Aspose.Pdf.Facades.PdfExtractor pdfExtractor = new Aspose.Pdf.Facades.PdfExtractor();
+            pdfExtractor.BindPdf(filename);
 
-            // Open document
-            Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(MyDir + "InsertBarCodeWord2Pdf_OUT.pdf");
-            // Get values from all fields
-            foreach (Aspose.Pdf.InteractiveFeatures.Forms.Field formField in pdfDocument.Form)
+            // set page range for image extraction
+            pdfExtractor.StartPage = 1;
+            pdfExtractor.EndPage = 1;
+
+            pdfExtractor.ExtractImage();
+
+            // save image to stream
+            MemoryStream imageStream = new MemoryStream();
+            pdfExtractor.GetNextImage(imageStream);
+            imageStream.Position = 0;
+
+            // recognize the barcode from the image stream above
+            BarCodeReader barcodeReader = new BarCodeReader(imageStream, BarCodeReadType.QR);
+            while (barcodeReader.Read())
             {
-                Console.WriteLine("Field Name : {0} ", formField.PartialName);
-                Console.WriteLine("Value : {0} ", formField.Value);
+                Console.WriteLine("Codetext found: " + barcodeReader.GetCodeText() + ", Symbology: " + barcodeReader.GetReadType());
             }
+            // close the reader
+            barcodeReader.Close();
+
+            return barcodeReader;
         }
     }
 }
