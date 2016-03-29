@@ -28,6 +28,7 @@ using System.Web;
 using Aspose.Words;
 using Aspose.Words.Drawing;
 using Aspose.Words.Fields;
+using Aspose.Words.Properties;
 using Aspose.Words.Rendering;
 using Aspose.Words.Saving;
 using Aspose.Words.Settings;
@@ -1557,6 +1558,75 @@ namespace ApiExamples
 
             doc.HyphenationOptions.ConsecutiveHyphenLimit = consecutiveHyphenLimit;
             doc.HyphenationOptions.HyphenationZone = hyphenationZone;
+        }
+
+        [Test]
+        public void ExtractPlainTextFromDocument()
+        {
+            PlaintextDocument plaintext = Document.ExtractText(MyDir + "Bookmark.doc");
+            Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
+
+            LoadOptions loadOptions = new LoadOptions();
+            loadOptions.AllowTrailingWhitespaceForListItems = false;
+
+            plaintext = Document.ExtractText(MyDir + "Bookmark.doc", loadOptions);
+            Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
+
+            BuiltInDocumentProperties builtInDocumentProperties = plaintext.BuiltInDocumentProperties;
+            Assert.AreEqual("Aspose", builtInDocumentProperties.Company);
+
+            CustomDocumentProperties customDocumentProperties = plaintext.CustomDocumentProperties;
+            Assert.IsEmpty(customDocumentProperties);
+        }
+
+        [Test]
+        public void ExtractPlainTextFromStream()
+        {
+            Stream docStream = new FileStream(MyDir + "Bookmark.doc", FileMode.Open);
+
+            PlaintextDocument plaintext = Document.ExtractText(docStream);
+            Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
+
+            docStream.Close();
+
+            docStream = new FileStream(MyDir + "Bookmark.doc", FileMode.Open);
+
+            LoadOptions loadOptions = new LoadOptions();
+            loadOptions.AllowTrailingWhitespaceForListItems = false;
+
+            plaintext = Document.ExtractText(docStream, loadOptions);
+            Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
+
+            docStream.Close();
+        }
+
+        [Test]
+        public void GetShapeAltTextTitle()
+        {
+            Document doc = new Document();
+
+            // Create textbox shape.
+            Shape shape = new Shape(doc, ShapeType.Cube);
+            shape.Width = 431.5;
+            shape.Height = 346.35;
+            shape.Title = "Alt Text Title";
+
+            Paragraph paragraph = new Paragraph(doc);
+            paragraph.AppendChild(new Run(doc, "Test"));
+
+            // Insert paragraph into the textbox.
+            shape.AppendChild(paragraph);
+
+            // Insert textbox into the document.
+            doc.FirstSection.Body.FirstParagraph.AppendChild(shape);
+            
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Node[] shapes = doc.GetChildNodes(NodeType.Shape, true).ToArray();
+            shape = (Shape)shapes[0];
+
+            Assert.AreEqual("Alt Text Title", shape.Title);
         }
     }
 }

@@ -583,25 +583,17 @@ namespace ApiExamples
         }
 
         [Test]
-        public void FontSubstitutionWarningsGdiRender()
+        public void FontSubstitutionWarningsClosestMatch()
         {
-            Document doc = new Document(MyDir + "Rendering.doc");
+            Document doc = new Document(MyDir + "DisapearingBulletPoints.doc");
 
             // Create a new class implementing IWarningCallback and assign it to the PdfSaveOptions class.
             ExRendering.HandleDocumentWarnings callback = new ExRendering.HandleDocumentWarnings();
             doc.WarningCallback = callback;
 
-            FontSettings fontSettings = new FontSettings();
-            fontSettings.DefaultFontName = "Arvo";
-            //fontSettings.SetFontSubstitutes("Arial", new string[] { "Arvo", "Slab" });
-            //fontSettings.SetFontsFolder(MyDir + @"MyFonts\", false);
+            doc.Save(MyDir + "DisapearingBulletPoints.pdf");
 
-            doc.FontSettings = fontSettings;
-
-            doc.Save(MyDir + "Rendering.MissingFontNotification Out.png", SaveFormat.Png);
-
-            Assert.True(callback.mFontWarnings[0].Description.Equals("Font substitutes: 'Arial' replaced with 'Arvo'."));
-            Assert.True(callback.mFontWarnings[1].Description.Equals("Font 'Times New Roman' has not been found. Using 'Arvo' font instead. Reason: default font setting."));
+            Assert.True(callback.mFontWarnings[0].Description.Equals("Font 'SymbolPS' has not been found. Using 'Wingdings' font instead. Reason: closest match according to font info from the document."));
         }
 
         /// <summary>

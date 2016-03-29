@@ -231,7 +231,6 @@ namespace ApiExamples
                 .BuildAndInsert(run);
 
             doc.UpdateFields();
-            doc.Save(MyDir + "123.docx");
         }
 
         [Test]

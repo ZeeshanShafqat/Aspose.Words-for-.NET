@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.IO;
 using Aspose.Words;
 using Aspose.Words.Fields;
 
@@ -167,6 +167,18 @@ namespace ApiExamples
             InsertFieldUsingFieldType(doc, FieldType.FieldAuthor, true, null, false, 0);
             
             Assert.AreEqual("\u0013 AUTHOR \u0014Test Author\u0015\r", DocumentHelper.GetParagraphText(doc, 0));
+        }
+
+        [Test]
+        public void GetFormatRevision()
+        {
+            Document doc = new Document(MyDir + "Paragraph.IsFormatRevision.docx");
+
+            Paragraph firstParagraph = DocumentHelper.GetParagraph(doc, 0);
+            Assert.IsTrue(firstParagraph.IsFormatRevision);
+
+            Paragraph secondParagraph = DocumentHelper.GetParagraph(doc, 1);
+            Assert.IsFalse(secondParagraph.IsFormatRevision);
         }
 
         /// <summary>
