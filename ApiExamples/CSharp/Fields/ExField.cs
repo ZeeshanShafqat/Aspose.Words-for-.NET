@@ -275,31 +275,33 @@ namespace ApiExamples
 
         private BarCodeReader BarCodeReaderPdf(string filename)
         {
+            //Set license for Aspose.BarCode
             Aspose.BarCode.License licenceBarCode = new Aspose.BarCode.License();
             licenceBarCode.SetLicense(@"X:\awuex\Licenses\Aspose.Total.lic");
 
-            // bind the pdf document
+            //bind the pdf document
             Aspose.Pdf.Facades.PdfExtractor pdfExtractor = new Aspose.Pdf.Facades.PdfExtractor();
             pdfExtractor.BindPdf(filename);
 
-            // set page range for image extraction
+            //set page range for image extraction
             pdfExtractor.StartPage = 1;
             pdfExtractor.EndPage = 1;
 
             pdfExtractor.ExtractImage();
 
-            // save image to stream
+            //save image to stream
             MemoryStream imageStream = new MemoryStream();
             pdfExtractor.GetNextImage(imageStream);
             imageStream.Position = 0;
 
-            // recognize the barcode from the image stream above
+            //recognize the barcode from the image stream above
             BarCodeReader barcodeReader = new BarCodeReader(imageStream, BarCodeReadType.QR);
             while (barcodeReader.Read())
             {
                 Console.WriteLine("Codetext found: " + barcodeReader.GetCodeText() + ", Symbology: " + barcodeReader.GetReadType());
             }
-            // close the reader
+
+            //close the reader
             barcodeReader.Close();
 
             return barcodeReader;

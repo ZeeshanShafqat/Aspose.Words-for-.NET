@@ -1,6 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Runtime.ConstrainedExecution;
+﻿using System.IO;
+
 using Aspose.Words;
 using Aspose.Words.Saving;
 using NUnit.Framework;

@@ -5,8 +5,6 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System.Text;
-
 using Aspose.Words;
 using Aspose.Words.Saving;
 
@@ -17,7 +15,7 @@ namespace ApiExamples
     [TestFixture]
     internal class ExHtmlSaveOptions : ApiExampleBase
     {
-        //For assert this test you need to open documents and html do not have negative left margins
+        //For assert this test you need to open html docs and they shouldn't have negative left margins
         [Test]
         [TestCase(SaveFormat.Html)]
         [TestCase(SaveFormat.Mhtml)]
@@ -41,7 +39,7 @@ namespace ApiExamples
                     doc.Save(MyDir + "ExportPageMargins.Mhtml", htmlSaveOptions);
                     break;
                 case SaveFormat.Epub:
-                    doc.Save(MyDir + "ExportPageMargins.Epub", htmlSaveOptions); //There is draw images bug with epub. Need to write NSezganov
+                    doc.Save(MyDir + "ExportPageMargins.Epub", htmlSaveOptions); //There is draw images bug with epub. Need write to NSezganov
                     break;
             }
         }

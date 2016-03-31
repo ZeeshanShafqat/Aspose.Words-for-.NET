@@ -1526,7 +1526,7 @@ namespace ApiExamples
         }
 
         [Test]
-        public void DocumentBuilderInsertTOC()
+        public void DocumentBuilderInsertToc()
         {
             //ExStart
             //ExId:DocumentBuilderInsertTOC
@@ -1544,8 +1544,20 @@ namespace ApiExamples
         }
 
         [Test]
+        public void InsertSignatureLine()
+        {
+            
+        }
+        
+        [Test]
         public void InsertSignatureLineCurrentPozition()
         {
+            //ExStart
+            //ExFor:SignatureLine
+            //ExFor:SignatureLineOptions
+            //ExFor:DocumentBuilder.InsertSignatureLine(SignatureLineOptions)
+            //ExFor:DocumentBuilder.InsertSignatureLine(SignatureLineOptions)
+            //ExSummary:Shows how to insert signature line and get signature line properties
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
 
@@ -1559,7 +1571,8 @@ namespace ApiExamples
             options.AllowComments = true;
 
             builder.InsertSignatureLine(options);
-
+            builder.InsertSignatureLine(options, RelativeHorizontalPosition.RightMargin, 2.0, RelativeVerticalPosition.Page, 3.0, WrapType.Inline);
+            
             MemoryStream dstStream = new MemoryStream();
             doc.Save(dstStream, SaveFormat.Docx);
 
@@ -1575,35 +1588,15 @@ namespace ApiExamples
             Assert.AreEqual(true, signatureLine.AllowComments);
             Assert.AreEqual(false, signatureLine.IsSigned);
             Assert.AreEqual(false, signatureLine.IsValid);
-        }
+            //ExEnd
 
-        [Test]
-        public void InsertSignatureLineSpecifiedPosition()
-        {
-            Document doc = new Document();
-            DocumentBuilder builder = new DocumentBuilder(doc);
-
-            SignatureLineOptions options = new SignatureLineOptions();
-            options.Signer = "John Doe";
-            options.SignerTitle = "Manager";
-            options.Email = "johndoe@aspose.com";
-            options.ShowDate = true;
-            options.DefaultInstructions = false;
-            options.Instructions = "You need more info about signature line";
-            options.AllowComments = true;
-
-            //Bug: If wraptype are not inline shape break his position
-            builder.InsertSignatureLine(options, RelativeHorizontalPosition.RightMargin, 2.0, RelativeVerticalPosition.Page, 3.0, WrapType.Inline);
-
-            MemoryStream dstStream = new MemoryStream();
-            doc.Save(dstStream, SaveFormat.Docx);
-
-            Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+            shape = (Shape)doc.GetChild(NodeType.Shape, 1, true);
             Assert.AreEqual(RelativeHorizontalPosition.RightMargin, shape.RelativeHorizontalPosition);
             Assert.AreEqual(2.0, shape.Left);
             Assert.AreEqual(RelativeVerticalPosition.Page, shape.RelativeVerticalPosition);
             Assert.AreEqual(3.0, shape.Top);
             Assert.AreEqual(WrapType.Inline, shape.WrapType);
+            //Bug: If wraptype are not inline shape break his position (builder.InsertSignatureLine(options, RelativeHorizontalPosition.RightMargin, 2.0, RelativeVerticalPosition.Page, 3.0, WrapType.Inline);)
         }
 
         [Test]
@@ -1909,7 +1902,7 @@ namespace ApiExamples
             doc.Save(MyDir + @"Document.InsertedOleObject.doc");
             //ExEnd
 
-            //ToDo: There is some bug, need more info for this
+            //ToDo: There is some bug, need more info for this (breaking html link)
             //Shape oleObjectProgId = builder.InsertOleObject("http://www.aspose.com", "htmlfile", true, false, null);
         }
 

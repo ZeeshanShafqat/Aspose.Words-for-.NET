@@ -520,7 +520,6 @@ namespace ApiExamples
 
         }
 
-        //Todo: Get more font exeptions
         [Test]
         public void FontSubstitutionPerFirstAvailableFont()
         {
@@ -575,9 +574,8 @@ namespace ApiExamples
 
             doc.FontSettings = fontSettings;
 
-            doc.Save(MyDir + "Rendering.MissingFontNotification Out.pdf");
-            //doc.Save(MyDir + "Rendering.MissingFontNotification Out.emf", SaveFormat.Emf);
-
+            doc.Save(MyDir + "Rendering.MissingFontNotification_Out.pdf");
+            
             Assert.True(callback.mFontWarnings[0].Description.Equals("Font substitutes: 'Arial' replaced with 'Arvo'."));
             Assert.True(callback.mFontWarnings[1].Description.Equals("Font 'Times New Roman' has not been found. Using 'Arvo' font instead. Reason: default font setting."));
         }

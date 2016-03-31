@@ -274,10 +274,14 @@ namespace ApiExamples
         [Test]
         public void LoadFormatForOldDocuments()
         {
+            //ExStart
+            //ExFor:LoadFormat.DocPreWord60
+            //ExSummary: Shows how to open older binary DOC format for Word6.0/Word95 documents
             LoadOptions loadOptions = new LoadOptions();
             loadOptions.LoadFormat = Aspose.Words.LoadFormat.DocPreWord60;
 
             Document doc = new Document(MyDir + "Document.PreWord60.doc", loadOptions);
+            //ExEnd
         }
 
         [Test]
@@ -1563,6 +1567,13 @@ namespace ApiExamples
         [Test]
         public void ExtractPlainTextFromDocument()
         {
+            //ExStart
+            //ExFor:Document.ExtractText(string)
+            //ExFor:Document.ExtractText(string, LoadOptions)
+            //ExFor:PlaintextDocument.Text
+            //ExFor:PlaintextDocument.BuiltInDocumentProperties
+            //ExFor:PlaintextDocument.CustomDocumentProperties
+            //ExSummary:Shows how to extract plain text from the document and get it properties
             PlaintextDocument plaintext = Document.ExtractText(MyDir + "Bookmark.doc");
             Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
 
@@ -1577,11 +1588,16 @@ namespace ApiExamples
 
             CustomDocumentProperties customDocumentProperties = plaintext.CustomDocumentProperties;
             Assert.IsEmpty(customDocumentProperties);
+            //ExEnd
         }
 
         [Test]
         public void ExtractPlainTextFromStream()
         {
+            //ExStart
+            //ExFor:Document.ExtractText(Stream)
+            //ExFor:Document.ExtractText(Stream, LoadOptions)
+            //ExSummary:
             Stream docStream = new FileStream(MyDir + "Bookmark.doc", FileMode.Open);
 
             PlaintextDocument plaintext = Document.ExtractText(docStream);
@@ -1598,11 +1614,15 @@ namespace ApiExamples
             Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
 
             docStream.Close();
+            //ExEnd
         }
 
         [Test]
         public void GetShapeAltTextTitle()
         {
+            //ExStart
+            //ExFor:Shape.Title
+            //ExSummary:Shows how to get or set alt text title for shape object
             Document doc = new Document();
 
             // Create textbox shape.
@@ -1627,6 +1647,7 @@ namespace ApiExamples
             shape = (Shape)shapes[0];
 
             Assert.AreEqual("Alt Text Title", shape.Title);
+            //ExEnd
         }
     }
 }

@@ -243,7 +243,7 @@ namespace ApiExamples
             //ExFor:Forms2OleControlCollection.Enabled
             //ExFor:Forms2OleControlCollection.Type
             //ExFor:Forms2OleControlCollection.ChildNodes
-            //ExSummary: Shows how to get ActiveX control from the document and how to get properties of this document
+            //ExSummary: Shows how to get ActiveX control and properties from the document
             Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
             
             //Get ActiveX control from the document 
@@ -271,10 +271,11 @@ namespace ApiExamples
             //ExSummary:Shows how to get suggested file name from the object
             Document doc = new Document(MyDir + "Shape.SuggestedFileName.rtf");
             
-            //Gets the file name suggested for the current embedded object if you want to save it into a file.
+            //Gets the file name suggested for the current embedded object if you want to save it into a file
             Shape oleShape = (Shape)doc.FirstSection.Body.GetChild(NodeType.Shape, 0, true);
             string suggestedFileName = oleShape.OleFormat.SuggestedFileName;
             //ExEnd
+
             Assert.AreEqual("CSV.csv", suggestedFileName);
         }
 

@@ -160,7 +160,7 @@ namespace ApiExamples
         /// Test for WORDSNET-12397
         /// </summary>
         [Test]
-        public void InsertField_EmptyParagraph_WithUpdateField()
+        public void InsertFieldEmptyParagraphWithUpdateField()
         {
             Document doc = DocumentHelper.CreateDocumentWithoutDummyText();
 
@@ -172,10 +172,14 @@ namespace ApiExamples
         [Test]
         public void GetFormatRevision()
         {
+            //ExStart
+            //ExFor:Paragraph.IsFormatRevision
+            //ExSummary:Shows how to get information about whether this object was formatted in Microsoft Word while change tracking was enabled
             Document doc = new Document(MyDir + "Paragraph.IsFormatRevision.docx");
 
             Paragraph firstParagraph = DocumentHelper.GetParagraph(doc, 0);
             Assert.IsTrue(firstParagraph.IsFormatRevision);
+            //ExEnd
 
             Paragraph secondParagraph = DocumentHelper.GetParagraph(doc, 1);
             Assert.IsFalse(secondParagraph.IsFormatRevision);

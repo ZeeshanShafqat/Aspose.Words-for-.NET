@@ -407,8 +407,17 @@ namespace ApiExamples
         [Test]
         public void TestMailMergeGetRegionsHierarchy()
         {
+            //ExStart
+            //ExFor:MailMerge.GetRegionsHierarchy
+            //ExFor:MailMergeRegionInfo.Regions
+            //ExFor:MailMergeRegionInfo.Name
+            //ExFor:MailMergeRegionInfo.Fields
+            //ExFor:MailMergeRegionInfo.StartField
+            //ExFor:MailMergeRegionInfo.EndField
+            //ExSummary:Shows how to get MailMergeRegionInfo and work with it
             Document doc = new Document(MyDir+ "MailMerge.TestRegionsHierarchy.doc");
 
+            //Returns a full hierarchy of regions (with fields) available in the document.
             MailMergeRegionInfo regionInfo = doc.MailMerge.GetRegionsHierarchy();
 
             //Get top regions in the document
@@ -423,22 +432,16 @@ namespace ApiExamples
             Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[0]).Name, "NestedRegion1");
             Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[1]).Name, "NestedRegion2");
 
-            //Get nested region in second top region
-            nestedRegions = ((MailMergeRegionInfo)topRegions[1]).Regions;
-            Assert.AreEqual(2, nestedRegions.Count);
-            Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[0]).Name, "NestedRegion1");
-            Assert.AreEqual(((MailMergeRegionInfo)nestedRegions[1]).Name, "NestedRegion2");
-
             //Get field list in first top region
             ArrayList fieldList = ((MailMergeRegionInfo)topRegions[0]).Fields;
             Assert.AreEqual(4, fieldList.Count);
 
-            //Get field list in second top region
-            fieldList = ((MailMergeRegionInfo)topRegions[1]).Fields;
-            Assert.AreEqual(4, fieldList.Count);
+            FieldMergeField startFieldMergeField = ((MailMergeRegionInfo)nestedRegions[0]).StartField;
+            Assert.AreEqual("TableStart:NestedRegion1", startFieldMergeField.FieldName);
 
-            FieldMergeField fieldMergeField = ((MailMergeRegionInfo)nestedRegions[0]).StartField;
-            Assert.AreEqual("TableStart:NestedRegion1", fieldMergeField.FieldName);
+            FieldMergeField endFieldMergeField = ((MailMergeRegionInfo)nestedRegions[0]).EndField;
+            Assert.AreEqual("TableEnd:NestedRegion1", endFieldMergeField.FieldName);
+            //ExEnd
         }
 
         [Test]
@@ -446,6 +449,7 @@ namespace ApiExamples
         {
             Document document = new Document();
             document.MailMerge.UseNonMergeFields = true;
+           
             MailMergeCallbackStub mailMergeCallbackStub = new MailMergeCallbackStub();
             document.MailMerge.MailMergeCallback = mailMergeCallbackStub;
 
