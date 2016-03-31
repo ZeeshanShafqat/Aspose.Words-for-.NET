@@ -31,8 +31,9 @@ namespace CSharp.Loading_Saving
             if (Directory.Exists(pre97Dir) == false)
                 Directory.CreateDirectory(pre97Dir);
 
-            
+            //ExStart:GetListOfFilesInFolder
             string[] fileList = Directory.GetFiles(dataDir);
+            //ExEnd:GetListOfFilesInFolder
             // Loop through all found files.
             foreach (string fileName in fileList)
             {
@@ -85,7 +86,7 @@ namespace CSharp.Loading_Saving
                     case LoadFormat.Ott:
                         Console.WriteLine("\tOpenDocument Text Template.");
                         break;
-                    case LoadFormat.DocPreWord97:
+                    case LoadFormat.DocPreWord60:
                         Console.WriteLine("\tMS Word 6 or Word 95 format.");
                         break;
                     case LoadFormat.Unknown:
@@ -105,7 +106,7 @@ namespace CSharp.Loading_Saving
                 {
                     switch (info.LoadFormat)
                     {
-                        case LoadFormat.DocPreWord97:
+                        case LoadFormat.DocPreWord60:
                             File.Copy(fileName, Path.Combine(pre97Dir, nameOnly), true);
                             break;
                         case LoadFormat.Unknown:

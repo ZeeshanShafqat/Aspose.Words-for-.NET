@@ -15,6 +15,7 @@ using CSharp.Programming_Documents.Working_with_Sections;
 using CSharp.Programming_Documents.Working_with_ConvertUtil;
 using CSharp.Programming_Documents.Working_with_Charts;
 using CSharp.Programming_Documents.Working_with_Theme;
+using CSharp.Programming_Documents.Working_with_Node;
 using CSharp.Quick_Start;
 using CSharp.Rendering_and_Printing;
 using CSharp.LINQ;
@@ -45,8 +46,7 @@ namespace CSharp
             //AppendDocuments.Run();
             //ApplyLicense.Run();           
             //FindAndReplace.Run();
-            //CSharp.Quick_Start.HelloWorld.Run();            
-            //SimpleMailMerge.Run();
+            //CSharp.Quick_Start.HelloWorld.Run();           
             //UpdateFields.Run();
             //WorkingWithNodes.Run();
 
@@ -72,6 +72,8 @@ namespace CSharp
             //ConvertDocumentToByte.Run();
             //ConvertDocumentToEPUB.Run();
             //ConvertDocumentToHtmlWithRoundtrip.Run();
+            //DetectDocumentSignatures.Run();
+            //SaveAsTxt.Run();
 
             //// =====================================================
             //// =====================================================
@@ -98,12 +100,15 @@ namespace CSharp
             //BaseDocument.Run();
             //UpdatePageLayout.Run();
             //AppendDocumentManually.Run();
-            //PrependDocument.Run();
+            //PrependDocument.Run();            
 
             //// Find and Replace
             //// =====================================================
             //FindAndHighlight.Run();
             //ReplaceTextWithField.Run();
+            //ReplaceWithString.Run();
+            //ReplaceWithRegex.Run();
+            //ReplaceWithEvaluator.Run();
 
             //// Bookmarks
             //// =====================================================
@@ -145,6 +150,27 @@ namespace CSharp
             //RemoveFooters.Run();
             //AddGroupShapeToDocument.Run();
             //CompareDocument.Run();
+            //DocProperties.Run();
+            //AcceptAllRevisions.Run();
+            //WriteAndFont.Run();
+            //DocumentBuilderInsertParagraph.Run();
+            //DocumentBuilderBuildTable.Run();
+            //DocumentBuilderInsertBreak.Run();
+            //DocumentBuilderInsertImage.Run();
+            //DocumentBuilderInsertBookmark.Run();
+            //DocumentBuilderInsertElements.Run();
+            //DocumentBuilderSetFormatting.Run();
+            //DocumentBuilderMovingCursor.Run();
+            //ExtractTextOnly.Run();
+            //InsertDoc.Run();
+            //DocumentBuilderInsertTOC.Run();
+            //DocumentBuilderInsertTCField.Run();
+            //DocumentBuilderInsertTCFieldsAtText.Run();
+            //RemoveTOCFromDocument.Run();
+            //CheckBoxTypeContentControl.Run();
+            //RichTextBoxContentControl.Run();
+            //ComboBoxContentControl.Run();
+            //UpdateContentControls.Run();
 
             //// Fields
             //// =====================================================
@@ -166,6 +192,8 @@ namespace CSharp
             //FormFieldsGetByName.Run();
             //FormFieldsWorkWithProperties.Run();
             //RenameMergeFields.Run();
+            //ChangeFieldUpdateCultureSource.Run();
+            //GetFieldNames.Run();
             
             //// Images
             //// =====================================================
@@ -195,14 +223,20 @@ namespace CSharp
             //// =====================================================
             //ManipulateThemeProperties.Run();
 
+            //// Node
+            //// =====================================================
+            //ExNode.Run();
+
             //// Hyperlink
             //// =====================================================
-            //ReplaceHyperlinks.Run();
-            
+            //ReplaceHyperlinks.Run();            
 
             //// Styles
             //// =====================================================
             //ExtractContentBasedOnStyles.Run();
+            //ChangeStyleOfTOCLevel.Run();
+            //ChangeTOCTabStops.Run();
+
 
             //// Tables
             //// =====================================================
@@ -220,7 +254,9 @@ namespace CSharp
             //FindingIndex.Run();
             //AddRemoveColumn.Run();
             //RepeatRowsOnSubsequentPages.Run();
-            //JoiningAndSplittingTable.Run();            
+            //JoiningAndSplittingTable.Run();    
+            //MergedCells.Run();
+            //KeepTablesAndRowsBreaking.Run();
 
             //// Sections
             //// =====================================================
@@ -241,6 +277,7 @@ namespace CSharp
 
             //ApplyCustomLogicToEmptyRegions.Run();
             //LINQtoXMLMailMerge.Run();
+            //SimpleMailMerge.Run();
             //MailMergeFormFields.Run();
             //MultipleDocsInMailMerge.Run();
             //NestedMailMerge.Run();
@@ -250,7 +287,9 @@ namespace CSharp
             //MailMergeAlternatingRows.Run();
             //MailMergeImageFromBlob.Run();
             //ProduceMultipleDocuments.Run();
-            MailMergeUsingMustacheSyntax.Run();
+            //MailMergeUsingMustacheSyntax.Run();
+            //ExecuteWithRegionsDataTable.Run();
+            //NestedMailMergeCustom.Run();            
 
             //// =====================================================
             //// =====================================================
@@ -274,7 +313,7 @@ namespace CSharp
             //EmbeddingWindowsStandardFonts.Run();
             //HyphenateWordsOfLanguages.Run();
             //LoadHyphenationDictionaryForLanguage.Run();
-            //PrintProgressDialog.Run();
+            //PrintProgressDialog.Run();            
 
             //// =====================================================
             //// =====================================================
@@ -363,6 +402,10 @@ namespace CSharp
         public static String GetDataDir_WorkingWithCharts()
         {
             return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Charts/");
+        }
+        public static String GetDataDir_WorkingWithNode()
+        {
+            return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Node/");
         }
         public static String GetDataDir_WorkingWithTheme()
         {

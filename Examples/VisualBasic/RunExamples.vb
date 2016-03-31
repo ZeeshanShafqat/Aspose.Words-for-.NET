@@ -17,8 +17,7 @@ Module RunExamples
         'AppendDocuments.Run()
         'ApplyLicense.Run()
         'FindAndReplace.Run()
-        'HelloWorld.Run()       
-        'SimpleMailMerge.Run()
+        'HelloWorld.Run()
         'UpdateFields.Run()
         'WorkingWithNodes.Run()
 
@@ -44,6 +43,8 @@ Module RunExamples
         'ConvertDocumentToByte.Run()
         'ConvertDocumentToEPUB.Run()
         'ConvertDocumentToHtmlWithRoundtrip.Run()
+        'DetectDocumentSignatures.Run()
+        'SaveAsTxt.Run()
 
         '' =====================================================
         '' =====================================================
@@ -76,6 +77,9 @@ Module RunExamples
         '' =====================================================
         'FindAndHighlight.Run()
         'ReplaceTextWithField.Run()
+        'ReplaceWithString.Run()
+        'ReplaceWithRegex.Run()
+        'ReplaceWithEvaluator.Run()
 
         '' Bookmarks
         '' =====================================================
@@ -99,6 +103,10 @@ Module RunExamples
         '' Theme
         '' =====================================================
         'ManipulateThemeProperties.Run()
+
+        '' Node
+        '' =====================================================
+        'ExNode.Run()
 
         '' Charts
         '' =====================================================
@@ -126,6 +134,27 @@ Module RunExamples
         'RemoveFooters.Run()
         'AddGroupShapeToDocument.Run()
         'CompareDocument.Run()
+        'DocProperties.Run()
+        'AcceptAllRevisions.Run()
+        'WriteAndFont.Run()
+        'DocumentBuilderInsertParagraph.Run()
+        'DocumentBuilderBuildTable.Run()
+        'DocumentBuilderInsertBreak.Run()
+        'DocumentBuilderInsertImage.Run()
+        'DocumentBuilderInsertBookmark.Run()
+        'DocumentBuilderInsertElements.Run()
+        'DocumentBuilderSetFormatting.Run()
+        'DocumentBuilderMovingCursor.Run()
+        'ExtractTextOnly.Run()
+        'InsertDoc.Run()
+        'DocumentBuilderInsertTOC.Run()
+        'DocumentBuilderInsertTCField.Run()
+        'DocumentBuilderInsertTCFieldsAtText.Run()
+        'RemoveTOCFromDocument.Run()
+        'CheckBoxTypeContentControl.Run()
+        'RichTextBoxContentControl.Run()
+        'ComboBoxContentControl.Run()
+        'UpdateContentControls.Run()
 
         '' Fields
         '' =====================================================
@@ -147,6 +176,8 @@ Module RunExamples
         'FormFieldsGetByName.Run()
         'FormFieldsWorkWithProperties.Run()
         'RenameMergeFields.Run()
+        'ChangeFieldUpdateCultureSource.Run()
+        'GetFieldNames.Run()
 
         '' Images
         '' =====================================================
@@ -159,6 +190,8 @@ Module RunExamples
         '' Styles
         '' =====================================================
         'ExtractContentBasedOnStyles.Run()
+        'ChangeStyleOfTOCLevel.Run()
+        'ChangeTOCTabStops.Run()
 
         '' Hyperlink
         '' =====================================================
@@ -185,7 +218,9 @@ Module RunExamples
         'FindingIndex.Run()
         'AddRemoveColumn.Run()
         'RepeatRowsOnSubsequentPages.Run()
-        'JoiningAndSplittingTable.Run()     
+        'JoiningAndSplittingTable.Run() 
+        'MergedCells.Run()
+        'KeepTablesAndRowsBreaking.Run()
 
         '' Sections
         '' =====================================================
@@ -205,6 +240,7 @@ Module RunExamples
 
         'ApplyCustomLogicToEmptyRegions.Run()
         'LINQtoXMLMailMerge.Run()
+        'SimpleMailMerge.Run()
         'MailMergeFormFields.Run()
         'MultipleDocsInMailMerge.Run()
         'NestedMailMerge.Run()
@@ -214,7 +250,9 @@ Module RunExamples
         'MailMergeAlternatingRows.Run()
         'MailMergeImageFromBlob.Run()
         'ProduceMultipleDocuments.Run()
-        MailMergeUsingMustacheSyntax.Run()
+        'MailMergeUsingMustacheSyntax.Run()
+        'ExecuteWithRegionsDataTable.Run()
+        NestedMailMergeCustom.Run()
 
         '' =====================================================
         '' =====================================================
@@ -280,6 +318,9 @@ Module RunExamples
     End Function
     Public Function GetDataDir_Database() As [String]
         Return Path.GetFullPath(GetDataDir_Data() + "Database/")
+    End Function
+    Public Function GetDataDir_WorkingWithNode() As [String]
+        Return Path.GetFullPath(GetDataDir_Data() + "Programming-Documents/Node/")
     End Function
     Public Function GetDataDir_LoadingAndSaving() As [String]
         Return Path.GetFullPath(GetDataDir_Data() + "Loading-and-Saving/")

@@ -35,13 +35,12 @@
     <StartupObject>CSharp.RunExamples</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Words, Version=15.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\Aspose.Words.15.12.0\lib\net40\Aspose.Words.dll</HintPath>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\packages\Aspose.Words.16.2.0\lib\net40\Aspose.Words.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -76,6 +75,11 @@
     <Compile Include="Loading-and-Saving\ConvertDocumentToByte.cs" />
     <Compile Include="Loading-and-Saving\ConvertDocumentToEPUB.cs" />
     <Compile Include="Loading-and-Saving\ConvertDocumentToHtmlWithRoundtrip.cs" />
+    <Compile Include="Loading-and-Saving\SaveAsTxt.cs" />
+    <Compile Include="Loading-and-Saving\ImageLoadingWithCredentialsHandler.cs" />
+    <Compile Include="Loading-and-Saving\LoadAndSaveDocToDatabase.cs" />
+    <Compile Include="Loading-and-Saving\DetectDocumentSignatures.cs" />
+    <Compile Include="Loading-and-Saving\SendToClientBrowser.cs" />
     <Compile Include="Loading-and-Saving\DigitallySignedPdf.cs" />
     <Compile Include="Loading-and-Saving\SpecifySaveOption.cs" />
     <Compile Include="Loading-and-Saving\OpenEncryptedDocument.cs" />
@@ -85,6 +89,9 @@
     <Compile Include="Loading-and-Saving\PageSplitter.cs" />
     <Compile Include="Loading-and-Saving\SplitIntoHtmlPages.cs" />
     <Compile Include="Mail-Merge\ApplyCustomLogicToEmptyRegions.cs" />
+    <Compile Include="Mail-Merge\SimpleMailMerge.cs" />
+    <Compile Include="Mail-Merge\NestedMailMergeCustom.cs" />
+    <Compile Include="Mail-Merge\ExecuteWithRegionsDataTable.cs" />
     <Compile Include="Mail-Merge\MailMergeUsingMustacheSyntax.cs" />
     <Compile Include="Mail-Merge\ProduceMultipleDocuments.cs" />
     <Compile Include="Mail-Merge\MailMergeImageFromBlob.cs" />
@@ -115,10 +122,33 @@
     <Compile Include="Programming-Documents\Document\AccessStyles.cs" />
     <Compile Include="Programming-Documents\Document\AddGroupShapeToDocument.cs" />
     <Compile Include="Programming-Documents\Document\CompareDocument.cs" />
+    <Compile Include="Programming-Documents\Document\AcceptAllRevisions.cs" />
+    <Compile Include="Programming-Documents\Document\CheckBoxTypeContentControl.cs" />
+    <Compile Include="Programming-Documents\Document\ComboBoxContentControl.cs" />
+    <Compile Include="Programming-Documents\Document\UpdateContentControls.cs" />
+    <Compile Include="Programming-Documents\Document\RichTextBoxContentControl.cs" />
+    <Compile Include="Programming-Documents\Document\RemoveTOCFromDocument.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertTCFieldsAtText.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertTCField.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertTOC.cs" />
+    <Compile Include="Programming-Documents\Document\ExtractTextOnly.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderMovingCursor.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderSetFormatting.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertElements.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertBookmark.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertImage.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderBuildTable.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertBreak.cs" />
+    <Compile Include="Programming-Documents\Document\DocumentBuilderInsertParagraph.cs" />
+    <Compile Include="Programming-Documents\Document\InsertDoc.cs" />
+    <Compile Include="Programming-Documents\Document\WriteAndFont.cs" />
+    <Compile Include="Programming-Documents\Document\DocProperties.cs" />
     <Compile Include="Programming-Documents\Document\RemoveFooters.cs" />
     <Compile Include="Programming-Documents\Document\ExtractContentUsingDocumentVisitor.cs" />
     <Compile Include="Programming-Documents\Document\CreateHeaderFooterUsingDocBuilder.cs" />
+    <Compile Include="Programming-Documents\Fields\ChangeFieldUpdateCultureSource.cs" />
     <Compile Include="Programming-Documents\Fields\ChangeLocale.cs" />
+    <Compile Include="Programming-Documents\Fields\GetFieldNames.cs" />
     <Compile Include="Programming-Documents\Fields\RenameMergeFields.cs" />
     <Compile Include="Programming-Documents\Fields\FormFieldsWorkWithProperties.cs" />
     <Compile Include="Programming-Documents\Fields\FormFieldsGetByName.cs" />
@@ -131,11 +161,19 @@
     <Compile Include="Programming-Documents\Fields\InsertMergeFieldUsingDOM.cs" />
     <Compile Include="Programming-Documents\Fields\InsertField.cs" />
     <Compile Include="Programming-Documents\Fields\UpdateDocFields.cs" />
+    <Compile Include="Programming-Documents\Find-Replace\ReplaceWithEvaluator.cs" />
+    <Compile Include="Programming-Documents\Find-Replace\ReplaceWithRegex.cs" />
+    <Compile Include="Programming-Documents\Find-Replace\ReplaceWithString.cs" />
     <Compile Include="Programming-Documents\Hyperlink\ReplaceHyperlinks.cs" />
     <Compile Include="Programming-Documents\Images\InsertBarcodeImage.cs" />
     <Compile Include="Programming-Documents\Images\ExtractImagesToFiles.cs" />
+    <Compile Include="Programming-Documents\Node\ExNode.cs" />
     <Compile Include="Programming-Documents\Ranges\RangesDeleteText.cs" />
     <Compile Include="Programming-Documents\Ranges\RangesGetText.cs" />
+    <Compile Include="Programming-Documents\Styles\ChangeStyleOfTOCLevel.cs" />
+    <Compile Include="Programming-Documents\Styles\ChangeTOCTabStops.cs" />
+    <Compile Include="Programming-Documents\Tables\KeepTablesAndRowsBreaking.cs" />
+    <Compile Include="Programming-Documents\Tables\MergedCells.cs" />
     <Compile Include="Programming-Documents\Tables\JoiningAndSplittingTable.cs" />
     <Compile Include="Programming-Documents\Document\SetViewOption.cs" />
     <Compile Include="Programming-Documents\Document\GetVariables.cs" />
@@ -218,9 +256,12 @@
     <Compile Include="Quick-Start\HelloWorld.cs" />
     <Compile Include="Loading-and-Saving\LoadAndSaveToDisk.cs" />
     <Compile Include="Loading-and-Saving\LoadAndSaveToStream.cs" />
-    <Compile Include="Quick-Start\SimpleMailMerge.cs" />
     <Compile Include="Quick-Start\UpdateFields.cs" />
     <Compile Include="Quick-Start\WorkingWithNodes.cs" />
+    <Compile Include="Rendering-Printing\PrintMultiplePagesOnOneSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rendering-Printing\PrintDocViaXpsPrint.cs" />
     <Compile Include="Rendering-Printing\PrintProgressDialog.cs" />
     <Compile Include="Rendering-Printing\LoadHyphenationDictionaryForLanguage.cs" />
     <Compile Include="Rendering-Printing\HyphenateWordsOfLanguages.cs" />
