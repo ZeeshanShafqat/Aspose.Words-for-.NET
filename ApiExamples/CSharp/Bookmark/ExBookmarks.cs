@@ -174,7 +174,7 @@ namespace ApiExamples
 
             p.AppendChild(new Run(doc, "Text after bookmark."));
 
-            doc.Save(MyDir + "Bookmarks.CreateBookmarkWithNodes.doc");
+            doc.Save(MyDir + @"\Artifacts\Bookmarks.CreateBookmarkWithNodes.doc");
 
             Assert.AreEqual(doc.Range.Bookmarks["My bookmark"].Text, "Text inside bookmark. ");
             //ExEnd
@@ -193,7 +193,7 @@ namespace ApiExamples
             if (saveFormat == SaveFormat.Pdf)
             {
                 //Save document with pdf save options
-                doc.Save(MyDir + "Bookmark_WhiteSpaces_OUT.pdf", AddBookmarkSaveOptions(SaveFormat.Pdf));
+                doc.Save(MyDir + @"\Artifacts\Bookmark_WhiteSpaces_OUT.pdf", AddBookmarkSaveOptions(SaveFormat.Pdf));
 
                 //Bind pdf with Aspose PDF
                 PdfBookmarkEditor bookmarkEditor = new PdfBookmarkEditor();

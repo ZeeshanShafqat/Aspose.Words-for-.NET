@@ -88,7 +88,7 @@ namespace ApiExamples
             builder.InsertBreak(BreakType.PageBreak);
             builder.Writeln("Page3");
 
-            doc.Save(MyDir + "DocumentBuilder.HeadersAndFooters Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.HeadersAndFooters.doc");
             //ExEnd
         }
 
@@ -156,7 +156,7 @@ namespace ApiExamples
 
             builder.Writeln("Hello World!");
 
-            doc.Save(MyDir + "DocumentBuilderAndSave Out.docx");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilderAndSave.docx");
             //ExEnd
         }
 
@@ -187,7 +187,7 @@ namespace ApiExamples
 
             builder.Write(" for more information.");
 
-            doc.Save(MyDir + "DocumentBuilder.InsertHyperlink Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertHyperlink.doc");
             //ExEnd
         }
 
@@ -222,7 +222,7 @@ namespace ApiExamples
 
             builder.Writeln(". We hope you enjoyed the example.");
 
-            doc.Save(MyDir + "DocumentBuilder.PushPopFont Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.PushPopFont.doc");
             //ExEnd
         }
 
@@ -259,7 +259,7 @@ namespace ApiExamples
             shape.Left = (builder.PageSetup.PageWidth - shape.Width) / 2;
             shape.Top = (builder.PageSetup.PageHeight - shape.Height) / 2;
 
-            doc.Save(MyDir + "DocumentBuilder.InsertWatermark Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertWatermark.doc");
             //ExEnd
         }
 
@@ -280,7 +280,7 @@ namespace ApiExamples
                 "<div align='center'>Div center</div>" +
                 "<h1 align='left'>Heading 1 left.</h1>");
 
-            doc.Save(MyDir + "DocumentBuilder.InsertHtml Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertHtml.doc");
             //ExEnd
         }
 
@@ -301,7 +301,7 @@ namespace ApiExamples
                 "<div align='center'>Div center</div>" +
                 "<h1 align='left'>Heading 1 left.</h1>", useBuilderFormatting);
 
-            doc.Save(MyDir + "DocumentBuilder.InsertHtml Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertHtml.doc");
             //ExEnd
         }
 
@@ -357,7 +357,7 @@ namespace ApiExamples
             builder.Writeln("");
             builder.Writeln("");
 
-            builder.Document.Save(MyDir + "DocumentBuilder.CreateForm_OUT.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\DocumentBuilder.CreateForm.doc");
             //ExEnd
         }
 
@@ -445,7 +445,7 @@ namespace ApiExamples
             builder.MoveToDocumentEnd();
             builder.Writeln("End of document.");
 
-            doc.Save(MyDir + "DocumentBuilder.WorkingWithNodes Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.WorkingWithNodes.doc");
             //ExEnd
         }
 
@@ -472,7 +472,7 @@ namespace ApiExamples
             builder.Italic = true;
             builder.Writeln("Vladimir Averkin");
 
-            doc.Save(MyDir + "DocumentBuilder.FillingDocument Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.FillingDocument.doc");
             //ExEnd
         }
 
@@ -534,7 +534,7 @@ namespace ApiExamples
             doc.UpdateFields();
             //ExEnd
 
-            doc.Save(MyDir + "DocumentBuilder.InsertToc Out.docx");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertToc.docx");
         }
 
         [Test]
@@ -613,7 +613,7 @@ namespace ApiExamples
 
             builder.EndTable();
 
-            builder.Document.Save(MyDir + "DocumentBuilder.InsertTable Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertTable.doc");
             //ExEnd
         }
 
@@ -666,7 +666,7 @@ namespace ApiExamples
             builder.Writeln("50");
             builder.EndRow();
 
-            doc.Save(MyDir + "DocumentBuilder.SetTableStyle Out.docx");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.SetTableStyle.docx");
             //ExEnd
 
             // Verify that the style was set by expanding to direct formatting.
@@ -714,7 +714,7 @@ namespace ApiExamples
                 builder.EndRow();
             }
 
-            doc.Save(MyDir + "Table.HeadingRow Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Table.HeadingRow.doc");
             //ExEnd
 
             Assert.True(table.FirstRow.RowFormat.HeadingFormat);
@@ -748,7 +748,7 @@ namespace ApiExamples
             builder.InsertCell();
             builder.Writeln("Cell #3");
 
-            doc.Save(MyDir + "Table.PreferredWidth Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Table.PreferredWidth.doc");
             //ExEnd
 
             // Verify the correct settings were applied.
@@ -792,7 +792,7 @@ namespace ApiExamples
             builder.Writeln("Cell automatically sized. The size of this cell is calculated from the table preferred width.");
             builder.Writeln("In this case the cell will fill up the rest of the available space.");
 
-            doc.Save(MyDir + "Table.CellPreferredWidths Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Table.CellPreferredWidths.doc");
             //ExEnd
 
             // Verify the correct settings were applied.
@@ -823,7 +823,7 @@ namespace ApiExamples
                                "</tr>" +
                                "</table>");
 
-            doc.Save(MyDir + "DocumentBuilder.InsertTableFromHtml Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertTableFromHtml.doc");
             //ExEnd
 
             // Verify the table was constructed properly.
@@ -864,7 +864,7 @@ namespace ApiExamples
 
             builder.EndTable();
 
-            doc.Save(MyDir + "DocumentBuilder.InsertNestedTable Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertNestedTable.doc");
             //ExEnd
 
             Assert.AreEqual(2, doc.GetChildNodes(NodeType.Table, true).Count);
@@ -873,6 +873,7 @@ namespace ApiExamples
             Assert.AreEqual(2, cell.Tables[0].FirstRow.Cells.Count);
         }
 
+        //Todo: not end of changes
         [Test]
         public void BuildSimpleTable()
         {

@@ -110,7 +110,7 @@ namespace ApiExamples
             //ExFor:Document.Save(String)
             //ExId:SaveToFile
             //ExSummary:Saves a document to a file.
-            doc.Save(MyDir + "Document.OpenFromFile Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.OpenFromFile.doc");
             //ExEnd
         }
 
@@ -121,7 +121,7 @@ namespace ApiExamples
             //ExId:OpenAndSaveToFile
             //ExSummary:Opens a document from a file and saves it to a different format
             Document doc = new Document(MyDir + "Document.doc");
-            doc.Save(MyDir + "Document Out.html");
+            doc.Save(MyDir + @"\Artifacts\Document.html");
             //ExEnd
         }
 
@@ -179,7 +179,7 @@ namespace ApiExamples
             stream.Close();
 
             // Save in the DOC format.
-            doc.Save(MyDir + "Document.OpenFromStreamWithBaseUri Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.OpenFromStreamWithBaseUri.doc");
             //ExEnd
 
             // Lets make sure the image was imported successfully into a Shape node.
@@ -198,7 +198,7 @@ namespace ApiExamples
         {
             //ExStart
             //ExFor:Document.#ctor(Stream)
-            //ExSummary://ExSummary:Retrieves a document from a URL and saves it to disk in a different format.
+            //ExSummary:Retrieves a document from a URL and saves it to disk in a different format.
             // This is the URL address pointing to where to find the document.
             string url = "http://www.aspose.com/demos/.net-components/aspose.words/csharp/general/Common/Documents/DinnerInvitationDemo.doc";
 
@@ -219,7 +219,7 @@ namespace ApiExamples
             Document doc = new Document(byteStream);
 
             // Convert the document to any format supported by Aspose.Words.
-            doc.Save(MyDir + "Document.OpenFromWeb Out.docx");
+            doc.Save(MyDir + @"\Artifacts\Document.OpenFromWeb.docx");
             //ExEnd
         }
 
@@ -254,7 +254,7 @@ namespace ApiExamples
 
             // Save the document to disk.
             // The extension of the filename can be changed to save the document into other formats. e.g PDF, DOCX, ODT, RTF.
-            doc.Save(MyDir + "Document.HtmlPageFromWebpage Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.HtmlPageFromWebpage.doc");
             //ExEnd
         }
 
@@ -267,7 +267,7 @@ namespace ApiExamples
             //ExSummary:Explicitly loads a document as HTML without automatic file format detection.
             LoadOptions loadOptions = new LoadOptions();
             loadOptions.LoadFormat = Aspose.Words.LoadFormat.Html;
-            Document doc = new Document(MyDir + "Document.LoadFormat.html", loadOptions);
+            Document doc = new Document(MyDir + @"\Artifacts\Document.LoadFormat.html", loadOptions);
             //ExEnd
         }
 
@@ -280,7 +280,7 @@ namespace ApiExamples
             LoadOptions loadOptions = new LoadOptions();
             loadOptions.LoadFormat = Aspose.Words.LoadFormat.DocPreWord60;
 
-            Document doc = new Document(MyDir + "Document.PreWord60.doc", loadOptions);
+            Document doc = new Document(MyDir + @"\Artifacts\Document.PreWord60.doc", loadOptions);
             //ExEnd
         }
 
@@ -318,7 +318,7 @@ namespace ApiExamples
             //ExSummary:Converts from DOC to HTML format.
             Document doc = new Document(MyDir + "Document.doc");
 
-            doc.Save(MyDir + "Document.ConvertToHtml Out.html", SaveFormat.Html);
+            doc.Save(MyDir + @"\Artifacts\Document.ConvertToHtml.html", SaveFormat.Html);
             //ExEnd
         }
 
@@ -330,7 +330,7 @@ namespace ApiExamples
             //ExSummary:Converts from DOC to MHTML format.
             Document doc = new Document(MyDir + "Document.doc");
 
-            doc.Save(MyDir + "Document.ConvertToMhtml Out.mht");
+            doc.Save(MyDir + @"\Artifacts\Document.ConvertToMhtml.mht");
             //ExEnd
         }
 
@@ -342,7 +342,7 @@ namespace ApiExamples
             //ExSummary:Shows how to save a document in TXT format.
             Document doc = new Document(MyDir + "Document.doc");
 
-            doc.Save(MyDir + "Document.ConvertToTxt Out.txt");
+            doc.Save(MyDir + @"\Artifacts\Document.ConvertToTxt.txt");
             //ExEnd
         }
 
@@ -356,7 +356,7 @@ namespace ApiExamples
             //ExSummary:Converts a whole document from DOC to PDF using default options.
             Document doc = new Document(MyDir + "Document.doc");
 
-            doc.Save(MyDir + "Document.Doc2PdfSave Out.pdf");
+            doc.Save(MyDir + @"\Artifacts\Document.Doc2PdfSave.pdf");
             //ExEnd
         }
 
@@ -405,7 +405,7 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "Document.EpubConversion.doc");
 
             // Save the document in EPUB format.
-            doc.Save(MyDir + "Document.EpubConversion Out.epub");
+            doc.Save(MyDir + @"\Artifacts\Document.EpubConversion.epub");
             //ExEnd
         }
 
@@ -444,7 +444,7 @@ namespace ApiExamples
             saveOptions.SaveFormat = SaveFormat.Epub;
 
             // Export the document as an EPUB file.
-            doc.Save(MyDir + "Document.EpubConversion Out.epub", saveOptions);
+            doc.Save(MyDir + @"\Artifacts\Document.EpubConversion.epub", saveOptions);
             //ExEnd
         }
 
@@ -461,7 +461,7 @@ namespace ApiExamples
             // If this is setting is false (by default) then the HTML tags will be exported in condensed form with no indentation.
             htmlOptions.PrettyFormat = true;
 
-            doc.Save(MyDir + "Document.PrettyFormat Out.html", htmlOptions);
+            doc.Save(MyDir + @"\Artifacts\Document.PrettyFormat.html", htmlOptions);
             //ExEnd
         }
 
@@ -490,11 +490,11 @@ namespace ApiExamples
             options.ExportTextInputFormFieldAsText = true;
             options.ImagesFolder = imagesDir;
 
-            doc.Save(MyDir + "Document.SaveWithOptions Out.html", options);
+            doc.Save(MyDir + @"\Artifacts\Document.SaveWithOptions.html", options);
             //ExEnd
 
             // Verify the images were saved to the correct location.
-            Assert.IsTrue(File.Exists(MyDir + "Document.SaveWithOptions Out.html"));
+            Assert.IsTrue(File.Exists(MyDir + @"\Artifacts\Document.SaveWithOptions.html"));
             Assert.AreEqual(9, Directory.GetFiles(imagesDir).Length);
         }
 
@@ -527,7 +527,7 @@ namespace ApiExamples
             // Create and pass the object which implements the handler methods.
             options.FontSavingCallback = new HandleFontSaving();
 
-            doc.Save(MyDir + "Document.SaveWithFontsExport Out.html", options);
+            doc.Save(MyDir + @"\Artifacts\Document.SaveWithFontsExport.html", options);
         }
 
         public class HandleFontSaving : IFontSavingCallback
@@ -566,7 +566,7 @@ namespace ApiExamples
             HtmlSaveOptions options = new HtmlSaveOptions(SaveFormat.Html);
             options.ImageSavingCallback = new HandleImageSaving();
 
-            doc.Save(MyDir + "Document.SaveWithCustomImagesExport Out.html", options);
+            doc.Save(MyDir + @"\Artifacts\Document.SaveWithCustomImagesExport.html", options);
         }
 
         public class HandleImageSaving : IImageSavingCallback
@@ -607,12 +607,12 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set up and pass the object which implements the handler methods.
-            doc.NodeChangingCallback = new HandleNodeChanging_FontChanger();
+            doc.NodeChangingCallback = new HandleNodeChangingFontChanger();
 
             // Insert sample HTML content
             builder.InsertHtml("<p>Hello World</p>");
 
-            doc.Save(MyDir + "Document.FontChanger Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.FontChanger.doc");
 
             // Check that the inserted content has the correct formatting
             Run run = (Run)doc.GetChild(NodeType.Run, 0, true);
@@ -620,7 +620,7 @@ namespace ApiExamples
             Assert.AreEqual("Arial", run.Font.Name);
         }
 
-        public class HandleNodeChanging_FontChanger : INodeChangingCallback
+        public class HandleNodeChangingFontChanger : INodeChangingCallback
         {
             // Implement the NodeInserted handler to set default font settings for every Run node inserted into the Document
             void INodeChangingCallback.NodeInserted(NodeChangingArgs args)
@@ -704,7 +704,7 @@ namespace ApiExamples
             Document doc = new Document(docStream);
 
             // Save the document with the original file name, " Out" and the document's file extension.
-            doc.Save(MyDir + "Document.WithFileExtension Out" + FileFormatUtil.SaveFormatToExtension(saveFormat));
+            doc.Save(MyDir + @"\Artifacts\Document.WithFileExtension" + FileFormatUtil.SaveFormatToExtension(saveFormat));
             //ExEnd
 
             Assert.AreEqual(".doc", FileFormatUtil.SaveFormatToExtension(saveFormat));
@@ -743,7 +743,7 @@ namespace ApiExamples
             dstDoc.AppendDocument(srcDoc, ImportFormatMode.KeepSourceFormatting);
 
             // Save the document.
-            dstDoc.Save(MyDir + "Document.AppendDocument Out.doc");
+            dstDoc.Save(MyDir + @"\Artifacts\Document.AppendDocument.doc");
             //ExEnd
         }
 
@@ -795,7 +795,7 @@ namespace ApiExamples
             FileFormatInfo info = FileFormatUtil.DetectFileFormat(filePath);
             if (info.HasDigitalSignature)
             {
-                Console.WriteLine(string.Format("Document {0} has digital signatures, they will be lost if you open/save this document with Aspose.Words.", Path.GetFileName(filePath)));
+                Console.WriteLine("Document {0} has digital signatures, they will be lost if you open/save this document with Aspose.Words.", Path.GetFileName(filePath));
             }
             //ExEnd
         }
@@ -903,7 +903,7 @@ namespace ApiExamples
 
             //By String
             Document doc = new Document(MyDir + "TestRepeatingSection.doc");
-            string outputDocFileName = MyDir + "TestRepeatingSection.Signed_OUT.doc";
+            string outputDocFileName = MyDir + @"\Artifacts\TestRepeatingSection.Signed.doc";
 
             DigitalSignatureUtil.Sign(doc.OriginalFileName, outputDocFileName, ch, "My comment", DateTime.Now);
         }
@@ -911,8 +911,11 @@ namespace ApiExamples
         [Test]
         public void AppendAllDocumentsInFolder()
         {
+            string path = MyDir + @"\Artifacts\Document.AppendDocumentsFromFolder.doc";
+
             // Delete the file that was created by the previous run as I don't want to append it again.
-            File.Delete(MyDir + "Document.AppendDocumentsFromFolder Out.doc");
+            if (File.Exists(path))
+                File.Delete(path);
 
             //ExStart
             //ExFor:Document.AppendDocument(Document, ImportFormatMode)
@@ -947,7 +950,7 @@ namespace ApiExamples
             }
 
             // Save the combined document to disk.
-            baseDoc.Save(MyDir + "Document.AppendDocumentsFromFolder Out.doc");
+            baseDoc.Save(path);
             //ExEnd
         }
 
@@ -974,7 +977,7 @@ namespace ApiExamples
             Console.WriteLine("Number of runs before:{0}, after:{1}, joined:{2}", runsBefore, runsAfter, joinCount);
 
             // Save the optimized document to disk.
-            doc.Save(MyDir + "Document.JoinRunsWithSameFormatting Out.html");
+            doc.Save(MyDir + @"\Artifacts\Document.JoinRunsWithSameFormatting.html");
             //ExEnd
 
             // Verify that runs were joined in the document.
@@ -990,7 +993,7 @@ namespace ApiExamples
             //ExSummary:Opens a document, makes sure it is no longer attached to a template and saves the document.
             Document doc = new Document(MyDir + "Document.doc");
             doc.AttachedTemplate = "";
-            doc.Save(MyDir + "Document.DetachTemplate Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.DetachTemplate.doc");
             //ExEnd
         }
 
@@ -1072,15 +1075,15 @@ namespace ApiExamples
             // This option uses <ul> and <ol> tags are used for list label representation if it doesn't cause formatting loss, 
             // otherwise HTML <p> tag is used. This is also the default value.
             saveOptions.ExportListLabels = ExportListLabels.Auto;
-            doc.Save(MyDir + "Document.ExportListLabels Auto Out.html", saveOptions);
+            doc.Save(MyDir + @"\Artifacts\Document.ExportListLabels Auto.html", saveOptions);
 
             // Using this option the <p> tag is used for any list label representation.
             saveOptions.ExportListLabels = ExportListLabels.AsInlineText;
-            doc.Save(MyDir + "Document.ExportListLabels InlineText Out.html", saveOptions);
+            doc.Save(MyDir + @"\Artifacts\Document.ExportListLabels InlineText.html", saveOptions);
 
             // The <ul> and <ol> tags are used for list label representation. Some formatting loss is possible.
             saveOptions.ExportListLabels = ExportListLabels.ByHtmlTags;
-            doc.Save(MyDir + "Document.ExportListLabels HtmlTags Out.html", saveOptions);
+            doc.Save(MyDir + @"\Artifacts\Document.ExportListLabels HtmlTags.html", saveOptions);
         }
 
         [Test]
@@ -1295,7 +1298,7 @@ namespace ApiExamples
             Console.WriteLine("Cell shading after style expansion: " + cellShadingAfter);
             //ExEnd
 
-            doc.Save(MyDir + "Table.ExpandTableStyleFormatting Out.docx");
+            doc.Save(MyDir + @"\Artifacts\Table.ExpandTableStyleFormatting.docx");
 
             Assert.AreEqual(Color.Empty, cellShadingBefore);
             Assert.AreNotEqual(Color.Empty, cellShadingAfter);
@@ -1345,7 +1348,7 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "Document.doc");
             doc.ViewOptions.ViewType = ViewType.PageLayout;
             doc.ViewOptions.ZoomPercent = 50;
-            doc.Save(MyDir + "Document.SetZoom Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.SetZoom.doc");
             //ExEnd
         }
 
@@ -1386,7 +1389,7 @@ namespace ApiExamples
             doc.FootnoteOptions.NumberStyle = NumberStyle.Arabic;
             doc.FootnoteOptions.StartNumber = 1;
 
-            doc.Save(MyDir + "Document.FootnoteOptions.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.FootnoteOptions.doc");
             //ExEnd
         }
 
@@ -1411,7 +1414,7 @@ namespace ApiExamples
             doc1.Revisions.AcceptAll();
 
             // doc1, when saved, now resembles doc2.
-            doc1.Save(MyDir + "Document.CompareEx.doc");
+            doc1.Save(MyDir + @"\Artifacts\Document.CompareEx.doc");
             //ExEnd
         }
 
@@ -1471,7 +1474,7 @@ namespace ApiExamples
             doc.FirstSection.Body.AppendParagraph("Hello again!");
             Console.WriteLine(doc.Revisions.Count); // 4
 
-            doc.Save(MyDir + "Document.StartTrackRevisions.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.StartTrackRevisions.doc");
             //ExEnd
         }
 
@@ -1489,7 +1492,7 @@ namespace ApiExamples
 
             // Revisions will now show up as normal text in the output document.
             doc.AcceptAllRevisions();
-            doc.Save(MyDir + "Document.AcceptedRevisions.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.AcceptedRevisions.doc");
             //ExEnd
         }
 
@@ -1536,7 +1539,7 @@ namespace ApiExamples
             Assert.AreEqual(720, doc.HyphenationOptions.HyphenationZone);
             Assert.AreEqual(true, doc.HyphenationOptions.HyphenateCaps);
 
-            doc.Save(MyDir + "HyphenationOptions OUT.docx");
+            doc.Save(MyDir + "HyphenationOptions.docx");
         }
 
         [Test]

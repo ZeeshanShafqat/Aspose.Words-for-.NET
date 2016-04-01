@@ -67,7 +67,7 @@ namespace ApiExamples
             pageSetup.FooterDistance = ConvertUtil.MillimeterToPoint(5.0);
 
             builder.Writeln("Hello world.");
-            builder.Document.Save(MyDir + "PageSetup.PageMargins Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.PageMargins.doc");
             //ExEnd
         }
 
@@ -107,7 +107,7 @@ namespace ApiExamples
             pageSetupNoDpi.FooterDistance = ConvertUtil.PixelToPoint(20.0);
 
             builder.Writeln("Hello world.");
-            builder.Document.Save(MyDir + "PageSetup.PageMargins.DefaultResolution Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.PageMargins.DefaultResolution.doc");
 
             double myDpi = 150.0;
 
@@ -119,7 +119,7 @@ namespace ApiExamples
             pageSetupWithDpi.HeaderDistance = ConvertUtil.PixelToPoint(20.0, myDpi);
             pageSetupWithDpi.FooterDistance = ConvertUtil.PixelToPoint(20.0, myDpi);
 
-            builder.Document.Save(MyDir + "PageSetup.PageMargins.CustomResolution Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.PageMargins.CustomResolution.doc");
             //ExEnd
         }
 

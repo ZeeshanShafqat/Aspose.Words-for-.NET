@@ -75,7 +75,7 @@ namespace ApiExamples
             }
 
             builder.CurrentParagraph.Runs[0].Text = "Paragraph with no border";
-            doc.Save(MyDir + "Document.NoBorder.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.NoBorder.doc");
             //ExEnd
         }
     }
