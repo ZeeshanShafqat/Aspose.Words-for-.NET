@@ -84,7 +84,7 @@ namespace ApiExamples
             // End the bulleted list.
             builder.ListFormat.RemoveNumbers();
 
-            builder.Document.Save(MyDir + "Lists.ApplyDefaultBulletsAndNumbers Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.ApplyDefaultBulletsAndNumbers.doc");
             //ExEnd
         }
 
@@ -130,7 +130,7 @@ namespace ApiExamples
             // This is a way to stop list formatting. 
             builder.ListFormat.List = null;
 
-            builder.Document.Save(MyDir + "Lists.SpecifyListLevel Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.SpecifyListLevel.doc");
             //ExEnd
         }
 
@@ -175,7 +175,7 @@ namespace ApiExamples
 
             builder.ParagraphFormat.ClearFormatting();
 
-            builder.Document.Save(MyDir + "Lists.NestedLists Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.NestedLists.doc");
             //ExEnd
         }
 
@@ -246,7 +246,7 @@ namespace ApiExamples
 
             builder.ListFormat.RemoveNumbers();
 
-            builder.Document.Save(MyDir + "Lists.CreateCustomList Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.CreateCustomList.doc");
             //ExEnd
         }
 
@@ -292,7 +292,7 @@ namespace ApiExamples
             builder.Writeln("Item 2");
             builder.ListFormat.RemoveNumbers();
 
-            builder.Document.Save(MyDir + "Lists.RestartNumberingUsingListCopy Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.RestartNumberingUsingListCopy.doc");
             //ExEnd
         }
 
@@ -367,7 +367,7 @@ namespace ApiExamples
             builder.Writeln("Item 2");
             builder.ListFormat.RemoveNumbers();
 
-            builder.Document.Save(MyDir + "Lists.CreateAndUseListStyle Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.CreateAndUseListStyle.doc");
             //ExEnd
 
             // Verify properties of list 1
@@ -496,7 +496,7 @@ namespace ApiExamples
             list = doc.Lists.Add(ListTemplate.OutlineHeadingsChapter);
             AddOutlineHeadingParagraphs(builder, list, "Aspose.Words Outline 4");
 
-            builder.Document.Save(MyDir + "Lists.OutlineHeadingTemplates Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.OutlineHeadingTemplates.doc");
         }
 
         private static void AddOutlineHeadingParagraphs(DocumentBuilder builder, List list, string title)
@@ -548,7 +548,7 @@ namespace ApiExamples
                 AddListSample(builder, dstList);
             }
 
-            dstDoc.Save(MyDir + "Lists.PrintOutAllLists Out.doc");
+            dstDoc.Save(MyDir + @"\Artifacts\Lists.PrintOutAllLists.doc");
         }
 
         private static void AddListSample(DocumentBuilder builder, List list)
@@ -675,7 +675,7 @@ namespace ApiExamples
 
             builder.ListFormat.RemoveNumbers();
 
-            builder.Document.Save(MyDir + "Lists.CreateListRestartAfterHigher Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.CreateListRestartAfterHigher.doc");
             //ExEnd
         }
 
@@ -713,7 +713,7 @@ namespace ApiExamples
             builder.ParagraphFormat.Style = doc.Styles["Normal"];
             builder.Writeln("Hello World: Normal.");
 
-            builder.Document.Save(MyDir + "Lists.ParagraphStyleBulleted Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Lists.ParagraphStyleBulleted.doc");
             //ExEnd
         }
 

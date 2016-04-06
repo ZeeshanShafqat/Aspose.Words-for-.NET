@@ -51,12 +51,12 @@ namespace ApiExamples
             pdfSaveOptions.OutlineOptions.CreateMissingOutlineLevels = true;
             pdfSaveOptions.SaveFormat = SaveFormat.Pdf;
 
-            doc.Save(MyDir + "CreateMissingOutlineLevels_OUT.pdf", pdfSaveOptions);
+            doc.Save(MyDir + @"\Artifacts\CreateMissingOutlineLevels.pdf", pdfSaveOptions);
             //ExEnd
 
             //Bind pdf with Aspose PDF
             PdfBookmarkEditor bookmarkEditor = new PdfBookmarkEditor();
-            bookmarkEditor.BindPdf(MyDir + "CreateMissingOutlineLevels_OUT.pdf");
+            bookmarkEditor.BindPdf(MyDir + @"\Artifacts\CreateMissingOutlineLevels.pdf");
 
             //Get all bookmarks from the document
             Bookmarks bookmarks = bookmarkEditor.ExtractBookmarks();
@@ -74,7 +74,7 @@ namespace ApiExamples
             PdfSaveOptions pdfSaveOptions = new PdfSaveOptions();
             pdfSaveOptions.DmlRenderingMode = DmlRenderingMode.DrawingML;
 
-            doc.Save(MyDir + "DrawingMl_OUT.pdf", pdfSaveOptions);
+            doc.Save(MyDir + @"\Artifacts\DrawingMl.pdf", pdfSaveOptions);
         }
 
         [Test]
@@ -85,9 +85,9 @@ namespace ApiExamples
             PdfSaveOptions pdfSaveOptions = new PdfSaveOptions();
             pdfSaveOptions.UpdateFields = false;
 
-            doc.Save(MyDir + "UpdateFields_False_OUT.pdf", pdfSaveOptions);
+            doc.Save(MyDir + @"\Artifacts\UpdateFields_False.pdf", pdfSaveOptions);
 
-            Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(MyDir + "UpdateFields_False_OUT.pdf");
+            Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(MyDir + @"\Artifacts\UpdateFields_False.pdf");
 
             //Get text fragment by search string
             TextFragmentAbsorber textFragmentAbsorber = new TextFragmentAbsorber("Page  of");
@@ -105,9 +105,9 @@ namespace ApiExamples
             PdfSaveOptions pdfSaveOptions = new PdfSaveOptions();
             pdfSaveOptions.UpdateFields = true;
 
-            doc.Save(MyDir + "UpdateFields_False_OUT.pdf", pdfSaveOptions);
+            doc.Save(MyDir + @"\Artifacts\UpdateFields_False.pdf", pdfSaveOptions);
 
-            Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(MyDir + "UpdateFields_False_OUT.pdf");
+            Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(MyDir + @"\Artifacts\UpdateFields_False.pdf");
 
             //Get text fragment by search string
             TextFragmentAbsorber textFragmentAbsorber = new TextFragmentAbsorber("Page 1 of 2");

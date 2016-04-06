@@ -14,8 +14,6 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using Aspose.Words.Fields;
-
     [TestFixture]
     internal class ExHtmlFixedSaveOptions : ApiExampleBase
     {
@@ -39,7 +37,7 @@ namespace ApiExamples
             };
 
             //Uses "HtmlFixedSaveOptions"
-            doc.Save(MyDir + "UseEncoding_OUT.html", htmlFixedSaveOptions);
+            doc.Save(MyDir + @"\Artifacts\UseEncoding.html", htmlFixedSaveOptions);
             //ExEnd
         }
 

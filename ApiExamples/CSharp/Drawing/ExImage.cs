@@ -40,7 +40,7 @@ namespace ApiExamples
             builder.InsertImage("http://www.aspose.com/Images/aspose-logo.jpg");
             builder.Writeln();
 
-            builder.Document.Save(MyDir + "Image.CreateFromUrl Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromUrl.doc");
             //ExEnd
         }
 
@@ -64,7 +64,7 @@ namespace ApiExamples
                 stream.Close();
             }
 
-            builder.Document.Save(MyDir + "Image.CreateFromStream Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromStream.doc");
             //ExEnd
         }
 
@@ -103,7 +103,7 @@ namespace ApiExamples
                 metafile.Dispose();
             }
 
-            builder.Document.Save(MyDir + "Image.CreateFromImage Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromImage.doc");
             //ExEnd
         }
 
@@ -140,7 +140,7 @@ namespace ApiExamples
             shape.RelativeVerticalPosition = RelativeVerticalPosition.Page;
             shape.VerticalAlignment = VerticalAlignment.Center;
 
-            builder.Document.Save(MyDir + "Image.CreateFloatingPageCenter Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFloatingPageCenter.doc");
             //ExEnd
         }
 
@@ -174,7 +174,7 @@ namespace ApiExamples
             shape.Width = builder.CurrentSection.PageSetup.PageWidth;
             shape.Height = 50;
 
-            builder.Document.Save(MyDir + "Image.CreateFloatingPositionSize Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFloatingPositionSize.doc");
             //ExEnd
         }
 
@@ -192,7 +192,7 @@ namespace ApiExamples
             shape.HRef = "http://www.aspose.com/Community/Forums/75/ShowForum.aspx";
             shape.ScreenTip = "Aspose.Words Support Forums";
 
-            builder.Document.Save(MyDir + "Image.InsertImageWithHyperlink Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.InsertImageWithHyperlink.doc");
             //ExEnd
         }
 
@@ -212,7 +212,7 @@ namespace ApiExamples
 
             doc.FirstSection.Body.FirstParagraph.AppendChild(shape);
 
-            doc.Save(MyDir + "Image.CreateImageDirectly Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Image.CreateImageDirectly.doc");
             //ExEnd
         }
 
@@ -260,7 +260,7 @@ namespace ApiExamples
             builder.InsertNode(stored);
             builder.Writeln();
 
-            builder.Document.Save(MyDir + "Image.CreateLinkedImage Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateLinkedImage.doc");
             //ExEnd
         }
 
@@ -294,7 +294,7 @@ namespace ApiExamples
             //ExEnd
 
             Assert.AreEqual(1, doc.GetChildNodes(NodeType.Shape, true).Count);
-            doc.Save(MyDir + "Image.DeleteAllImages Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Image.DeleteAllImages.doc");
         }
 
         [Test]
@@ -325,7 +325,7 @@ namespace ApiExamples
             //ExEnd
 
             Assert.AreEqual(1, doc.GetChildNodes(NodeType.Shape, true).Count);
-            doc.Save(MyDir + "Image.DeleteAllImagesPreOrder Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Image.DeleteAllImagesPreOrder.doc");
         }
 
         //ExStart
@@ -351,7 +351,7 @@ namespace ApiExamples
                 if (shape.HasImage)
                 {
                     string imageFileName = string.Format(
-                        "Image.ExportImages.{0} Out{1}", imageIndex, FileFormatUtil.ImageTypeToExtension(shape.ImageData.ImageType));
+                        @"\Artifacts\Image.ExportImages.{0} Out{1}", imageIndex, FileFormatUtil.ImageTypeToExtension(shape.ImageData.ImageType));
                     shape.ImageData.Save(MyDir + imageFileName);
                     imageIndex++;
                 }
@@ -384,7 +384,7 @@ namespace ApiExamples
             shape.Width = imageSize.WidthPoints * 1.1;
             shape.Height = imageSize.HeightPoints * 1.1;
 
-            builder.Document.Save(MyDir + "Image.ScaleImage Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.ScaleImage.doc");
             //ExEnd
         }
     }

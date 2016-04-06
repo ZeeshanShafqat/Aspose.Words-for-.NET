@@ -128,7 +128,7 @@ namespace ApiExamples
             Thread.CurrentThread.CurrentCulture = currentCulture;
             //ExEnd
 
-            doc.Save(MyDir + "Field.ChangeLocale Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Field.ChangeLocale.doc");
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace ApiExamples
             tocField.Remove();
 
             // Save the output.
-            doc.Save(MyDir + "Document.TableOfContentsRemoveTOC Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.TableOfContentsRemoveTOC.doc");
             //ExEnd
         }
 
@@ -267,9 +267,9 @@ namespace ApiExamples
             // Set custom barcode generator
             doc.FieldOptions.BarcodeGenerator = new CustomBarcodeGenerator();
 
-            doc.Save(MyDir + "BarCode_OUT.pdf");
+            doc.Save(MyDir + @"\Artifacts\BarCode.pdf");
 
-            BarCodeReader barCode = BarCodeReaderPdf(MyDir + "BarCode_OUT.pdf");
+            BarCodeReader barCode = BarCodeReaderPdf(MyDir + @"\Artifacts\BarCode.pdf");
             Assert.AreEqual("QR", barCode.GetReadType().ToString());
         }
 

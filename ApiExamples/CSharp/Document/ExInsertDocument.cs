@@ -80,7 +80,7 @@ namespace ApiExamples
             Bookmark bookmark = mainDoc.Range.Bookmarks["insertionPlace"];
             InsertDocument(bookmark.BookmarkStart.ParentNode, subDoc);
 
-            mainDoc.Save(MyDir + "InsertDocumentAtBookmark Out.doc");
+            mainDoc.Save(MyDir + @"\Artifacts\InsertDocumentAtBookmark.doc");
             //ExEnd
         }
 
@@ -112,7 +112,7 @@ namespace ApiExamples
                 new string[] { "Document_1" },
                 new string[] { MyDir + "InsertDocument2.doc" });
 
-            mainDoc.Save(MyDir + "InsertDocumentAtMailMerge Out.doc");
+            mainDoc.Save(MyDir + @"\Artifacts\InsertDocumentAtMailMerge.doc");
         }
 
         private class InsertDocumentAtMailMergeHandler : IFieldMergingCallback
@@ -215,7 +215,7 @@ namespace ApiExamples
         {
             Document mainDoc = new Document(MyDir + "InsertDocument1.doc");
             mainDoc.Range.Replace(new Regex("\\[MY_DOCUMENT\\]"), new InsertDocumentAtReplaceHandler(), false);
-            mainDoc.Save(MyDir + "InsertDocumentAtReplace Out.doc");
+            mainDoc.Save(MyDir + @"\Artifacts\InsertDocumentAtReplace.doc");
         }
 
         private class InsertDocumentAtReplaceHandler : IReplacingCallback

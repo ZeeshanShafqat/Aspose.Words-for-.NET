@@ -59,7 +59,7 @@ namespace ApiExamples
                 }
             }
 
-            doc.Save(MyDir + "ReplaceHyperlinks Out.doc");
+            doc.Save(MyDir + @"\Artifacts\ReplaceHyperlinks.doc");
         }
 
         private const string NewUrl = @"http://www.aspose.com";

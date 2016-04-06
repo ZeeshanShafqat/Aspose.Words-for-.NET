@@ -57,7 +57,7 @@ namespace ApiExamples
             doc.Range.Replace("_CustomerName_", "James Bond", false, false);
 
             // Save the modified document.
-            doc.Save(MyDir + "Range.ReplaceSimple Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Range.ReplaceSimple.doc");
             //ExEnd
 
             Assert.AreEqual("Hello James Bond,\r\x000c", doc.GetText());
@@ -88,7 +88,7 @@ namespace ApiExamples
             doc.Range.Replace(new Regex(@"<CustomerName>"), new ReplaceWithHtmlEvaluator(), false);
 
             // Save the modified document.
-            doc.Save(MyDir + "Range.ReplaceWithInsertHtml Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Range.ReplaceWithInsertHtml.doc");
 
             Assert.AreEqual("Hello James Bond,\r\x000c", doc.GetText());  //ExSkip
         }
@@ -135,7 +135,7 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "Document.doc");
             doc.Range.Replace("sad", "bad", false, true);
             //ExEnd
-            doc.Save(MyDir + "ReplaceWithString Out.doc");
+            doc.Save(MyDir + @"\Artifacts\ReplaceWithString.doc");
         }
 
         [Test]
@@ -148,7 +148,7 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "Document.doc");
             doc.Range.Replace(new Regex("[s|m]ad"), "bad");
             //ExEnd
-            doc.Save(MyDir + "ReplaceWithRegex Out.doc");
+            doc.Save(MyDir + @"\Artifacts\ReplaceWithRegex.doc");
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace ApiExamples
         {
             Document doc = new Document(MyDir + "Range.ReplaceWithEvaluator.doc");
             doc.Range.Replace(new Regex("[s|m]ad"), new MyReplaceEvaluator(), true);
-            doc.Save(MyDir + "Range.ReplaceWithEvaluator Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Range.ReplaceWithEvaluator.doc");
         }
 
         private class MyReplaceEvaluator : IReplacingCallback
@@ -215,7 +215,7 @@ namespace ApiExamples
             doc.Range.Replace(regexUrl, new ChangeTextToHyperlinksEvaluator(doc), false);
 
             // Save updated document.
-            doc.Save(MyDir + @"Range.ChangeTextToHyperlinks Out.docx");
+            doc.Save(MyDir + @"\Artifacts\Range.ChangeTextToHyperlinks.docx");
         }
 
         private class ChangeTextToHyperlinksEvaluator : IReplacingCallback

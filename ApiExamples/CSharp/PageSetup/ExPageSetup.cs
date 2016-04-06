@@ -46,7 +46,7 @@ namespace ApiExamples
             builder.PageSetup.ClearFormatting();
             builder.Writeln("Section 2, back to default Letter paper size, portrait orientation and top alignment.");
 
-            builder.Document.Save(MyDir + "PageSetup.ClearFormatting Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.ClearFormatting.doc");
             //ExEnd
         }
 
@@ -80,7 +80,7 @@ namespace ApiExamples
             builder.InsertBreak(BreakType.PageBreak);
             builder.Writeln("Text page 3.");
 
-            builder.Document.Save(MyDir + "PageSetup.DifferentHeaders Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.DifferentHeaders.doc");
             //ExEnd
         }
 
@@ -185,7 +185,7 @@ namespace ApiExamples
 
             builder.Writeln("Hello world.");
 
-            builder.Document.Save(MyDir + "PageSetup.PageMargins Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.PageMargins.doc");
             //ExEnd
         }
 
@@ -210,7 +210,7 @@ namespace ApiExamples
             builder.InsertBreak(BreakType.ColumnBreak);
             builder.Writeln("Text in column 2.");
 
-            builder.Document.Save(MyDir + "PageSetup.ColumnsSameWidth Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.ColumnsSameWidth.doc");
             //ExEnd
         }
 
@@ -250,7 +250,7 @@ namespace ApiExamples
             builder.InsertBreak(BreakType.ColumnBreak);
             builder.Writeln("Wide column 2.");
 
-            builder.Document.Save(MyDir + "PageSetup.ColumnsCustomWidth Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.ColumnsCustomWidth.doc");
             //ExEnd
         }
 
@@ -273,7 +273,7 @@ namespace ApiExamples
             for (int i = 1; i <= 20; i++)
                 builder.Writeln(string.Format("Line {0}.", i));
 
-            builder.Document.Save(MyDir + "PageSetup.LineNumbers Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\PageSetup.LineNumbers.doc");
             //ExEnd
         }
 
@@ -302,7 +302,7 @@ namespace ApiExamples
             border.Color = Color.Blue;
             border.DistanceFromText = 0;
 
-            doc.Save(MyDir + "PageSetup.PageBorderTop Out.doc");
+            doc.Save(MyDir + @"\Artifacts\PageSetup.PageBorderTop.doc");
             //ExEnd
         }
 
@@ -327,7 +327,7 @@ namespace ApiExamples
             ps.Borders.DistanceFromText = 24;
             ps.Borders.Shadow = true;
 
-            doc.Save(MyDir + "PageSetup.PageBorders Out.doc");
+            doc.Save(MyDir + @"\Artifacts\PageSetup.PageBorders.doc");
             //ExEnd
         }
 
@@ -373,7 +373,7 @@ namespace ApiExamples
             section.PageSetup.RestartPageNumbering = true;
             section.PageSetup.PageNumberStyle = NumberStyle.Arabic;
 
-            doc.Save(MyDir + "PageSetup.PageNumbering Out.doc");
+            doc.Save(MyDir + @"\Artifacts\PageSetup.PageNumbering.doc");
             //ExEnd
         }
     }

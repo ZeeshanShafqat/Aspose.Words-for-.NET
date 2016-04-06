@@ -65,7 +65,7 @@ namespace ApiExamples
             options.ToolTips[SwfViewerControlIdentifier.BottomPaneShowHideBottomPaneButton] = "Показать/Скрыть панель";
             //ExEnd
 
-            doc.Save(MyDir + "SwfSaveOptions.ToolTips Out.swf", options);
+            doc.Save(MyDir + @"\Artifacts\SwfSaveOptions.ToolTips.swf", options);
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace ApiExamples
             options.ShowSearch = false;
             //ExEnd
 
-            doc.Save(MyDir + "SwfSaveOptions.HideControls Out.swf", options);
+            doc.Save(MyDir + @"\Artifacts\SwfSaveOptions.HideControls.swf", options);
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace ApiExamples
             options.LogoLink = "http://www.aspose.com";
             //ExEnd
 
-            doc.Save(MyDir + "SwfSaveOptions.CustomLogo Out.swf", options);
+            doc.Save(MyDir + @"\Artifacts\SwfSaveOptions.CustomLogo.swf", options);
         }
 
     }

@@ -38,7 +38,7 @@ namespace ApiExamples
                 stream.Close();
             }
 
-            builder.Document.Save(MyDir + "Image.CreateFromStreamRelativePosition Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromStreamRelativePosition.doc");
             //ExEnd
         }
 
@@ -57,7 +57,7 @@ namespace ApiExamples
             byte[] imageBytes = (byte[])imageConverter.ConvertTo(image, typeof (byte[]));
 
             builder.InsertImage(imageBytes);
-            builder.Document.Save(MyDir + "Image.CreateFromByteArrayDefault Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromByteArrayDefault.doc");
             //ExEnd
         }
 
@@ -76,7 +76,7 @@ namespace ApiExamples
             byte[] imageBytes = (byte[])imageConverter.ConvertTo(image, typeof(byte[]));
 
             builder.InsertImage(imageBytes, ConvertUtil.PixelToPoint(450), ConvertUtil.PixelToPoint(144));
-            builder.Document.Save(MyDir + "Image.CreateFromByteArrayCustomSize Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromByteArrayCustomSize.doc");
             //ExEnd
         }
 
@@ -96,7 +96,7 @@ namespace ApiExamples
 
             builder.InsertImage(imageBytes, RelativeHorizontalPosition.Margin, 100, RelativeVerticalPosition.Margin, 100,
                                     200, 100, WrapType.Square);
-            builder.Document.Save(MyDir + "Image.CreateFromByteArrayRelativePosition Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromByteArrayRelativePosition.doc");
             //ExEnd
         }
 
@@ -120,7 +120,7 @@ namespace ApiExamples
             {
                 rasterImage.Dispose();
             }
-            builder.Document.Save(MyDir + "Image.CreateFromImageWithStreamCustomSize Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromImageWithStreamCustomSize.doc");
             //ExEnd
         }
 
@@ -144,7 +144,7 @@ namespace ApiExamples
                 rasterImage.Dispose();
             }
 
-            builder.Document.Save(MyDir + "Image.CreateFromImageWithStreamRelativePosition Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromImageWithStreamRelativePosition.doc");
             //ExEnd
         }
 
@@ -167,7 +167,7 @@ namespace ApiExamples
                 stream.Close();
             }
 
-            builder.Document.Save(MyDir + "Image.CreateFromStreamCustomSize Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Image.CreateFromStreamCustomSize.doc");
             //ExEnd
         }
 
@@ -188,7 +188,7 @@ namespace ApiExamples
             builder.InsertImage(MyDir + "Aspose.Words.gif",
                 ConvertUtil.PixelToPoint(400), ConvertUtil.PixelToPoint(400));
 
-            doc.Save(MyDir + "DocumentBuilder.InsertImageFromUrlCustomSize Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertImageFromUrlCustomSize.doc");
             //ExEnd
         }
     }

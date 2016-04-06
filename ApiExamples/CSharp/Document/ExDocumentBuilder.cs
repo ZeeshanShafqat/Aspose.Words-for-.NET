@@ -873,7 +873,6 @@ namespace ApiExamples
             Assert.AreEqual(2, cell.Tables[0].FirstRow.Cells.Count);
         }
 
-        //Todo: not end of changes
         [Test]
         public void BuildSimpleTable()
         {
@@ -910,7 +909,7 @@ namespace ApiExamples
             builder.EndTable();
 
             // Save the document to disk.
-            doc.Save(MyDir + "DocumentBuilder.CreateSimpleTable Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.CreateSimpleTable.doc");
             //ExEnd
 
             // Verify that the cell count of the table is four.
@@ -1005,7 +1004,7 @@ namespace ApiExamples
             builder.EndRow();
             builder.EndTable();
 
-            doc.Save(MyDir + "DocumentBuilder.CreateFormattedTable Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.CreateFormattedTable.doc");
             //ExEnd
 
             // Verify that the cell style is different compared to default.
@@ -1067,7 +1066,7 @@ namespace ApiExamples
             builder.CellFormat.ClearFormatting();
             builder.Writeln("Cell #4");
 
-            doc.Save(MyDir + "Table.SetBordersAndShading Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Table.SetBordersAndShading.doc");
             //ExEnd
 
             // Verify the table was created correctly.
@@ -1127,7 +1126,7 @@ namespace ApiExamples
             // Clear hyperlink formatting.
             builder.Font.ClearFormatting();
 
-            doc.Save(MyDir + "DocumentBuilder.InsertHyperlinkToLocalBookmark Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertHyperlinkToLocalBookmark.doc");
             //ExEnd
         }
 
@@ -1435,7 +1434,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
             builder.InsertImage("http://www.aspose.com/images/aspose-logo.gif");
 
-            doc.Save(MyDir + "DocumentBuilder.InsertImageFromUrl Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertImageFromUrl.doc");
             //ExEnd
 
             // Verify that the image was inserted into the document.
@@ -1465,7 +1464,7 @@ namespace ApiExamples
                 WrapType.Square);
             //ExEnd
 
-            doc.Save(MyDir + "DocumentBuilder.InsertImageOriginalSize Out.doc");
+            doc.Save(MyDir + @"\Artifacts\DocumentBuilder.InsertImageOriginalSize.doc");
         }
 
         [Test]
@@ -1900,7 +1899,7 @@ namespace ApiExamples
 
             // Double click on the image in the .doc to see the spreadsheet.
             // Double click on the icon in the .doc to see the html.
-            doc.Save(MyDir + @"Document.InsertedOleObject.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.InsertedOleObject.doc");
             //ExEnd
 
             //ToDo: There is some bug, need more info for this (breaking html link)
@@ -1929,7 +1928,7 @@ namespace ApiExamples
             builder.InsertChart(ChartType.Pie, ConvertUtil.PixelToPoint(300),
                                 ConvertUtil.PixelToPoint(300));
 
-            doc.Save(MyDir + @"Document.InsertedChartDouble.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.InsertedChartDouble.doc");
             //ExEnd
         }
 
@@ -1945,7 +1944,7 @@ namespace ApiExamples
             builder.InsertChart(ChartType.Pie, RelativeHorizontalPosition.Margin, 100, RelativeVerticalPosition.Margin, 100,
                                     200, 100, WrapType.Square);
 
-            doc.Save(MyDir + @"Document.InsertedChartRelativePosition.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.InsertedChartRelativePosition.doc");
             //ExEnd
         }
 
@@ -1968,7 +1967,7 @@ namespace ApiExamples
             builder.Writeln("Check box 2");
             builder.InsertCheckBox("CheckBox2", false, true, 50);
 
-            doc.Save(MyDir + @"Document.InsertedCheckBoxes.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.InsertedCheckBoxes.doc");
             //ExEnd
         }
 
@@ -1984,7 +1983,7 @@ namespace ApiExamples
             builder.Write("This field was inserted/updated at ");
             builder.InsertField(FieldType.FieldTime, true);
 
-            doc.Save(MyDir + @"Document.InsertedField.doc");
+            doc.Save(MyDir + @"\Artifacts\Document.InsertedField.doc");
             //ExEnd
         }
     }

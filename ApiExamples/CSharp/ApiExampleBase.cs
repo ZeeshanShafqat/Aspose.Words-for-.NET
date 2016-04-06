@@ -19,7 +19,7 @@ namespace ApiExamples
     /// </summary>
     public class ApiExampleBase
     {
-        private string dirPath = MyDir + @"\Artifacts\";
+        private readonly string dirPath = MyDir + @"\Artifacts\";
 
         [TestFixtureSetUp]
         public void SetUp()
@@ -33,6 +33,10 @@ namespace ApiExamples
         [TestFixtureTearDown]
         public void TearDown()
         {
+            //Delete all files from dir
+            Array.ForEach(Directory.GetFiles(dirPath), File.Delete);
+            
+            //Delete empty folder
             Directory.Delete(dirPath);
         }
 

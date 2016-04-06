@@ -48,7 +48,7 @@ namespace ApiExamples
                 }
             }
 
-            doc.Save(MyDir + "RenameMergeFields Out.doc");
+            doc.Save(MyDir + @"\Artifacts\RenameMergeFields.doc");
         }
     }
 

@@ -51,7 +51,7 @@ namespace ApiExamples
                 new object[] {"James Bond", "MI5 Headquarters", "Milbank", "", "London"});
 
             // Send the document in Word format to the client browser with an option to save to disk or open inside the current browser.
-            doc.Save(Response, "MailMerge.ExecuteArray Out.doc", ContentDisposition.Inline, null);
+            doc.Save(Response, @"\Artifacts\MailMerge.ExecuteArray.doc", ContentDisposition.Inline, null);
             //ExEnd
         }
 
@@ -76,7 +76,7 @@ namespace ApiExamples
             // Field values from the table are inserted into the mail merge fields found in the document.
             doc.MailMerge.Execute(table);
 
-            doc.Save(MyDir + "MailMerge.ExecuteDataTable Out.doc");
+            doc.Save(MyDir + @"\Artifacts\MailMerge.ExecuteDataTable.doc");
             //ExEnd
         }
 
@@ -123,7 +123,7 @@ namespace ApiExamples
             dataReader.Close();
             conn.Close();
 
-            doc.Save(MyDir + "MailMerge.ExecuteDataReader Out.doc");
+            doc.Save(MyDir + @"\Artifacts\MailMerge.ExecuteDataReader.doc");
             //ExEnd
         }
 
@@ -154,7 +154,7 @@ namespace ApiExamples
             // Populate the document with the data.
             doc.MailMerge.Execute(orderView);
 
-            doc.Save(MyDir + "MailMerge.ExecuteDataView Out.doc");
+            doc.Save(MyDir + @"\Artifacts\MailMerge.ExecuteDataView.doc");
         }
 
         private static DataTable GetOrders()
@@ -210,7 +210,7 @@ namespace ApiExamples
             // If a table is found, its content is merged into the mail merge region in the document.
             doc.MailMerge.ExecuteWithRegions(dataSet);
 
-            doc.Save(MyDir + "MailMerge.ExecuteWithRegionsDataSet Out.doc");
+            doc.Save(MyDir + @"\Artifacts\MailMerge.ExecuteWithRegionsDataSet.doc");
             //ExEnd
         }
 
@@ -247,7 +247,7 @@ namespace ApiExamples
             orderDetailsView.Sort = "ExtendedPrice DESC";
             doc.MailMerge.ExecuteWithRegions(orderDetailsView);
 
-            doc.Save(MyDir + "MailMerge.ExecuteWithRegionsDataTable Out.doc");
+            doc.Save(MyDir + @"\Artifacts\MailMerge.ExecuteWithRegionsDataTable.doc");
         }
 
         private static DataTable GetTestOrder(int orderId)

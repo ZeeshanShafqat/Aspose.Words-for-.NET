@@ -363,7 +363,7 @@ namespace ApiExamples
             // Insert some Arabic text.
             builder.Writeln("مرحبًا");
 
-            builder.Document.Save(MyDir + "Font.Bidi Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Font.Bidi.doc");
             //ExEnd
         }
 
@@ -387,8 +387,8 @@ namespace ApiExamples
 
             // Insert some Chinese text.
             builder.Writeln("你好世界");
-            
-            builder.Document.Save(MyDir + "Font.FarEast Out.doc");
+
+            builder.Document.Save(MyDir + @"\Artifacts\Font.FarEast.doc");
             //ExEnd
         }
 
@@ -409,7 +409,7 @@ namespace ApiExamples
 
             builder.Writeln("Hello, Привет");
 
-            builder.Document.Save(MyDir + "Font.Names Out.doc");
+            builder.Document.Save(MyDir + @"\Artifacts\Font.Names.doc");
             //ExEnd
         }
 
@@ -435,7 +435,7 @@ namespace ApiExamples
                     run.Font.StyleIdentifier = StyleIdentifier.Strong;
             }
 
-            doc.Save(MyDir + "Font.StyleIdentifier Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Font.StyleIdentifier.doc");
             //ExEnd
         }
 
@@ -460,7 +460,7 @@ namespace ApiExamples
                     run.Font.StyleName = "Strong";
             }
 
-            doc.Save(MyDir + "Font.StyleName Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Font.StyleName.doc");
             //ExEnd
         }
 
@@ -486,7 +486,7 @@ namespace ApiExamples
                     run.Font.Underline = Underline.Double;
             }
 
-            doc.Save(MyDir + "Font.Style Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Font.Style.doc");
             //ExEnd
         }
 
@@ -547,7 +547,7 @@ namespace ApiExamples
             FontSettings.DefaultInstance.SetFontsFolder(string.Empty, false);
 
             // Pass the save options along with the save path to the save method.
-            doc.Save(MyDir + "Rendering.MissingFontNotification Out.pdf");
+            doc.Save(MyDir + @"\Artifacts\Rendering.MissingFontNotification.pdf");
             //ExEnd
 
             Assert.Greater(callback.mFontWarnings.Count, 0);
@@ -574,7 +574,7 @@ namespace ApiExamples
 
             doc.FontSettings = fontSettings;
 
-            doc.Save(MyDir + "Rendering.MissingFontNotification_Out.pdf");
+            doc.Save(MyDir + @"\Artifacts\Rendering.MissingFontNotification.pdf");
             
             Assert.True(callback.mFontWarnings[0].Description.Equals("Font substitutes: 'Arial' replaced with 'Arvo'."));
             Assert.True(callback.mFontWarnings[1].Description.Equals("Font 'Times New Roman' has not been found. Using 'Arvo' font instead. Reason: default font setting."));
@@ -589,7 +589,7 @@ namespace ApiExamples
             ExRendering.HandleDocumentWarnings callback = new ExRendering.HandleDocumentWarnings();
             doc.WarningCallback = callback;
 
-            doc.Save(MyDir + "DisapearingBulletPoints.pdf");
+            doc.Save(MyDir + @"\Artifacts\DisapearingBulletPoints.pdf");
 
             Assert.True(callback.mFontWarnings[0].Description.Equals("Font 'SymbolPS' has not been found. Using 'Wingdings' font instead. Reason: closest match according to font info from the document."));
         }
@@ -644,7 +644,7 @@ namespace ApiExamples
             Table table = (Table)doc.GetChild(NodeType.Table, 0, true);
             table.Accept(hiddenContentRemover);
 
-            doc.Save(MyDir + "Font.Hidden Out.doc");
+            doc.Save(MyDir + @"\Artifacts\Font.Hidden.doc");
 
             Assert.AreEqual(13, doc.GetChildNodes(NodeType.Paragraph, true).Count); //ExSkip
             Assert.AreEqual(1, doc.GetChildNodes(NodeType.Table, true).Count); //ExSkip
