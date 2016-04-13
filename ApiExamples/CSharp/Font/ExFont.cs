@@ -603,6 +603,27 @@ namespace ApiExamples
             this.RemoveHiddenContentFromDocument();
         }
 
+        [Test]
+        public void SetFontAutoColor()
+        {
+            //ExStart
+            //ExFor:Font.AutoColor
+            //ExSummary:Shows how calculated color of the text (black or white) to be used for 'auto color'
+            Run run = new Run(new Document());
+
+            // Remove direct color, so it can be calculated automatically with Font.AutoColor.
+            run.Font.Color = Color.Empty;
+
+            // When we set black color for background, autocolor for font must be white
+            run.Font.Shading.BackgroundPatternColor = Color.Black; 
+            Assert.AreEqual(Color.White, run.Font.AutoColor);
+
+            // When we set white color for background, autocolor for font must be black
+            run.Font.Shading.BackgroundPatternColor = Color.White;
+            Assert.AreEqual(Color.Black, run.Font.AutoColor);
+            //ExEnd
+        }
+
         //ExStart
         //ExFor:Font.Hidden
         //ExFor:Paragraph.Accept

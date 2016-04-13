@@ -33,7 +33,7 @@ using Aspose.Words.Rendering;
 using Aspose.Words.Saving;
 using Aspose.Words.Settings;
 using Aspose.Words.Tables;
-
+using Aspose.Words.Themes;
 using NUnit.Framework;
 
 namespace ApiExamples
@@ -1651,6 +1651,46 @@ namespace ApiExamples
 
             Assert.AreEqual("Alt Text Title", shape.Title);
             //ExEnd
+        }
+
+        [Test]
+        [Ignore]
+        public void GetOrSetDocumentThemeProperties()
+        {
+            Document doc = new Document();
+
+            Theme theme = doc.Theme;
+
+            theme.Colors.Accent1 = Color.Black;
+            theme.Colors.Dark1 = Color.Blue;
+            theme.Colors.FollowedHyperlink = Color.White;
+            theme.Colors.Hyperlink = Color.WhiteSmoke;
+            theme.Colors.Light1 = Color.Empty; //bug: not set ARGB to 0,0,0,0
+
+            theme.MajorFonts.ComplexScript = "Arial";
+            theme.MajorFonts.EastAsian = String.Empty;
+            theme.MajorFonts.Latin = "Times New Roman";
+
+            theme.MinorFonts.ComplexScript = String.Empty;
+            theme.MinorFonts.EastAsian = "Times New Roman";
+            theme.MinorFonts.Latin = "Arial";
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            Assert.AreEqual(Color.Black.ToArgb(), doc.Theme.Colors.Accent1.ToArgb());
+            Assert.AreEqual(Color.Blue.ToArgb(), doc.Theme.Colors.Dark1.ToArgb());
+            Assert.AreEqual(Color.White.ToArgb(), doc.Theme.Colors.FollowedHyperlink.ToArgb());
+            Assert.AreEqual(Color.WhiteSmoke.ToArgb(), doc.Theme.Colors.Hyperlink.ToArgb());
+            Assert.AreEqual(Color.Empty, doc.Theme.Colors.Light1);
+
+            Assert.AreEqual("Arial", doc.Theme.MajorFonts.ComplexScript);
+            Assert.AreEqual(String.Empty, doc.Theme.MajorFonts.EastAsian);
+            Assert.AreEqual("Times New Roman", doc.Theme.MajorFonts.Latin);
+
+            Assert.AreEqual(String.Empty, doc.Theme.MinorFonts.ComplexScript);
+            Assert.AreEqual("Times New Roman", doc.Theme.MinorFonts.EastAsian);
+            Assert.AreEqual("Arial", doc.Theme.MinorFonts.Latin);
         }
     }
 }
