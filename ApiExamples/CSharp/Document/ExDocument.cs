@@ -1577,13 +1577,13 @@ namespace ApiExamples
             //ExFor:PlaintextDocument.BuiltInDocumentProperties
             //ExFor:PlaintextDocument.CustomDocumentProperties
             //ExSummary:Shows how to extract plain text from the document and get it properties
-            PlaintextDocument plaintext = Document.ExtractText(MyDir + "Bookmark.doc");
+            PlainTextDocument plaintext = new PlainTextDocument(MyDir + "Bookmark.doc");
             Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
 
             LoadOptions loadOptions = new LoadOptions();
             loadOptions.AllowTrailingWhitespaceForListItems = false;
 
-            plaintext = Document.ExtractText(MyDir + "Bookmark.doc", loadOptions);
+            plaintext = new PlainTextDocument(MyDir + "Bookmark.doc", loadOptions);
             Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
 
             BuiltInDocumentProperties builtInDocumentProperties = plaintext.BuiltInDocumentProperties;
@@ -1603,7 +1603,7 @@ namespace ApiExamples
             //ExSummary:
             Stream docStream = new FileStream(MyDir + "Bookmark.doc", FileMode.Open);
 
-            PlaintextDocument plaintext = Document.ExtractText(docStream);
+            PlainTextDocument plaintext = new PlainTextDocument(docStream);
             Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
 
             docStream.Close();
@@ -1613,7 +1613,7 @@ namespace ApiExamples
             LoadOptions loadOptions = new LoadOptions();
             loadOptions.AllowTrailingWhitespaceForListItems = false;
 
-            plaintext = Document.ExtractText(docStream, loadOptions);
+            plaintext = new PlainTextDocument(docStream, loadOptions);
             Assert.AreEqual("This is a bookmarked text.\f", plaintext.Text);
 
             docStream.Close();
@@ -1654,7 +1654,6 @@ namespace ApiExamples
         }
 
         [Test]
-        [Ignore]
         public void GetOrSetDocumentThemeProperties()
         {
             Document doc = new Document();
@@ -1665,7 +1664,7 @@ namespace ApiExamples
             theme.Colors.Dark1 = Color.Blue;
             theme.Colors.FollowedHyperlink = Color.White;
             theme.Colors.Hyperlink = Color.WhiteSmoke;
-            theme.Colors.Light1 = Color.Empty; //bug: not set ARGB to 0,0,0,0
+            theme.Colors.Light1 = Color.Empty; //There is default Color.Black
 
             theme.MajorFonts.ComplexScript = "Arial";
             theme.MajorFonts.EastAsian = String.Empty;
@@ -1682,7 +1681,7 @@ namespace ApiExamples
             Assert.AreEqual(Color.Blue.ToArgb(), doc.Theme.Colors.Dark1.ToArgb());
             Assert.AreEqual(Color.White.ToArgb(), doc.Theme.Colors.FollowedHyperlink.ToArgb());
             Assert.AreEqual(Color.WhiteSmoke.ToArgb(), doc.Theme.Colors.Hyperlink.ToArgb());
-            Assert.AreEqual(Color.Empty, doc.Theme.Colors.Light1);
+            Assert.AreEqual(Color.Black.ToArgb(), doc.Theme.Colors.Light1.ToArgb());
 
             Assert.AreEqual("Arial", doc.Theme.MajorFonts.ComplexScript);
             Assert.AreEqual(String.Empty, doc.Theme.MajorFonts.EastAsian);

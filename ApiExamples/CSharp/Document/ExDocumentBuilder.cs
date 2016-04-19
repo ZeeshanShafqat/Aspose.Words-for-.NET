@@ -19,6 +19,8 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
+    using System.Security.Cryptography.X509Certificates;
+
     using Font = Aspose.Words.Font;
 
     [TestFixture]
@@ -1369,6 +1371,25 @@ namespace ApiExamples
 
             builder.EndTable();
             //ExEnd
+        }
+
+        [Test]
+        public void TableCellVerticalRotatedFarEastTextOrientation()
+        {
+            Document doc = new Document(MyDir + "DocumentBuilder.TableCellVerticalRotatedFarEastTextOrientation.docx");
+
+            Table table = (Table)doc.GetChild(NodeType.Table, 0, true);
+            Cell cell = table.FirstRow.FirstCell;
+
+            Assert.AreEqual(TextOrientation.VerticalRotatedFarEast, cell.CellFormat.Orientation);
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            table = (Table)doc.GetChild(NodeType.Table, 0, true);
+            cell = table.FirstRow.FirstCell;
+
+            Assert.AreEqual(TextOrientation.VerticalRotatedFarEast, cell.CellFormat.Orientation);
         }
 
         [Test]
