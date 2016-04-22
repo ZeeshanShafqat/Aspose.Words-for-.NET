@@ -18,6 +18,8 @@ namespace ApiExamples
     using System.IO;
 
     using Aspose.Words.Drawing.Ole;
+    using Aspose.Words.Rendering;
+    using Aspose.Words.Saving;
 
     /// <summary>
     /// Examples using shapes in documents.
@@ -286,6 +288,24 @@ namespace ApiExamples
 
             Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
             Assert.IsEmpty(shape.OleFormat.SuggestedFileName);
+        }
+
+        [Test]
+        public void GetOpaqueBoundsInPixels()
+        {
+            Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
+
+            Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+
+            ImageSaveOptions imageOptions = new ImageSaveOptions(FileFormatUtil.ExtensionToSaveFormat(Path.GetExtension(MyDir + "Shape.ActiveXObject Out.docx")));
+
+            MemoryStream stream = new MemoryStream();
+            ShapeRenderer renderer = shape.GetShapeRenderer();
+            renderer.Save(stream, imageOptions);
+            shape.Remove();
+
+            renderer.GetOpaqueBoundsInPixels(imageOptions.Scale, imageOptions.Resolution);
+            renderer.GetBoundsInPixels(imageOptions.Scale, imageOptions.Resolution);
         }
     }
 }
