@@ -34,12 +34,13 @@ using Aspose.Words.Saving;
 using Aspose.Words.Settings;
 using Aspose.Words.Tables;
 using Aspose.Words.Themes;
+
+using Font = Aspose.Words.Font;
+
 using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using Font = Aspose.Words.Font;
-
     [TestFixture]
     public class ExDocument : ApiExampleBase
     {

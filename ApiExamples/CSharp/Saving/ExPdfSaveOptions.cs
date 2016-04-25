@@ -116,5 +116,32 @@ namespace ApiExamples
             //Assert that fields are updated
             Assert.AreEqual("Page 1 of 2", textFragmentAbsorber.TextFragments[1].Text);
         }
+
+        //For assert this test you need to open "PDF_A_1_B Out.pdf" and "PDF_A_1_A Out.pdf" and check that header image in this documents are equal header image in the "Out.pdf" 
+        [Test]
+        public void PdfImageComppression()
+        {
+            Document doc = new Document(MyDir + "SaveOptions.PdfImageComppression.rtf");
+            
+            PdfSaveOptions opt = new PdfSaveOptions();
+            opt.PreserveFormFields = true;
+            opt.ImageCompression = PdfImageCompression.Jpeg;
+            
+            doc.Save(MyDir + "Out.pdf", opt);
+            
+            PdfSaveOptions opt2 = new PdfSaveOptions();
+            opt2.Compliance = PdfCompliance.PdfA1b;
+            opt2.ImageCompression = PdfImageCompression.Jpeg;
+            opt2.JpegQuality = 100;
+            
+            doc.Save(MyDir + "PDF_A_1_B Out.pdf", opt2);
+            
+            PdfSaveOptions opt3 = new PdfSaveOptions();
+            opt3.Compliance = PdfCompliance.PdfA1a;
+            opt3.ExportDocumentStructure = true;
+            opt3.ImageCompression = PdfImageCompression.Jpeg;
+            
+            doc.Save(MyDir + "PDF_A_1_A Out.pdf", opt3);
+        }
     }
 }

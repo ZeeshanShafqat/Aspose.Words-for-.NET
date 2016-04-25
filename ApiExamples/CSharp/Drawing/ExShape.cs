@@ -18,6 +18,7 @@ namespace ApiExamples
     using System.IO;
 
     using Aspose.Words.Drawing.Ole;
+    using Aspose.Words.Math;
     using Aspose.Words.Rendering;
     using Aspose.Words.Saving;
 
@@ -306,6 +307,41 @@ namespace ApiExamples
 
             renderer.GetOpaqueBoundsInPixels(imageOptions.Scale, imageOptions.Resolution);
             renderer.GetBoundsInPixels(imageOptions.Scale, imageOptions.Resolution);
+        }
+
+        //For assert result of the test you need to open "Document.OfficeMath Out.svg" and check that OfficeMath node is there
+        [Test]
+        public void SaveShapeObjectAsImage()
+        {
+            //ExStart
+            //ExFor:Shows how to convert specific object into image
+            Document doc = new Document(MyDir + "Document.OfficeMath.docx");
+
+            //Get OfficeMath node from the document and render this as image (you can also do the same with the Shape node)
+            OfficeMath math = (OfficeMath)doc.GetChild(NodeType.OfficeMath, 0, true);
+            math.GetMathRenderer().Save(MyDir + "Document.OfficeMath Out.svg", new ImageSaveOptions(SaveFormat.Svg));
+            //ExEnd
+        }
+
+        [Test]
+        [TestCase(true)]
+        [TestCase(false)]
+        public void AspectRatioLocked(bool isLocked)
+        {
+            //ExStart
+            //ExFor:Shows how to set "AspectRatioLocked" for the shape object
+            Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
+
+            //Get shape object from the document and set AspectRatioLocked(it is possible to get/set AspectRatioLocked for child shapes (mimic MS Word behavior), but AspectRatioLocked has effect only for top level shapes!)
+            Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+            shape.AspectRatioLocked = isLocked;
+            //ExEnd
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
+            Assert.AreEqual(isLocked, shape.AspectRatioLocked);
         }
     }
 }
