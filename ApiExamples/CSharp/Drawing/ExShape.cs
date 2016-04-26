@@ -294,19 +294,23 @@ namespace ApiExamples
         [Test]
         public void GetOpaqueBoundsInPixels()
         {
-            Document doc = new Document(MyDir + "Shape.ActiveXObject.docx");
+            Document doc = new Document(MyDir + "Shape.TextBox.doc");
 
             Shape shape = (Shape)doc.GetChild(NodeType.Shape, 0, true);
 
-            ImageSaveOptions imageOptions = new ImageSaveOptions(FileFormatUtil.ExtensionToSaveFormat(Path.GetExtension(MyDir + "Shape.ActiveXObject Out.docx")));
+            ImageSaveOptions imageOptions = new ImageSaveOptions(SaveFormat.Jpeg);
 
             MemoryStream stream = new MemoryStream();
             ShapeRenderer renderer = shape.GetShapeRenderer();
             renderer.Save(stream, imageOptions);
             shape.Remove();
 
-            renderer.GetOpaqueBoundsInPixels(imageOptions.Scale, imageOptions.Resolution);
-            renderer.GetBoundsInPixels(imageOptions.Scale, imageOptions.Resolution);
+            //Check that the opaque bounds and bounds have default values
+            Assert.AreEqual(250, renderer.GetOpaqueBoundsInPixels(imageOptions.Scale, imageOptions.Resolution).Width);
+            Assert.AreEqual(52, renderer.GetOpaqueBoundsInPixels(imageOptions.Scale, imageOptions.Resolution).Height);
+
+            Assert.AreEqual(250, renderer.GetBoundsInPixels(imageOptions.Scale, imageOptions.Resolution).Width);
+            Assert.AreEqual(52, renderer.GetBoundsInPixels(imageOptions.Scale, imageOptions.Resolution).Height);
         }
 
         //For assert result of the test you need to open "Document.OfficeMath Out.svg" and check that OfficeMath node is there
