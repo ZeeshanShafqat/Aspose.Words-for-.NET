@@ -933,27 +933,6 @@ namespace ApiExamples
         }
 
         [Test]
-        public void SaveToPdfWithJpegImageCompression()
-        {
-            //ExStart
-            //ExFor:PdfSaveOptions.ImageCompression
-            //ExFor:PdfSaveOptions.JpegQuality
-            //ExFor:PdfImageCompression
-            //ExId:SaveToPdfJpegImageCompression
-            //ExSummary:Demonstrates how to save images to PDF using JPEG encoding to decrease file size.
-            Document doc = new Document(MyDir + "Rendering.doc");
-
-            PdfSaveOptions options = new PdfSaveOptions();
-
-            // Use JPEG compression at 50% quality to reduce file size.
-            options.ImageCompression = PdfImageCompression.Jpeg;
-            options.JpegQuality = 50;
-
-            doc.Save(MyDir + @"\Artifacts\Rendering.JpegImageCompression.pdf", options);
-            //ExEnd
-        }
-
-        [Test]
         public void SetDefaultFontName()
         {
             //ExStart

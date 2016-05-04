@@ -117,31 +117,40 @@ namespace ApiExamples
             Assert.AreEqual("Page 1 of 2", textFragmentAbsorber.TextFragments[1].Text);
         }
 
-        //For assert this test you need to open "PDF_A_1_B Out.pdf" and "PDF_A_1_A Out.pdf" and check that header image in this documents are equal header image in the "Out.pdf" 
+        //For assert this test you need to open "SaveOptions.PdfImageComppression PDF_A_1_B Out.pdf" and "SaveOptions.PdfImageComppression PDF_A_1_A Out.pdf" and check that header image in this documents are equal header image in the "SaveOptions.PdfImageComppression Out.pdf" 
         [Test]
-        public void PdfImageComppression()
+        public void ImageCompression()
         {
+            //ExStart
+            //ExFor:PdfSaveOptions.Compliance
+            //ExFor:PdfSaveOptions.ImageCompression
+            //ExFor:PdfSaveOptions.JpegQuality
+            //ExFor:PdfImageCompression
+            //ExFor:PdfCompliance
+            //ExSummary:Demonstrates how to save images to PDF using JPEG encoding to decrease file size.
             Document doc = new Document(MyDir + "SaveOptions.PdfImageComppression.rtf");
-            
-            PdfSaveOptions opt = new PdfSaveOptions();
-            opt.PreserveFormFields = true;
-            opt.ImageCompression = PdfImageCompression.Jpeg;
-            
-            doc.Save(MyDir + "Out.pdf", opt);
-            
-            PdfSaveOptions opt2 = new PdfSaveOptions();
-            opt2.Compliance = PdfCompliance.PdfA1b;
-            opt2.ImageCompression = PdfImageCompression.Jpeg;
-            opt2.JpegQuality = 100;
-            
-            doc.Save(MyDir + "PDF_A_1_B Out.pdf", opt2);
-            
-            PdfSaveOptions opt3 = new PdfSaveOptions();
-            opt3.Compliance = PdfCompliance.PdfA1a;
-            opt3.ExportDocumentStructure = true;
-            opt3.ImageCompression = PdfImageCompression.Jpeg;
-            
-            doc.Save(MyDir + "PDF_A_1_A Out.pdf", opt3);
+
+            PdfSaveOptions options = new PdfSaveOptions();
+
+            options.ImageCompression = PdfImageCompression.Jpeg;
+            options.PreserveFormFields = true;
+
+            doc.Save(MyDir + "SaveOptions.PdfImageComppression Out.pdf", options);
+
+            PdfSaveOptions optionsA1b = new PdfSaveOptions();
+            optionsA1b.Compliance = PdfCompliance.PdfA1b;
+            optionsA1b.ImageCompression = PdfImageCompression.Jpeg;
+            optionsA1b.JpegQuality = 100;  // Use JPEG compression at 50% quality to reduce file size.
+
+            doc.Save(MyDir + "SaveOptions.PdfImageComppression PDF_A_1_B Out.pdf", optionsA1b);
+            //ExEnd
+
+            PdfSaveOptions optionsA1a = new PdfSaveOptions();
+            optionsA1a.Compliance = PdfCompliance.PdfA1a;
+            optionsA1a.ExportDocumentStructure = true;
+            optionsA1a.ImageCompression = PdfImageCompression.Jpeg;
+
+            doc.Save(MyDir + "SaveOptions.PdfImageComppression PDF_A_1_A Out.pdf", optionsA1a);
         }
     }
 }
