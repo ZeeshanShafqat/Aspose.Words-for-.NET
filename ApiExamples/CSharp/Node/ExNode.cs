@@ -508,7 +508,7 @@ namespace ApiExamples
             string nodeAsHtml = node.ToString(SaveFormat.Html);
             //ExEnd
 
-            Assert.AreEqual("<p style=\"margin:0pt\"><span style=\"font-family:'Times New Roman'; font-size:12pt\">Hello World!</span></p>", nodeAsHtml);
+            Assert.AreEqual("<p style=\"margin-top:0pt; margin-bottom:0pt; font-size:12pt\"><span style=\"font-family:'Times New Roman'\">Hello World!</span></p>", nodeAsHtml);
         }
 
         [Test]
@@ -532,7 +532,7 @@ namespace ApiExamples
             string nodeAsHtml = node.ToString(saveOptions);
             //ExEnd
 
-            Assert.AreEqual("<p style=\"margin:0pt\"><span style=\"font-family:'Times New Roman'\">Hello World!</span></p>", nodeAsHtml);
+            Assert.AreEqual("<p style=\"margin-top:0pt; margin-bottom:0pt\"><span style=\"font-family:'Times New Roman'\">Hello World!</span></p>", nodeAsHtml);
         }
 
         [Test]

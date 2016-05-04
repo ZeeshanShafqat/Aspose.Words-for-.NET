@@ -8,12 +8,13 @@
 using System;
 using System.IO;
 using System.Reflection;
+
+using Aspose.Words;
+
 using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using Aspose.Words;
-
     /// <summary>
     /// Provides common infrastructure for all API examples that are implemented as unit tests.
     /// </summary>

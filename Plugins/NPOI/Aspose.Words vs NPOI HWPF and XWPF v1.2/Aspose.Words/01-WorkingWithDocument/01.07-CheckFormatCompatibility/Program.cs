@@ -10,6 +10,17 @@ namespace _01._07_CheckFormatCompatibility
     {
         static void Main(string[] args)
         {
+            // Check for license and apply if exists
+            string licenseFile = AppDomain.CurrentDomain.BaseDirectory + "Aspose.Words.lic";
+            if (File.Exists(licenseFile))
+            {
+                // Apply Aspose.Words API License
+                Aspose.Words.License license = new Aspose.Words.License();
+                // Place license file in Bin/Debug/ Folder
+                license.SetLicense("Aspose.Words.lic");
+            }
+
+
             string dataPath = "../../data/";
             string[] fileList = Directory.GetFiles(dataPath);
 
@@ -68,7 +79,7 @@ namespace _01._07_CheckFormatCompatibility
                     case LoadFormat.Ott:
                         Console.WriteLine("\tOpenDocument Text Template.");
                         break;
-                    case LoadFormat.DocPreWord97:
+                    case LoadFormat.DocPreWord60:
                         Console.WriteLine("\tMS Word 6 or Word 95 format.");
                         break;
                     case LoadFormat.Unknown:

@@ -8,6 +8,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 using Aspose.Words;
 using Aspose.Words.Drawing;
@@ -15,14 +16,13 @@ using Aspose.Words.Drawing.Charts;
 using Aspose.Words.Fields;
 using Aspose.Words.Tables;
 
+
 using NUnit.Framework;
+
+using Font = Aspose.Words.Font;
 
 namespace ApiExamples
 {
-    using System.Security.Cryptography.X509Certificates;
-
-    using Font = Aspose.Words.Font;
-
     [TestFixture]
     public class ExDocumentBuilder : ApiExampleBase
     {

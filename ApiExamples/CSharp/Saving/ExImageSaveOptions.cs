@@ -6,13 +6,14 @@
 //////////////////////////////////////////////////////////////////////////
 
 using System.Drawing.Imaging;
+
+using Aspose.Words;
+using Aspose.Words.Saving;
+
 using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using Aspose.Words;
-    using Aspose.Words.Saving;
-
     [TestFixture]
     internal class ExImageSaveOptions : ApiExampleBase
     {

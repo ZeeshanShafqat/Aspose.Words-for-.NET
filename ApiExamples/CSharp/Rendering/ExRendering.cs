@@ -933,6 +933,71 @@ namespace ApiExamples
         }
 
         [Test]
+        public void SetSpecifyFontFolders()
+        {
+            FontSettings fontSettings = new FontSettings();
+            fontSettings.SetFontsFolders(new string[] { MyDir + @"MyFonts\", @"C:\Windows\Fonts\" }, true);
+
+            // Using load options
+            LoadOptions loadOptions = new LoadOptions();
+            loadOptions.FontSettings = fontSettings;
+            Document doc = new Document(MyDir + "Rendering.doc", loadOptions);
+
+            FolderFontSource folderSource = ((FolderFontSource)doc.FontSettings.GetFontsSources()[0]);
+            Assert.AreEqual(MyDir + @"MyFonts\", folderSource.FolderPath);
+            Assert.True(folderSource.ScanSubfolders);
+
+            folderSource = ((FolderFontSource)doc.FontSettings.GetFontsSources()[1]);
+            Assert.AreEqual(@"C:\Windows\Fonts\", folderSource.FolderPath);
+            Assert.True(folderSource.ScanSubfolders);
+        }
+
+        [Test]
+        public void AddFontSubstitutes()
+        {
+            FontSettings fontSettings = new FontSettings();
+            fontSettings.SetFontSubstitutes("Slab", new string[] { "Times New Roman", "Arial" });
+            fontSettings.AddFontSubstitutes("Arvo", new string[] { "Open Sans", "Arial" });
+            
+            Document doc = new Document(MyDir + "Rendering.doc");
+            doc.FontSettings = fontSettings;
+            
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            string[] alternativeFonts = doc.FontSettings.GetFontSubstitutes("Slab");
+            Assert.AreEqual(new string[] { "Times New Roman", "Arial" }, alternativeFonts);
+
+            alternativeFonts = doc.FontSettings.GetFontSubstitutes("Arvo");
+            Assert.AreEqual(new string[] { "Open Sans", "Arial" }, alternativeFonts);
+        }
+
+        [Test]
+        public void SetFontSubstitutes()
+        {
+            FontSettings fontSettings = new FontSettings();
+            fontSettings.SetFontSubstitutes("Times New Roman", new string[] { "Slab", "Arvo" });
+            
+            Document doc = new Document(MyDir + "Rendering.doc");
+            doc.FontSettings = fontSettings;
+
+            MemoryStream dstStream = new MemoryStream();
+            doc.Save(dstStream, SaveFormat.Docx);
+
+            //Check that font source are default
+            FontSourceBase[] fontSource = doc.FontSettings.GetFontsSources();
+            Assert.AreEqual("SystemFonts", fontSource[0].Type.ToString());
+
+            Assert.AreEqual("Times New Roman", doc.FontSettings.DefaultFontName);
+
+            string[] alternativeFonts = doc.FontSettings.GetFontSubstitutes("Times New Roman");
+            Assert.AreEqual(new string[] { "Slab", "Arvo" }, alternativeFonts);
+
+            doc.Save(MyDir + @"\Artifacts\Rendering.JpegImageCompression.pdf", options);
+            //ExEnd
+        }
+
+        [Test]
         public void SetDefaultFontName()
         {
             //ExStart

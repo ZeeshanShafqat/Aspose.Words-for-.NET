@@ -13,8 +13,13 @@
 using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Web;
 using System.Windows.Forms;
+using System.IO;
+using System.Collections;
+
+using Aspose.Words.Fields;
 using Aspose.Words;
 using Aspose.Words.MailMerging;
 
@@ -22,11 +27,6 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using System.Collections;
-    using System.IO;
-
-    using Aspose.Words.Fields;
-
     [TestFixture]
     public class ExMailMerge : ApiExampleBase
     {
@@ -106,10 +106,18 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "MailingLabelsDemo.doc");
 
             // Open the database connection.
-            string connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + 
+            string connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + 
                 DatabaseDir + "Northwind.mdb";
             OleDbConnection conn = new OleDbConnection(connString);
-            conn.Open();
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            
 
             // Open the data reader.
             OleDbCommand cmd = new OleDbCommand(
@@ -160,7 +168,7 @@ namespace ApiExamples
         private static DataTable GetOrders()
         {
             // Open a database connection.
-            string connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + 
+            string connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + 
                 DatabaseDir + "Northwind.mdb";
             OleDbConnection conn = new OleDbConnection(connString);
             conn.Open();
@@ -273,7 +281,7 @@ namespace ApiExamples
         private static DataTable ExecuteDataTable(string commandText)
         {
             // Open the database connection.
-            string connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + 
+            string connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + 
                 DatabaseDir + "Northwind.mdb";
             OleDbConnection conn = new OleDbConnection(connString);
             conn.Open();

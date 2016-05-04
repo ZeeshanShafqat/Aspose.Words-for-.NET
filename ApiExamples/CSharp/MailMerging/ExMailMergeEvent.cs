@@ -21,7 +21,6 @@ namespace ApiExamples
     [TestFixture]
     public class ExMailMergeEvent : ApiExampleBase
     {
-
         /// <summary>
         /// This calls the below method to resolve skipping of [Test] in VB.NET.
         /// </summary>
@@ -318,7 +317,7 @@ namespace ApiExamples
             doc.MailMerge.FieldMergingCallback = new HandleMergeImageFieldFromBlob();
 
             // Open a database connection.
-            string connString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DatabaseDir + "Northwind.mdb";
+            string connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + DatabaseDir + "Northwind.mdb";
             OleDbConnection conn = new OleDbConnection(connString);
             conn.Open();
 

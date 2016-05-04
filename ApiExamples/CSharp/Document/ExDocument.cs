@@ -268,6 +268,7 @@ namespace ApiExamples
             //ExSummary:Explicitly loads a document as HTML without automatic file format detection.
             LoadOptions loadOptions = new LoadOptions();
             loadOptions.LoadFormat = Aspose.Words.LoadFormat.Html;
+
             Document doc = new Document(MyDir + @"\Artifacts\Document.LoadFormat.html", loadOptions);
             //ExEnd
         }
@@ -391,7 +392,7 @@ namespace ApiExamples
             //ExSummary:Shows how to send a document to the client browser from an ASP.NET code.
             Document doc = new Document(MyDir + "Document.doc");
 
-            doc.Save(Response, "Report Out.doc", ContentDisposition.Inline, null);
+            doc.Save(Response, @"\Artifacts\Report.doc", ContentDisposition.Inline, null);
             //ExEnd
         }
 

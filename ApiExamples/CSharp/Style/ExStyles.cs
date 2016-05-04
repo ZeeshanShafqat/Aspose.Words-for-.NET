@@ -7,6 +7,7 @@
 
 using System;
 using System.Drawing;
+using System.IO;
 
 using Aspose.Words;
 
@@ -14,8 +15,6 @@ using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using System.IO;
-
     [TestFixture]
     public class ExStyles : ApiExampleBase
     {

@@ -5,15 +5,15 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
+using System;
+using System.IO;
+
 using Aspose.Words;
 
 using NUnit.Framework;
 
 namespace ApiExamples
 {
-    using System;
-    using System.IO;
-
     [TestFixture]
     class ExEditableRange : ApiExampleBase
     {

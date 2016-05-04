@@ -7,7 +7,6 @@
 
 using Aspose.Words;
 using Aspose.Words.Markup;
-using Aspose.Words.Saving;
 
 using NUnit.Framework;
 
@@ -32,19 +31,6 @@ namespace ApiExamples
             //Assert that the node have sdttype - RichText 
             sdt = (StructuredDocumentTag)sdts[1];
             Assert.AreNotEqual(SdtType.RepeatingSection, sdt.SdtType);
-        }
-
-        //ToDo 
-        [Test]
-        public void UpdateSdtContent()
-        {
-            Document doc = new Document(MyDir + "StructuredDocumentTag.UpdateSdtContent.docx");
-
-            PdfSaveOptions options = new PdfSaveOptions();
-            options.Compliance = PdfCompliance.PdfA1a;
-            options.UpdateSdtContent = false;
-
-            doc.Save(MyDir + "StructuredDocumentTag.UpdateSdtContent.pdf", options);
         }
     }
 }
