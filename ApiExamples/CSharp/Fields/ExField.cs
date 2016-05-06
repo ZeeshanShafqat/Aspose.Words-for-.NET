@@ -307,5 +307,33 @@ namespace ApiExamples
 
             return barcodeReader;
         }
+
+        //For assert result of the test you need to open "UpdateFieldIgnoringMergeFormat Out.docx" and check that image are added correct and without truncated inside frame
+        [Test]
+        public void UpdateFieldIgnoringMergeFormat()
+        {
+            //ExStart
+            //ExFor:FieldIncludePicture.Update(Bool)
+            //ExSummary:Shows a way to update a field ignoring the MERGEFORMAT switch
+            LoadOptions loadOptions = new LoadOptions();
+            loadOptions.PreserveIncludePictureField = true;
+
+            Document doc = new Document(MyDir + "UpdateFieldIgnoringMergeFormat.docx", loadOptions);
+            
+            foreach (Field field in doc.Range.Fields)
+            {
+                if (field.Type.Equals(FieldType.FieldIncludePicture))
+                {
+                    FieldIncludePicture includePicture = (FieldIncludePicture)field;
+
+                    includePicture.SourceFullName = MyDir + @"\Images\dotnet-logo.png";
+                    includePicture.Update(true);
+                }
+            }
+            
+            doc.UpdateFields();
+            doc.Save(MyDir + "UpdateFieldIgnoringMergeFormat Out.docx");
+            //ExEnd
+        }
     }
 }
