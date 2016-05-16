@@ -8,7 +8,6 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 
 using Aspose.Words;
 using Aspose.Words.Drawing;
@@ -18,8 +17,6 @@ using Aspose.Words.Tables;
 
 
 using NUnit.Framework;
-
-using Font = Aspose.Words.Font;
 
 namespace ApiExamples
 {
@@ -41,7 +38,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder();
 
             // Specify font formatting before adding text.
-            Font font = builder.Font;
+            Aspose.Words.Font font = builder.Font;
             font.Size = 16;
             font.Bold = true;
             font.Color = Color.Blue;
@@ -1294,7 +1291,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Specify font formatting
-            Font font = builder.Font;
+            Aspose.Words.Font font = builder.Font;
             font.Size = 16;
             font.Bold = true;
             font.Color = Color.Blue;
@@ -1630,7 +1627,7 @@ namespace ApiExamples
             DocumentBuilder builder = new DocumentBuilder(doc);
 
             // Set font formatting properties
-            Font font = builder.Font;
+            Aspose.Words.Font font = builder.Font;
             font.Bold = true;
             font.Color = Color.DarkBlue;
             font.Italic = true;

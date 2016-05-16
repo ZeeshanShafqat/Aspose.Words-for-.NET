@@ -13,8 +13,6 @@ using Aspose.Words;
 using Aspose.Pdf.Facades;
 using Aspose.Words.Saving;
 
-using Bookmark = Aspose.Words.Bookmark;
-
 namespace ApiExamples
 {
     [TestFixture]
@@ -33,7 +31,7 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "Bookmark.doc");
 
             // Use the indexer of the Bookmarks collection to obtain the desired bookmark.
-            Bookmark bookmark = doc.Range.Bookmarks["MyBookmark"];
+            Aspose.Words.Bookmark bookmark = doc.Range.Bookmarks["MyBookmark"];
 
             // Get the name and text of the bookmark.
             string name = bookmark.Name;
@@ -57,7 +55,7 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "Bookmark.doc");
 
             // Use the indexer of the Bookmarks collection to obtain the desired bookmark.
-            Bookmark bookmark = doc.Range.Bookmarks["MyBookmark"];
+            Aspose.Words.Bookmark bookmark = doc.Range.Bookmarks["MyBookmark"];
 
             // Remove the bookmark. The bookmarked text is not deleted.
             bookmark.Remove();
@@ -93,10 +91,10 @@ namespace ApiExamples
             Document doc = new Document(MyDir + "Bookmarks.doc");
 
             // By index.
-            Bookmark bookmark1 = doc.Range.Bookmarks[0];
+            Aspose.Words.Bookmark bookmark1 = doc.Range.Bookmarks[0];
             
             // By name.
-            Bookmark bookmark2 = doc.Range.Bookmarks["Bookmark2"];
+            Aspose.Words.Bookmark bookmark2 = doc.Range.Bookmarks["Bookmark2"];
             //ExEnd
         }
 
@@ -110,7 +108,7 @@ namespace ApiExamples
             //ExSummary:Demonstrates different methods of removing bookmarks from a document.
             Document doc = new Document(MyDir + "Bookmarks.doc");
             // Remove a particular bookmark from the document.
-            Bookmark bookmark = doc.Range.Bookmarks[0];
+            Aspose.Words.Bookmark bookmark = doc.Range.Bookmarks[0];
             doc.Range.Bookmarks.Remove(bookmark);
 
             // Remove a bookmark by specified name.
@@ -193,11 +191,11 @@ namespace ApiExamples
             if (saveFormat == SaveFormat.Pdf)
             {
                 //Save document with pdf save options
-                doc.Save(MyDir + @"\Artifacts\Bookmark_WhiteSpaces_OUT.pdf", AddBookmarkSaveOptions(SaveFormat.Pdf));
+                doc.Save(MyDir + @"\Artifacts\Bookmark_WhiteSpaces.pdf", AddBookmarkSaveOptions(SaveFormat.Pdf));
 
                 //Bind pdf with Aspose PDF
                 PdfBookmarkEditor bookmarkEditor = new PdfBookmarkEditor();
-                bookmarkEditor.BindPdf(MyDir + "Bookmark_WhiteSpaces_OUT.pdf");
+                bookmarkEditor.BindPdf(MyDir + "Bookmark_WhiteSpaces.pdf");
 
                 //Get all bookmarks from the document
                 Bookmarks bookmarks = bookmarkEditor.ExtractBookmarks();

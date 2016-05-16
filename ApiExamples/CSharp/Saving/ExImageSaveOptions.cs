@@ -5,8 +5,6 @@
 // "as is", without warranty of any kind, either expressed or implied.
 //////////////////////////////////////////////////////////////////////////
 
-using System.Drawing.Imaging;
-
 using Aspose.Words;
 using Aspose.Words.Saving;
 

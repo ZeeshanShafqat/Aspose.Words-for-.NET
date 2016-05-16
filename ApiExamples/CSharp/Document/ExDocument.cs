@@ -35,8 +35,6 @@ using Aspose.Words.Settings;
 using Aspose.Words.Tables;
 using Aspose.Words.Themes;
 
-using Font = Aspose.Words.Font;
-
 using NUnit.Framework;
 
 namespace ApiExamples
@@ -630,7 +628,7 @@ namespace ApiExamples
                 // Change the font of inserted text contained in the Run nodes.
                 if (args.Node.NodeType == NodeType.Run)
                 {
-                    Font font = ((Run)args.Node).Font;
+                    Aspose.Words.Font font = ((Run)args.Node).Font;
                     font.Size = 24;
                     font.Name = "Arial";
                 }

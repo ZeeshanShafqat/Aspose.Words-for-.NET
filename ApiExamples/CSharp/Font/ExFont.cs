@@ -8,17 +8,14 @@
 using System;
 using System.Collections;
 using System.Drawing;
-using System.IO;
+
 using Aspose.Words;
 using Aspose.Words.Drawing;
 using Aspose.Words.Fields;
 using Aspose.Words.Fonts;
-using Aspose.Words.Saving;
 using Aspose.Words.Tables;
 
 using NUnit.Framework;
-
-using Font = Aspose.Words.Font;
 
 namespace ApiExamples
 {
@@ -45,7 +42,7 @@ namespace ApiExamples
             Run run = new Run(doc, "Hello");
 
             // Specify character formatting for the run of text.
-            Font f = run.Font;
+            Aspose.Words.Font f = run.Font;
             f.Name = "Courier New";
             f.Size = 36;
             f.HighlightColor = Color.Yellow;
