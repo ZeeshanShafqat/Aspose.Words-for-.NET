@@ -50,8 +50,6 @@ namespace ApiExamples
                     break;
                 case "CASE":
                     break;
-                default:
-                    break;
             }
 
             return outputCode;
@@ -208,8 +206,6 @@ namespace ApiExamples
         public static int TryParseInt(string s)
         {
             double temp;
-            // RK I'm using double.TryParse only because there is no int.TryParse in .NET 1.1.
-            // What else could I do? I don't want to write number parsing routine myself.
             return (Double.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out temp)) ? CastDoubleToInt(temp) : int.MinValue;
         }
 
